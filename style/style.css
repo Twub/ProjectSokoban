@@ -20,6 +20,7 @@
     justify-content: space-evenly;
 }
  .sokoban{
+     display: flex;
      margin-top: 2%;
      background-color: black;
  width: 70%;
@@ -29,10 +30,7 @@
  #grid{
      color: white;
      display: flex;
-     flex-direction: column;
-     width: 70%;
-     height: 50%;
-     align-items: center;
+     flex-direction: column-reverse;
      margin: auto;
      margin-top: 5%;
  }
