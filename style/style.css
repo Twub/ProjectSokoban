@@ -28,4 +28,10 @@
  }
  #grid{
      color: white;
+     display: flex;
+     flex-direction: column;
+     width: 70%;
+     height: 50%;
+     margin: auto;
+     margin-top: 5%;
  }
