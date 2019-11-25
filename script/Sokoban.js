@@ -2,9 +2,9 @@ export default{
     template:`
     <div class="sokoban">
         <div id="grid">
-            <tr v-for="grids in gridLayout">
-            <td v-for="(grids, grids) in gridLayout" @click="remove">
-            <img src="https://www.w3schools.com/images/lamp.jpg" alt="Lamp" width="32" height="32">
+            <tr v-for="grids in gridLayout" id="grids">
+            <td v-for="(grids, index) in gridLayout" @click="remove" id="grids">
+            <img src="/images/img11.png" alt="Lamp" width="30" height="30">
             </td>
             </tr>
         </div>
@@ -12,8 +12,13 @@ export default{
     `,
     data(){
         return{
-            grid: " [  ]  ",
             gridLayout: [
+                [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],
+                [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],
+                [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],
+                [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],
+                [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],
+                [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],
                 [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],
                 [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],
                 [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],
