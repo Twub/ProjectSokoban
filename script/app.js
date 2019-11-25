@@ -1,7 +1,12 @@
+import header from './header.js'
+
 export default{
+    components:{
+        header
+    },
     template: `
-    <div>
-        <h1>Hello World</h1>
+    <div id="content">
+        <header></header>
     </div>
     `
 }
