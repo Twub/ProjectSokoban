@@ -5,7 +5,7 @@ export default{
         Grid
     },
     template:`
-    <div class="sokoban">
+    <div class="sokoban" id="sokobanGrid">
     <div class="difficulty">
     <label for="mapSelect" id="text">Difficulty: </label>
     <select id="mapSelect" v-model="choice">

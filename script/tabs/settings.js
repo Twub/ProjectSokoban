@@ -11,11 +11,11 @@ export default {
     `, 
     methods: {
         saveSettings: function(){
-
+            
         },
         
         ignoreSettings: function(){
-            
+
         }
 
     }

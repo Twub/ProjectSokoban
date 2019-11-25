@@ -21,7 +21,7 @@ export default{
         },
 
         showSettings: function(){
-            
+            document.getElementById("sokobanGrid").style.visibility = 'hidden';
         }
     }
 }
