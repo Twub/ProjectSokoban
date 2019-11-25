@@ -1,9 +1,9 @@
 export default{
     template: `
         <div id="header">
-            <button id="start-game-button">Start!</button>
-            <button id="settings-button">Settings</button>
-            <button id="end-game-button">Stop!</button>
+            <button id="start-game-button" class="header-buttons">Start!</button>
+            <button id="settings-button" class="header-buttons">Settings</button>
+            <button id="end-game-button" class="header-buttons">Stop!</button>
         </div>
     `
 }
