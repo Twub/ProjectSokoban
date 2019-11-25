@@ -3,7 +3,7 @@ export default{
     <div class="sokoban">
         <div id="grid">
             <tr v-for="grids in gridLayout">
-            <td v-for="(grids, grids) in gridLayout">*insert grid*</td>
+            <td v-for="(grids, grids) in gridLayout" @click="remove">*insert grid*</td>
             </tr>
         </div>
     </div>
@@ -30,4 +30,9 @@ export default{
             ]
         }
     },
+    methods:{
+        remove(){
+            this.gridLayout.pop()
+        }
+    }
 }
