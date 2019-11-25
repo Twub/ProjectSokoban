@@ -1,7 +1,16 @@
+import mainHead from './header.js'
+import sokobanGame from './Sokoban.js'
+
 export default{
+    components:{
+        mainHead,
+        sokobanGame
+    },
     template: `
-    <div>
-        <h1>Hello World</h1>
+    <div id="content">
+        <mainHead></mainHead>
+        <sokobanGame></sokobanGame>
+        
     </div>
     `
 }
