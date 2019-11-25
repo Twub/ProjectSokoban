@@ -7,3 +7,11 @@
      background: url(/images/background.jpg);
      background-size: cover;
  }
+#content{
+    display: flex;
+    justify-content: center;
+}
+
+ .sokoban{
+
+ }
