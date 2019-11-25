@@ -1,10 +1,15 @@
+import Grid from "./grid.js"
+
 export default{
+    components:{
+        Grid
+    },
     template:`
-    <div class="sokoban">
+    <div class="sokoban" @click="remove">
         <div id="grid">
-            <tr v-for="grids in gridLayout" id="grids">
-            <td v-for="(grids, index) in gridLayout" @click="remove" id="grids">
-            <img src="/images/img23.png" alt="block" width="30" height="30">
+            <tr v-for="grids in gridLayoutAngleX" id="grids">
+            <td v-for="(grids, index) in gridLayoutAngleY"id="grids">
+            <img src="images/img11.png" width="30" height="30">
             </td>
             </tr>
         </div>
@@ -12,29 +17,14 @@ export default{
     `,
     data(){
         return{
-            gridLayout: [
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                []
-            ]
+            gridLayoutAngleX: [],
+            gridLayoutAngleY: []
         }
     },
     methods:{
         remove(){
-            this.gridLayout.pop()
-
+            this.gridLayoutAngleX.push(new Grid(1,"images/img11.png"))
+            this.gridLayoutAngleY.push(new Grid(1,"images/img13.png"))
         }
     }
 }

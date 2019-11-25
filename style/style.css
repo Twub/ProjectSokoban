@@ -27,6 +27,7 @@
  height: 80vh;
  color: white;
  border-radius: 20%;
+ flex-direction: column;
  }
  #grid{
      color: white;
@@ -35,6 +36,9 @@
      margin-top: 5%;
  }
  #grids{
-     display: flex;
-     
+     display: flex; 
+ }
+ #tileRemoveButton{
+     width: 25%;
+     margin: auto;
  }
