@@ -1,12 +1,12 @@
-import header from './header.js'
+import mainHead from './header.js'
 
 export default{
     components:{
-        header
+        mainHead
     },
     template: `
     <div id="content">
-        <header></header>
+        <mainHead></mainHead>
     </div>
     `
 }
