@@ -10,8 +10,18 @@
 #content{
     display: flex;
     justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
-
+#header{
+    margin-top: 2%;
+    display: flex;
+    justify-content: center;
+    justify-content: space-evenly;
+}
  .sokoban{
-
+     margin-top: 2%;
+     background-color: black;
+ width: 70%;
+ height: 80vh;
  }

@@ -1,12 +1,16 @@
 import mainHead from './header.js'
+import sokobanGame from './Sokoban.js'
 
 export default{
     components:{
-        mainHead
+        mainHead,
+        sokobanGame
     },
     template: `
     <div id="content">
         <mainHead></mainHead>
+        <sokobanGame></sokobanGame>
+        
     </div>
     `
 }
