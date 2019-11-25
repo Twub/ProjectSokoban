@@ -3,11 +3,12 @@
     height: 25px;
     margin: 5px;
     box-shadow: 0px 0px 10px black;
+    border-radius: 20%;
 }
 #header {
-    width: 230px;
     height: 35;
     background-color: wheat;
     display: flex;
     justify-content: center;
+    border-radius: 20%;
 }
