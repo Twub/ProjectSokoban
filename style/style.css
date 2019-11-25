@@ -23,8 +23,8 @@
      display: flex;
      margin-top: 2%;
      background-color: black;
- width: 70%;
- height: 80vh;
+ width: 90%;
+ height: 85vh;
  color: white;
  border-radius: 20%;
  flex-direction: column;
@@ -33,7 +33,6 @@
      color: white;
      flex-direction: column;
      margin: auto;
-     margin-top: 5%;
  }
  #grids{
      display: flex; 
@@ -41,4 +40,15 @@
  #tileRemoveButton{
      width: 25%;
      margin: auto;
+ }
+ .difficulty{
+     display: flex;
+     margin-left: 20%;
+ }
+ #mapSelect{
+    width: 10%;
+    display: flex;
+ }
+ #text{
+     color: white;
  }

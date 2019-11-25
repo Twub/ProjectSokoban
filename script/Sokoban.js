@@ -5,7 +5,16 @@ export default{
         Grid
     },
     template:`
-    <div class="sokoban" @click="remove">
+    <div class="sokoban">
+    <div class="difficulty">
+    <label for="mapSelect" id="text">Difficulty: </label>
+    <select id="mapSelect" v-model="choice">
+    <option value="Nasy">Easy</option>
+    <option value="Normal">Normal</option>
+    <option value="Hard">Hard</option>
+    <option value="Extreme">Extreme</option>
+    </select>
+    </div>
         <div id="grid">
             <tr v-for="grids in gridLayoutAngleX" id="grids">
             <td v-for="(grids, index) in gridLayoutAngleY"id="grids">
@@ -17,14 +26,11 @@ export default{
     `,
     data(){
         return{
-            gridLayoutAngleX: [],
-            gridLayoutAngleY: []
+            gridLayoutAngleX: new Array(20),
+            gridLayoutAngleY: new Array(32)
         }
     },
     methods:{
-        remove(){
-            this.gridLayoutAngleX.push(new Grid(1,"images/img11.png"))
-            this.gridLayoutAngleY.push(new Grid(1,"images/img13.png"))
-        }
+        
     }
 }
