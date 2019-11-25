@@ -24,4 +24,8 @@
      background-color: black;
  width: 70%;
  height: 80vh;
+ color: white;
+ }
+ #grid{
+     color: white;
  }
