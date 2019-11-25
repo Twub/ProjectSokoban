@@ -14,12 +14,14 @@
     align-items: center;
 }
 #header{
+    margin-top: 2%;
     display: flex;
     justify-content: center;
+    justify-content: space-evenly;
 }
  .sokoban{
      margin-top: 2%;
-     background-image: url(/images/img11.png);
+     background-color: black;
  width: 70%;
- height: 70%;
+ height: 80vh;
  }
