@@ -13,21 +13,17 @@
     flex-direction: column;
     align-items: center;
 }
-#header{
-    margin-top: 2%;
-    display: flex;
-    justify-content: center;
-    justify-content: space-evenly;
-}
+
  .sokoban{
      display: flex;
      margin-top: 2%;
      background-color: black;
- width: 90%;
- height: 85vh;
- color: white;
- border-radius: 20%;
- flex-direction: column;
+    width: 90%;
+    height: 85vh;
+    color: white;
+    border-radius: 20%;
+    flex-direction: column;
+    box-shadow: 0px 0px 10px white;
  }
  #grid{
      color: white;
