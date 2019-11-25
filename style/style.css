@@ -23,7 +23,7 @@
     color: white;
     border-radius: 20%;
     flex-direction: column;
-    box-shadow: 0px 0px 10px white;
+    box-shadow: 0px 0px 30px red;
  }
  #grid{
      color: white;

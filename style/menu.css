@@ -5,6 +5,11 @@
     box-shadow: 0px 0px 10px black;
     border-radius: 20%;
 }
+
+.header-buttons:hover {
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+}
+
 #header {
     height: 35;
     width: 225px;
