@@ -1,5 +1,7 @@
 export default{
     template:`
-    <div class="sokoban"></div>
+    <div class="sokoban">
+        <p>Hello Sokoban</p>
+    </div>
     `
 }
