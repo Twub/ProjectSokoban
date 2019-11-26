@@ -29,21 +29,22 @@
      color: white;
      flex-direction: column;
      margin: auto;
+     display: flex; 
  }
  .grids{
      display: flex; 
  }
- #tileTest{
-     width: 25%;
+ #tileTest{ /* Tas bort innan inlämning */
+     width: 10%;
      margin: auto;
  }
  .difficulty{
      display: flex;
-     margin-left: 20%;
+     margin-top:1%;
+    justify-content: center;
  }
  #mapSelect{
-    width: 10%;
-    display: flex;
+    width: 7%;
  }
  #text{
      color: white;

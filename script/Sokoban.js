@@ -1,4 +1,4 @@
-import Grid from "./grid.js"
+import Grid from "./Grid.js"
 import player from './player.js'
 
 export default{
@@ -8,7 +8,7 @@ export default{
     },
     template:`
     <div class="sokoban" id="sokobanGrid">
-    <div class="difficulty">
+    <section class="difficulty">
     <label for="mapSelect" id="text">Difficulty: </label>
     <select id="mapSelect" v-model="choice">
     <option value="Easy">Easy</option>
@@ -16,20 +16,20 @@ export default{
     <option value="Hard">Hard</option>
     <option value="Extreme">Extreme</option>
     </select>
-    <button type="button" id="tileTest" @click="diffTest">Load difficulty</button>
-    </div>
+    <button type="button" id="difficultySubmit" @click="diffTest">Load difficulty</button>
+    </section>
         <div id="grid">
             <section id="player">
             <player></player>
             </section>
-            <div v-for="(row, rowIndex) in gridLayoutAngleX" class="grids">
-            <img src="images/img23.png">
+            <div v-for="Grid in gridLayoutAngleX" class="grids">
+            <img src="images/img13.png">
             <div v-for="(tile, tileIndex) in gridLayoutAngleY" class="grids">
             <img src="images/img11.png">
             </div>
             </div>
         </div>
-        <button type="button" @click="tileTest" id="tileTest">Tile test</button>
+        <button type="button" @click="tileTest" id="tileTest">Tile test</button> <!-- Tas bort innan inlämning  -->
     </div>
     `,
     data(){
@@ -37,17 +37,13 @@ export default{
             gridLayoutAngleX: new Array(15),
             gridLayoutAngleY: new Array(15),
             choice: '',
+            
         }
     },
     methods:{
         tileTest(){ /* Denna metod är bara en test metod för att manipulera tiles */
-            for (let i=0; i<10; i++) {
-                if (i % 6 == 0 || i <6 || i>29 || i % 6 == 5)
-                    this.gridLayoutAngleY.push(new Grid(77, "images/img15.png" ));
-                else{
-                    this.gridLayoutAngleY.push(new Grid(77, "images/img15.png" ));
-                }
-            }
+            let i = 1
+            this.gridLayoutAngleX[i++] = "images/img13.png"
         },
         diffTest(){ /* Gjorde ett litet test för varje difficulty att rendera ut en map, notera: detta är bara ett test för att testa varje svårighetsgrad så man renderar ut mappen baserat på svårighetsgraden */
             if (this.choice == "Easy") {
@@ -89,5 +85,11 @@ export default{
                 }
              }
         },
+        beforeMount(){
+            this.gridLayoutAngleX.push(new Grid(1, "images/img13.png", 5,5))
+            this.gridLayoutAngleX.push(new Grid(1, "images/img13.png", 5,5))
+            this.gridLayoutAngleX.push(new Grid(1, "images/img13.png", 5,5))
+            this.gridLayoutAngleX.push(new Grid(1, "images/img13.png", 5,5))
+        }
     }
 }
