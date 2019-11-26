@@ -23,6 +23,7 @@ export default{
             <player></player>
             </section>
             <div v-for="(row, rowIndex) in gridLayoutAngleX" class="grids">
+            <img src="images/img23.png">
             <div v-for="(tile, tileIndex) in gridLayoutAngleY" class="grids">
             <img src="images/img11.png">
             </div>
@@ -40,11 +41,11 @@ export default{
     },
     methods:{
         tileTest(){ /* Denna metod är bara en test metod för att manipulera tiles */
-            for(let i = 0; i < this.gridLayoutAngleX.length; i++){
-                this.gridLayoutAngleX[i] = []
-                for(let j = 0; j < this.gridLayoutAngleY.length; j++){
-                    this.gridLayoutAngleX[i] = "test"
-                    this.gridLayoutAngleY[j] = "test"
+            for (let i=0; i<10; i++) {
+                if (i % 6 == 0 || i <6 || i>29 || i % 6 == 5)
+                    this.gridLayoutAngleY.push(new Grid(77, "images/img15.png" ));
+                else{
+                    this.gridLayoutAngleY.push(new Grid(77, "images/img15.png" ));
                 }
             }
         },
