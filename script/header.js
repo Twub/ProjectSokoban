@@ -21,7 +21,7 @@ export default{
         },
 
         showSettings: function(){
-            document.getElementById("sokobanGrid").style.visibility = 'hidden';
+            document.getElementById("sokobanGrid").style.visibility = 'hidden'; // bara för test just nu ska inte använda mig av denna implementation senare.
         }
     }
 }
