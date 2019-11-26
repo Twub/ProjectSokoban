@@ -1,8 +1,10 @@
 import Grid from "./grid.js"
+import player from './player.js'
 
 export default{
     components:{
-        Grid
+        Grid,
+        player
     },
     template:`
     <div class="sokoban" id="sokobanGrid">
@@ -18,7 +20,7 @@ export default{
     </div>
         <div id="grid">
             <section id="player">
-            <img src="images/playerDown.png">
+            <player></player>
             </section>
             <div v-for="(row, rowIndex) in gridLayoutAngleX" class="grids">
             <div v-for="(tile, tileIndex) in gridLayoutAngleY" class="grids">
