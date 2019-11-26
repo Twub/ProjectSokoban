@@ -30,7 +30,7 @@
      flex-direction: column;
      margin: auto;
  }
- #grids{
+ .grids{
      display: flex; 
  }
  #tileTest{
@@ -47,4 +47,8 @@
  }
  #text{
      color: white;
+ }
+ #player{
+     position: fixed;
+     margin-left: 20px;
  }
