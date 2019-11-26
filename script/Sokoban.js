@@ -30,9 +30,7 @@ export default{
         return{
             gridLayoutAngleX: new Array(20),
             gridLayoutAngleY: new Array(32),
-            choice: [
-                {Easy: 1}
-            ]
+            choice: ''
         }
     },
     methods:{
@@ -41,11 +39,43 @@ export default{
             this.gridLayoutAngleX = ["test", "test2", i++] /* Utan dessa har gridLayoutAngleX [1] [2] [3] inget värde */
             console.log(this.gridLayoutAngleX[0])
         },
-        diffTest(){
-            if (this.choice = "Easy") {
-                this.gridLayoutAngleX = ["test", "test2", "Test3"]
-                console.log(this.gridLayoutAngleX[0])
+        diffTest(){ /* Gjorde ett litet test för varje difficulty att rendera ut en map, notera: detta är bara ett test för att testa varje svårighetsgrad så man renderar ut mappen baserat på svårighetsgraden */
+            if (this.choice == "Easy") {
+                for(let y = 0; y < this.gridLayoutAngleX.length; y++){
+                    this.gridLayoutAngleX.pop
+                }
+               for(let i = 0; i < 1; i++){
+                   this.gridLayoutAngleX = "1"
+                   console.log(this.gridLayoutAngleX[i])
+               }
             }
+            else if (this.choice == "Normal") {
+                for(let y = 0; y < this.gridLayoutAngleX.length; y++){
+                    this.gridLayoutAngleX.pop
+                }
+                for(let i = 0; i < 2; i++){
+                    this.gridLayoutAngleX = "22"
+                    console.log(this.gridLayoutAngleX[i])
+                }
+             }
+             else if (this.choice == "Hard") {
+                for(let y = 0; y < this.gridLayoutAngleX.length; y++){
+                    this.gridLayoutAngleX.pop
+                }
+                for(let i = 0; i < 3; i++){
+                    this.gridLayoutAngleX = "333"
+                    console.log(this.gridLayoutAngleX[i])
+                }
+             }
+             else if (this.choice == "Extreme") {
+                for(let y = 0; y < this.gridLayoutAngleX.length; y++){
+                    this.gridLayoutAngleX.pop
+                }
+                for(let i = 0; i < 4; i++){
+                    this.gridLayoutAngleX = "4444"
+                    console.log(this.gridLayoutAngleX[i])
+                }
+             }
         }
     }
 }
