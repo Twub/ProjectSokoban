@@ -1,8 +1,8 @@
 export default class Grid{
     
-    constructor(id,tileImage, posX, posY){
+    constructor(id,tile, posX, posY){
         this.id = id
-        this.tile = tileImage
+        this.tile = tile
         this.posX = posX
         this.posY = posY
     }
