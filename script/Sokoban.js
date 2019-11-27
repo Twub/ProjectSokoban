@@ -21,7 +21,6 @@ export default{
     <div id="game">
         <Grid></Grid>
         </div>
-        <button type="button" @click="tileTest" id="tileTest" :flatTiles="flatTiles">Tile test</button> <!-- Tas bort innan inlämning  -->
     </div>
     `,
     data(){
@@ -29,9 +28,6 @@ export default{
         }
     },
     methods:{
-        tileTest(){ /* Denna metod är bara en test metod för att manipulera tiles */
-            
-        },
         diffTest(){ /* Gjorde ett litet test för varje difficulty att rendera ut en map, notera: detta är bara ett test för att testa varje svårighetsgrad så man renderar ut mappen baserat på svårighetsgraden */
             if (this.choice == "Easy") {
                 for(let y = 0; y < this.gridLayoutAngleX.length; y++){

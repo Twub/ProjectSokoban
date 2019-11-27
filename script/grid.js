@@ -1,7 +1,6 @@
 import Tile from './Tile.js'
 
 export default{
-    props:['flatTiles'],
     components:{
         Tile
     },
@@ -27,7 +26,8 @@ export default{
             for(let col = 0; col < 14; col++){
                 let position = {
                     x: col,
-                    y: row
+                    y: row,
+                    image: "/images/img11.png"
                 }
                 this.tiles[row].push(position)
             }
@@ -36,6 +36,11 @@ export default{
     computed:{
         flatTiles(){
             return this.tiles.flat()
+        }
+    },
+    methods:{
+        generateImage(){
+            
         }
     }
 
