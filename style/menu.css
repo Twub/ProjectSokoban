@@ -1,13 +1,49 @@
-.header-buttons {
+#menu-bar button {
     width: 60px;
     height: 25px;
     margin: 5px;
     box-shadow: 0px 0px 10px black;
+    border-radius: 20%;
 }
-#header {
-    width: 230px;
+
+#menu-bar:hover {
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+}
+
+#menu-bar {
     height: 35;
-    background-color: wheat;
+    width: 225px;
+    background: url(/images/headerBackground.jpg);
+    background-size: cover;
+    border-radius: 20%;
+    margin-top: 2%;
     display: flex;
     justify-content: center;
+    justify-content: space-evenly;
+}
+
+#settings-tab {
+    width: 300px;
+    height: 350px;
+    margin-top: 10px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px red;
+    text-align: center;
+}
+
+#settings-tab label {
+    color:white;
+}
+
+#settings-tab span {
+    color: white;
+}
+
+.settings-buttons {
+    width: 100px;
+    height: 25px;
+    margin: 5px;
+    box-shadow: 0px 0px 10px black;
+    border-radius: 20%;
 }

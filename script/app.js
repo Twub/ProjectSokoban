@@ -10,7 +10,6 @@ export default{
     <div id="content">
         <mainHead></mainHead>
         <sokobanGame></sokobanGame>
-        
     </div>
     `
 }
