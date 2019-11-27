@@ -59,3 +59,8 @@
      position: fixed;
      margin-left: 2%;
  }
+ #arrows{
+     display:flex;
+     color: rgb(245, 34, 7);
+     font-size: 40px ;
+ }

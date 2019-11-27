@@ -1,19 +1,26 @@
 export default{
    template:`
-   <div>
-   <i class="fa fa-arrow-alt-circle-up"></i>
-   <h1>sadaddadadsd</h1>
+   <div id="arrows">
+       
+   <i @click="goUp" class="fa fa-arrow-circle-up"></i>
+   <i @click="goDown" class="fa fa-arrow-circle-down"></i>
+   <i @click="goRight" class="fa fa-arrow-circle-right"></i>
+   <i @click="goLeft" class="fa fa-arrow-circle-left"></i>
    </div>
-   <!--
-   <button v-on:click="goDown">down</button> 
-   <button v-on:click="goRight">right</button>
-   <button v-on:click="goLeft">left</button>
-   --->
+  
    `, 
    methods:{
-       goUp(){},
-       goDown(){},
-       goRight(){},
-       goLeft(){}
+       goUp(){
+           console.log("Up")
+       },
+       goDown(){
+           console.log("Down")
+       },
+       goRight(){
+           console.log("Right")
+       },
+       goLeft(){
+           console.log("left")
+       }
    }
 }
