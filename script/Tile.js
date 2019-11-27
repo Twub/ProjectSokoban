@@ -4,10 +4,10 @@ export default{
 
 props:['position'],
 template: `
-    <img :src="image" @click="movePlayer" id="grids" width="30" height="30">
+    <img :src="image" @click="createTile" id="grids" width="30" height="30">
 `,
 methods:{
-    movePlayer(){
+    createTile(){
         this.image= "/images/img2.png"
     }
 },

@@ -19,28 +19,19 @@ export default{
     <button type="button" id="difficultySubmit" @click="diffTest">Load difficulty</button>
     </section>
     <div id="game">
-        <Grid></Grid>
+        <Grid v-if="displayGrid"></Grid>
         </div>
     </div>
     `,
     data(){
         return{
-            choice:' '
+            choice:' ',
+            displayGrid: false
         }
     },
     methods:{
-        diffTest(){ /* Gjorde ett litet test för varje difficulty att rendera ut en map, notera: detta är bara ett test för att testa varje svårighetsgrad så man renderar ut mappen baserat på svårighetsgraden */
-            if (this.choice == "Easy") {
-
-            }
-            else if (this.choice == "Normal") {
-
-             }
-             else if (this.choice == "Hard") {
-
-             }
-             else if (this.choice == "Extreme") {
-             }
-        },
+        diffTest(){
+            this.displayGrid= true
+        }
     }
-}
+    }

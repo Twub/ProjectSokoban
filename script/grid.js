@@ -1,11 +1,15 @@
 import Tile from './Tile.js'
+import player from './player.js'
 
 export default{
+    props:['choice, displayGrid'],
     components:{
-        Tile
+        Tile,
+        player
     },
     template: `
     <div id="grid">
+        <player id="player"></player>
     <Tile 
         v-for="(tile, i) of flatTiles"
         :position="tile"
@@ -20,7 +24,7 @@ export default{
         }
     },
     created(){
-
+        if(this.displayGrid = true){
         for(let row = 0; row < 15; row++){
             this.tiles[row] = []
             for(let col = 0; col < 15; col++){
@@ -31,7 +35,8 @@ export default{
                 }
                 this.tiles[row].push(position)
             }
-        }
+            }
+    }
     },
     computed:{
         flatTiles(){

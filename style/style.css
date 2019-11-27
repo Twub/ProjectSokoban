@@ -56,6 +56,5 @@
      color: white;
  }
  #player{
-     position: fixed;
-     margin-left: 2%;
+     position: absolute;
  }
