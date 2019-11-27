@@ -21,13 +21,13 @@ export default{
     },
     created(){
 
-        for(let row = 0; row < 14; row++){
+        for(let row = 0; row < 15; row++){
             this.tiles[row] = []
-            for(let col = 0; col < 14; col++){
+            for(let col = 0; col < 15; col++){
                 let position = {
                     x: col,
                     y: row,
-                    image: "/images/img11.png"
+                    image: "/images/img24.png"
                 }
                 this.tiles[row].push(position)
             }
@@ -38,10 +38,4 @@ export default{
             return this.tiles.flat()
         }
     },
-    methods:{
-        generateImage(){
-            
-        }
-    }
-
 }
