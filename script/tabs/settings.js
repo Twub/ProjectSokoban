@@ -13,13 +13,13 @@ export default {
             <label id="sound-button-title">Disable or enable sound.</label>
 
             <br>
-            <button id="disable-sound" class="settings-buttons" v-model="isSoundEnable" v-on:click="isSoundEnable = true">Disable Sound</button>
-            <button id="enable-sound" class="settings-buttons" v-model="isSoundEnable" v-on:click="isSoundEnable = false">Enable Sound</button>
-
+            <button id="enable-sound" class="settings-tab-buttons" v-on:click="isSoundEnable = true">Enable Sound</button>
+            <button id="disable-sound" class="settings-tab-buttons" v-on:click="isSoundEnable = false">Disable Sound</button>
+            
             <br>
             <br>
 
-            <label id="volume-slider-title" for="volume-slider">Volume:</label>
+            <label id="volume-slider-title" for="volume-slider">Volume: {{ volume }}</label>
             <br>
             <span>0</span><input type="range" min="0" max="100" value="50" id="volume-slider" v-model="volume"><span>100</span>
 
@@ -28,24 +28,25 @@ export default {
 
             <label id="timer-title">Timer:</label>
             <br>
-            <button id="enable-timer" class="settings-buttons" v-model="isTimerEnable" v-on:click="isTimerEnable = true">Enable timer</button>
-            <button id="disable-timer" class="settings-buttons" v-model="isTimerEnable" v-on:click="isTimerEnable = false">Disable timer</button>
+            <button id="enable-timer" class="settings-tab-buttons" v-on:click="isTimerEnable = true">Enable timer</button>
+            <button id="disable-timer" class="settings-tab-buttons" v-on:click="isTimerEnable = false">Disable timer</button>
 
             <br>
             <br>
 
-            <button id="save-button" class="settings-buttons" v-on:click="saveSettings">Save</button>
+            <button id="save-button" class="settings-tab-buttons" v-on:click="saveSettings">Save</button>
 
             <br>
+            <br>
 
-            <button id="cancel-button" class="settings-buttons" v-on:click="ignoreSettings">Cancel</button>
+            <button id="cancel-button" class="settings-tab-buttons" v-on:click="ignoreSettings">Cancel</button>
         </div>
     `,
-    data: {
-        return: {
-            isSoundEnable = '',
-            isTimerEnable = '',
-            volume = '',
+    data() {
+        return {
+            isSoundEnable: '',
+            isTimerEnable: '',
+            volume: 50,
         }
     },
     methods: {
