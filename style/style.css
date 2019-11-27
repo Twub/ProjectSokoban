@@ -59,3 +59,15 @@
      margin-top: 3%;
      position: absolute;
  }
+ #arrows{
+     display:flex;
+     color: rgb(245, 34, 7);
+     font-size: 50px ;
+ }
+ #upDownArrows{
+     display:flex;
+     flex-direction: column;
+ }
+ #sideArrows{
+     margin-top: 25px;
+ }
