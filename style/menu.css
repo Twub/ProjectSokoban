@@ -19,7 +19,7 @@
     margin-top: 2%;
     display: flex;
     justify-content: center;
-    justify-content: space-evenly;
+    margin: 0 auto;
 }
 
 #settings-tab {
