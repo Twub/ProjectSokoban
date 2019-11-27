@@ -1,5 +1,5 @@
 import settingsTab from './tabs/settings.js';
-// Enkapsulera det du vill göma/visa i tag och sen använd css för att hide/show -->
+
 export default{
     components: {
         settingsTab,
@@ -19,19 +19,17 @@ export default{
     `,
     methods: {
         startGame: function(){
-        
+            SoundUtility.playSound("/sound/buttonClick.mp3");
         },
 
         stopGame: function(){
-
+            SoundUtility.playSound("/sound/buttonClick.mp3");
         },
 
         showSettings: function(){
-         //   document.getElementById("sokobanGrid").style.visibility = 'hidden'; // bara för test just nu ska inte använda mig av denna implementation senare.
+            SoundUtility.playSound("/sound/buttonClick.mp3");
             document.getElementById("settings-tab").style.display = 'block';
             document.getElementById("sokobanGrid").style.display = 'none';
-        }
+        },
     }
 }
-
-// <settingsTab id="settings-tab" hidden></settingsTab>
