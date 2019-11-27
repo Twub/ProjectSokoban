@@ -23,7 +23,7 @@ export default{
             <player></player>
             </section>
             <div v-for="cell in gridLayoutAngleX" class="grids"> <!-- Detta är ingen riktig array som går att manipulera, detta är bara en template för hur det kommer se ut -->
-            <img src="images/img13.png">
+            <img src="cell.tile">
             <div v-for="(tile, tileIndex) in gridLayoutAngleY" class="grids">
             <img src="images/img11.png">
             </div>
