@@ -4,7 +4,7 @@ export default{
 
 props:['position'],
 template: `
-    <img src="images/img24.png" @click="movePlayer" id="grids">
+    <img :src="position.image" @click="movePlayer" id="grids" width="30" height="30">
 `,
 methods:{
     movePlayer(){
