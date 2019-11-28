@@ -29,7 +29,6 @@
      justify-content: center;
      flex-wrap: wrap;
      display: flex;
-     width: 40%; 
  }
  .grids{
      display: flex; 

@@ -20,28 +20,41 @@ export default{
     `,
     data(){
         return{
-            tiles:[]
+            tiles:[],
         }
     },
     created(){
         if(this.displayGrid = true){
             if(this.choice = "Easy"){
-                for(let row = 0; row < 15; row++){
+                
+                let size = 15
+                for(let row = 0; row < size; row++){
                     this.tiles[row] = []
-                    for(let col = 0; col < 15; col++){
-                        let position = {
-                            x: col,
-                            y: row,
-                            image: "/images/img24.png"
+                    for(let col = 0; col < size; col++){
+                        if(row % 6 == 0|| row < 6 || row > 25 || row % 6 == 10){
+                            let position = {
+                                x: col,
+                                y: row,
+                                image: "/images/img22.png"
+                            }
+                            this.tiles[row].push(position)
                         }
-                        this.tiles[row].push(position)
+                        else{
+                            let position = {
+                                x: col,
+                                y: row,
+                                image: "/images/img23.png"
+                            }
+                            this.tiles[row].push(position)
+                        }
                     }
                     }
             }
             else if(this.choice = "Normal"){
-                for(let row = 0; row < 20; row++){
+                let size = 15
+                for(let row = 0; row < size; row++){
                     this.tiles[row] = []
-                    for(let col = 0; col < 20; col++){
+                    for(let col = 0; col < size; col++){
                         let position = {
                             x: col,
                             y: row,
