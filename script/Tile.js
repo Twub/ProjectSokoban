@@ -4,19 +4,14 @@ export default{
 
 props:['position'],
 template: `
-    <img :src="image" @click="createTile" id="grids" width="30" height="30">
+    <span ref="tile" id="grids" @click="createTile"
 `,
 methods:{
     createTile(){
         this.image= "/images/img2.png"
     }
 },
-data(){
-    return{
-        image: ''
-    }
-},
-created(){
-    this.image=this.position.image
+mounted(){
+    this.$refs.tile.style.setProperty('background-image',`url(${this.position.image})`)
 }
 }
