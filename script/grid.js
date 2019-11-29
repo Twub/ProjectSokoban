@@ -1,15 +1,13 @@
 import Tile from './Tile.js'
-import player from './player.js'
 
 export default{
     props:['choice, displayGrid'],
     components:{
         Tile,
-        player
     },
     template: `
     <div id="grid">
-        <player id="player"></player>
+        
     <Tile 
         v-for="(tile, i) of flatTiles"
         :position="tile"
@@ -21,22 +19,25 @@ export default{
     data(){
         return{
             tiles:[],
-            wall: "/images/img23.png"
+            wall: "/images/img23.png",
+            player: "/images/playerDown.png",
+            block: "/images/img2.png",
+            ground: "/images/img11.png"
+            
 
         }
     },
     created(){
-        if(this.displayGrid = true){
                 let grid = [
                     ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W'],
-                    ['W',' ', ' ', ' ', ' ',' ', ' ', ' ', ' ','W'],
-                    ['W',' ', ' ', ' ', ' ',' ', ' ', ' ', 'W','W'],
-                    ['W',' ', ' ', ' ', ' ',' ', ' ', ' ', 'W','W'],
-                    ['W',' ', ' ', ' ', ' ',' ', ' ', ' ', 'W','W'],
-                    ['W',' ', ' ', ' ', ' ',' ', ' ', ' ', 'W','W'],
-                    ['W',' ', ' ', ' ', ' ',' ', ' ', ' ', 'W','W'],
-                    ['W',' ', ' ', ' ', ' ',' ', ' ', ' ', 'W','W'],
-                    ['W',' ', ' ', ' ', ' ',' ', ' ', ' ', 'W','W'],
+                    ['W','G', 'G', 'G', ' ',' ', ' ', ' ', ' ','W'],
+                    ['W','G', 'G', 'G', ' ',' ', ' ', ' ', ' ','W'],
+                    ['W','G', 'G', 'G', ' ',' ', ' ', ' ', ' ','W'],
+                    ['W','G', 'B', 'G', ' ',' ', ' ', ' ', ' ','W'],
+                    ['W','G', 'B', 'P', ' ',' ', ' ', ' ', ' ','W'],
+                    ['W','G', 'B', 'G', ' ',' ', ' ', ' ', ' ','W'],
+                    ['W','G', 'G', 'G', ' ',' ', ' ', ' ', ' ','W'],
+                    ['W','G', 'G', 'G', ' ',' ', ' ', ' ', ' ','W'],
                     ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W']
                 ]
                 let size = 10
@@ -46,16 +47,33 @@ export default{
                         let position = {
                             x: col,
                             y: row,
-                            image: Image
+                            img: Image
                         }
                         this.tiles[row].push(position)
                             switch(grid[row][col]){
                                 case 'W':{
-                                    this.tiles[row][col].image = this.wall
+                                    this.tiles[row][col].img = this.wall
+                                    console.log('W')
+                                    break
+                                }
+                                case 'P':{
+                                    this.tiles[row][col].img = this.player
+                                    console.log('P')
+                                    break
+                                }
+                                case 'B':{
+                                    this.tiles[row][col].img = this.block
+                                    console.log('B')
+                                    break
+                                }
+                                case 'G':{
+                                    this.tiles[row][col].img = this.ground
+                                    console.log('G')
+                                    break
                                 }
                             
                     }
-                    }
+                    
     }
 }
 },

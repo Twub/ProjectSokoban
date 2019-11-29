@@ -1,10 +1,8 @@
 import Grid from "./Grid.js"
-import player from './player.js'
 
 export default{
     components:{
-        Grid,
-        player
+        Grid
     },
     template:`
     <div class="sokoban" id="sokobanGrid">
@@ -19,7 +17,7 @@ export default{
     <button type="button" id="difficultySubmit" @click="diffTest">Load difficulty</button>
     </section>
     <div id="game">
-        <Grid v-if="displayGrid"></Grid>
+        <Grid></Grid>
         </div>
     </div>
     `,
