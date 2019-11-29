@@ -22,7 +22,9 @@ export default{
             wall: "/images/img23.png",
             player: "/images/playerDown.png",
             block: "/images/img2.png",
-            ground: "/images/img11.png"
+            ground: "/images/img11.png",
+            boxGoal: "/images/img20.png"
+
             
 
         }
@@ -33,12 +35,12 @@ export default{
                     ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W'],
                     ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'G','W'],
                     ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'G','W'],
-                    ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'W','W'],
-                    ['W','G', 'B', 'G', 'G','G', 'G', 'G', 'W','W'],
-                    ['W','G', 'B', 'P', 'G','G', 'G', 'G', 'W','W'],
-                    ['W','G', 'B', 'G', 'G','G', 'G', 'G', 'W','W'],
-                    ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'W','W'],
-                    ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'W','W'],
+                    ['W','G', 'G', 'G', 'G','G', 'G', 'F', 'G','W'],
+                    ['W','G', 'B', 'G', 'G','G', 'G', 'F', 'G','W'],
+                    ['W','G', 'B', 'P', 'G','G', 'G', 'F', 'G','W'],
+                    ['W','G', 'B', 'G', 'G','G', 'G', 'G', 'B','W'],
+                    ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'B','W'],
+                    ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'B','W'],
                     ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W']
                 ]
                 let size = 10
@@ -70,6 +72,11 @@ export default{
                                 case 'G':{
                                     this.tiles[row][col].img = this.ground
                                     console.log('G')
+                                    break
+                                }
+                                case 'F':{
+                                    this.tiles[row][col].img = this.boxGoal
+                                    console.log('F')
                                     break
                                 }
                             
