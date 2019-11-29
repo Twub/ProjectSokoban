@@ -46,7 +46,7 @@ export default{
                         let position = {
                             x: col,
                             y: row,
-                            image: img
+                            image: Image
                         }
                         this.tiles[row].push(position)
                             switch(grid[row][col]){

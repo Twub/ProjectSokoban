@@ -4,7 +4,7 @@ export default{
 
 props:['position'],
 template: `
-    <span ref="tile" id="grids" @click="createTile"
+    <span ref="tile" id="grids" @click="createTile" class="tile"></span>
 `,
 methods:{
     createTile(){
