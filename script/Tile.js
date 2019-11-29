@@ -4,7 +4,7 @@ export default{
 
 props:['position'],
 template: `
-    <span ref="tile" id="grids" @click="createTile" class="tile" width="30" height="30"></span>
+    <img :src="position.img" ref="tile" width="30" height="30" id="grids">
 `,
 methods:{
     createTile(){
