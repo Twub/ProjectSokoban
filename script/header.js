@@ -6,7 +6,6 @@ export default{
     },
     template: `
         <div id="header">
-<<<<<<< HEAD
             <div id="menu-bar">
                 <button id="start-game-button" class="header-buttons" v-on:click="startGame">Start!</button>
                 <button id="settings-button" class="header-buttons" v-on:click="showSettings">Settings</button>
@@ -15,29 +14,22 @@ export default{
             <div id="tab">
                 <settingsTab id="settings-tab" hidden></settingsTab> 
             </div>
-=======
-            <button id="start-game-button" class="header-buttons" v-on:click="startGame">Start!</button>
-            <button id="settings-button" class="header-buttons" v-on:click="showSettings">Settings</button>
-            <button id="end-game-button" class="header-buttons" v-on:click="stopGame">Stop!</button>
-            <settingsTab></settingsTab> <!-- Enkapsulera det du vill göma/visa i tag och sen använd css för att hide/show -->
-           
->>>>>>> devMartin
         </div>
 
     `,
     methods: {
         startGame: function(){
-            SoundUtility.playSound("/sound/buttonClick.mp3");
+            
         },
 
         stopGame: function(){
-            SoundUtility.playSound("/sound/buttonClick.mp3");
+            
         },
 
         showSettings: function(){
-            SoundUtility.playSound("/sound/buttonClick.mp3");
             document.getElementById("settings-tab").style.display = 'block';
             document.getElementById("sokobanGrid").style.display = 'none';
+            document.getElementById("arrows").style.display = 'none';
         },
     }
 }

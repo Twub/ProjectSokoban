@@ -1,12 +1,9 @@
-import settingsManager from './settingsManager.js'
-
 export default {
     components: {
-        settingsManager,
+        
     },
     template: `
         <div id="settings-tab">
-<<<<<<< HEAD
 
             <br>
             <br>
@@ -41,14 +38,6 @@ export default {
             <br>
 
             <button id="cancel-button" class="settings-tab-buttons" v-on:click="ignoreSettings">Cancel</button>
-=======
-            <button id="disable-sound" class="settings-buttons">Disable Sound</button>
-            <button id="enable-sound" class="settings-buttons">Enable Sound</button>
-            <label id="volume-slider-title" for="volume-slider"><span>0</span></label>
-            <input type="range" min="0" max="100" value="50" id="volume-slider"><span>100</span>
-            <button id="save-button">Save</button>
-            <button id="cancel-button">Cancel</button>
->>>>>>> devMartin
         </div>
     `,
     data() {
@@ -70,6 +59,7 @@ export default {
         showSodokoGrid: function(){
             document.getElementById("settings-tab").style.display = 'none';
             document.getElementById("sokobanGrid").style.display = 'flex';
+            document.getElementById("arrows").style.display = 'flex';
         }
 
     }

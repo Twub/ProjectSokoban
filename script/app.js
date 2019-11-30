@@ -12,11 +12,8 @@ export default{
     <div id="content">
         <mainHead></mainHead>
         <sokobanGame></sokobanGame>
-<<<<<<< HEAD
-=======
         <arrowKeys />
         
->>>>>>> devMartin
     </div>
     `
 }
