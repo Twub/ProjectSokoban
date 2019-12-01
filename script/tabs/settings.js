@@ -1,8 +1,6 @@
-import settingsManager from './settingsManager.js'
-
 export default {
     components: {
-        settingsManager,
+        
     },
     template: `
         <div id="settings-tab">
@@ -51,7 +49,10 @@ export default {
     },
     methods: {
         saveSettings: function(){
-            
+            console.log(this.isTimerEnable);
+            if (this.isTimerEnable == true) document.getElementById("timer").style.display = 'block';
+            if (this.isTimerEnable == false) document.getElementById("timer").style.display = 'none';
+            this.showSodokoGrid();
         },
         
         ignoreSettings: function(){
@@ -61,6 +62,7 @@ export default {
         showSodokoGrid: function(){
             document.getElementById("settings-tab").style.display = 'none';
             document.getElementById("sokobanGrid").style.display = 'flex';
+            document.getElementById("arrows").style.display = 'flex';
         }
 
     }

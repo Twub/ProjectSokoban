@@ -1,8 +1,10 @@
 import settingsTab from './tabs/settings.js';
+import timer from './timer.js';
+
 export default{
     components: {
         settingsTab,
-        
+        timer,
     },
     template: `
         <div id="header">
@@ -14,22 +16,25 @@ export default{
             <div id="tab">
                 <settingsTab id="settings-tab" hidden></settingsTab> 
             </div>
+            <div id="timer">
+                <timer></timer>
+            </div>
         </div>
 
     `,
     methods: {
         startGame: function(){
-            SoundUtility.playSound("/sound/buttonClick.mp3");
+            
         },
 
         stopGame: function(){
-            SoundUtility.playSound("/sound/buttonClick.mp3");
+            
         },
 
         showSettings: function(){
-            SoundUtility.playSound("/sound/buttonClick.mp3");
             document.getElementById("settings-tab").style.display = 'block';
             document.getElementById("sokobanGrid").style.display = 'none';
+            document.getElementById("arrows").style.display = 'none';
         },
     }
 }
