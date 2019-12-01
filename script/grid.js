@@ -1,7 +1,7 @@
 import Tile from './Tile.js'
 
 export default{
-    props:['choice, displayGrid'],
+    props:['difficulty, displayGrid'],
     components:{
         Tile,
     },
@@ -31,6 +31,7 @@ export default{
     },
     created(){
         if(this.displayGrid = true){
+            if(this.difficulty = 'Easy'){
                 let grid = [
                     ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W'],
                     ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'G','W'],
@@ -84,6 +85,7 @@ export default{
                     
     }
 }
+            }
 }
 },
     computed:{
