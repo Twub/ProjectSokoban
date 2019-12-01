@@ -24,17 +24,22 @@ export default{
     `,
     methods: {
         startGame: function(){
-            
+            this.playSound();
         },
 
         stopGame: function(){
-            
+            this.playSound();
         },
 
         showSettings: function(){
+            this.playSound();
             document.getElementById("settings-tab").style.display = 'block';
             document.getElementById("sokobanGrid").style.display = 'none';
             document.getElementById("arrows").style.display = 'none';
         },
+        playSound: function(){
+            var audio = new Audio('/sound/buttonClick.mp3');
+            audio.play();
+        }
     }
 }
