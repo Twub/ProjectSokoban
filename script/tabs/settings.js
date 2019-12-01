@@ -1,6 +1,5 @@
 
 export default {
-    mixins: [sound],
     template: `
         <div id="settings-tab">
 
