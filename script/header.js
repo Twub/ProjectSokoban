@@ -1,11 +1,14 @@
 import settingsTab from './tabs/settings.js';
 import timer from './timer.js';
+import sound from './utility/SoundUtility.js';
 
 export default{
+    mixins: [sound],
     components: {
         settingsTab,
         timer,
     },
+    
     template: `
         <div id="header">
             <div id="menu-bar">
@@ -24,22 +27,18 @@ export default{
     `,
     methods: {
         startGame: function(){
-            this.playSound();
+            this.buttonClick();
         },
 
         stopGame: function(){
-            this.playSound();
+            this.buttonClick();
         },
 
         showSettings: function(){
-            this.playSound();
+            this.buttonClick();
             document.getElementById("settings-tab").style.display = 'block';
             document.getElementById("sokobanGrid").style.display = 'none';
             document.getElementById("arrows").style.display = 'none';
         },
-        playSound: function(){
-            var audio = new Audio('/sound/buttonClick.mp3');
-            audio.play();
-        }
     }
 }

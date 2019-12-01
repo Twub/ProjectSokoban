@@ -1,7 +1,6 @@
+
 export default {
-    components: {
-        
-    },
+    mixins: [sound],
     template: `
         <div id="settings-tab">
 
@@ -49,7 +48,6 @@ export default {
     },
     methods: {
         saveSettings: function(){
-            console.log(this.isTimerEnable);
             if (this.isTimerEnable == true) document.getElementById("timer").style.display = 'block';
             if (this.isTimerEnable == false) document.getElementById("timer").style.display = 'none';
             this.showSodokoGrid();
