@@ -1,8 +1,10 @@
 import settingsTab from './tabs/settings.js';
+import timer from './timer.js';
+
 export default{
     components: {
         settingsTab,
-        
+        timer,
     },
     template: `
         <div id="header">
@@ -13,6 +15,9 @@ export default{
             </div>
             <div id="tab">
                 <settingsTab id="settings-tab" hidden></settingsTab> 
+            </div>
+            <div id="timer">
+                <timer></timer>
             </div>
         </div>
 
