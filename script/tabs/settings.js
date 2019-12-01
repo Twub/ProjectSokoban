@@ -1,4 +1,7 @@
+import cookieHelper from './utility/CookieUtility.js';
+
 export default {
+    mixins: [cookieHelper],
     template: `
         <div id="settings-tab">
 
@@ -46,6 +49,7 @@ export default {
     },
     methods: {
         saveSettings: function(){
+            this.setCookie("Hej", "Hello");
             if (this.isTimerEnable == true) document.getElementById("timer").style.display = 'block';
             if (this.isTimerEnable == false) document.getElementById("timer").style.display = 'none';
             this.showSodokoGrid();
@@ -60,14 +64,6 @@ export default {
             document.getElementById("sokobanGrid").style.display = 'flex';
             document.getElementById("arrows").style.display = 'flex';
         },
-        saveSettingsAsCookies: function(){
-            let isSoundEnableCookie = "isCookieEnable: " + this.isSoundEnable;
-            let isTimerEnableCookie = "isTimerEnable: " + this.isTimerEnable;
-            let volumeCookie = "Volume: " + this.volume;
-        },
-        getCookie: function(cookieID){
-            
-        }
 
     }
 }
