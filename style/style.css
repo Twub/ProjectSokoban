@@ -29,7 +29,8 @@
      justify-content: center;
      flex-wrap: wrap;
      display: flex;
-     width: 40%; 
+     width: 17vw;
+     
  }
  .grids{
      display: flex; 
@@ -55,7 +56,32 @@
  #text{
      color: white;
  }
- #player{
-     position: fixed;
-     margin-left: 2%;
+ #arrows{
+     display:flex;
+     color: rgb(245, 34, 7);
+     font-size: 50px ;
+ }
+ #upDownArrows{
+     display:flex;
+     flex-direction: column;
+ }
+ #sideArrows{
+     margin-top: 25px;
+ }
+ .tile{
+     background-image: url("/images/img11.png");
+ }
+
+ #timer-content{
+     text-align: center;
+     color: white;
+     background-color: rgba(0, 0, 0, 0.7);
+     width: 150px;
+     margin-left: auto;
+     margin-right: auto;
+     box-shadow: 0px 0px 10px red;
+     border-radius: 10px;
+ }
+ #timer{
+     display: none;
  }
