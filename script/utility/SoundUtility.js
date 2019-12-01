@@ -7,6 +7,7 @@ export default {
         playSound: function(soundFile){
             var audio = new Audio(soundFile);
             audio.play();
+            
         }
     }
 }

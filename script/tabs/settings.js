@@ -1,4 +1,3 @@
-
 export default {
     template: `
         <div id="settings-tab">
@@ -60,6 +59,14 @@ export default {
             document.getElementById("settings-tab").style.display = 'none';
             document.getElementById("sokobanGrid").style.display = 'flex';
             document.getElementById("arrows").style.display = 'flex';
+        },
+        saveSettingsAsCookies: function(){
+            let isSoundEnableCookie = "isCookieEnable: " + this.isSoundEnable;
+            let isTimerEnableCookie = "isTimerEnable: " + this.isTimerEnable;
+            let volumeCookie = "Volume: " + this.volume;
+        },
+        getCookie: function(cookieID){
+            
         }
 
     }
