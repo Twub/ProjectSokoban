@@ -26,13 +26,16 @@
     box-shadow: 0px 0px 30px red;
  }
  #grid{
-     justify-content: center;
      flex-wrap: wrap;
      display: flex;
-     width: 40%; 
+     width: 30vw;
  }
- .grids{
-     display: flex; 
+ #grids{
+     justify-content: center;
+ }
+ .cell{
+     width: 10%;
+     height: 2.5vw;
  }
  #game{
      margin-top:2%;
@@ -55,10 +58,6 @@
  #text{
      color: white;
  }
- #player{
-     position: fixed;
-     margin-left: 2%;
- }
  #arrows{
      display:flex;
      color: rgb(245, 34, 7);
@@ -70,4 +69,17 @@
  }
  #sideArrows{
      margin-top: 25px;
+ }
+ #timer-content{
+     text-align: center;
+     color: white;
+     background-color: rgba(0, 0, 0, 0.7);
+     width: 150px;
+     margin-left: auto;
+     margin-right: auto;
+     box-shadow: 0px 0px 10px red;
+     border-radius: 10px;
+ }
+ #timer{
+     display: none;
  }

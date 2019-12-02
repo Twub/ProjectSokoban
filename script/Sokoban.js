@@ -1,16 +1,14 @@
 import Grid from "./Grid.js"
-import player from './player.js'
 
 export default{
     components:{
-        Grid,
-        player
+        Grid
     },
     template:`
     <div class="sokoban" id="sokobanGrid">
     <section class="difficulty">
     <label for="mapSelect" id="text">Difficulty: </label>
-    <select id="mapSelect" v-model="choice">
+    <select id="mapSelect" v-model="difficulty" :value="difficulty">
     <option value="Easy">Easy</option>
     <option value="Normal">Normal</option>
     <option value="Hard">Hard</option>
@@ -19,56 +17,20 @@ export default{
     <button type="button" id="difficultySubmit" @click="diffTest">Load difficulty</button>
     </section>
     <div id="game">
-        <Grid></Grid>
+        <Grid v-if="displayGrid" :difficulty="difficulty"></Grid>
         </div>
     </div>
     `,
     data(){
         return{
-            choice:' '
+            choice:' ',
+            displayGrid: false,
+            difficulty: 'Easy'
         }
     },
     methods:{
-        diffTest(){ /* Gjorde ett litet test för varje difficulty att rendera ut en map, notera: detta är bara ett test för att testa varje svårighetsgrad så man renderar ut mappen baserat på svårighetsgraden */
-            if (this.choice == "Easy") {
-                for(let y = 0; y < this.gridLayoutAngleX.length; y++){
-                    this.gridLayoutAngleX.pop
-
-                }
-               for(let i = 0; i < 1; i++){
-                   this.gridLayoutAngleX = "1"
-                   console.log(this.gridLayoutAngleX[i])
-               }
-            }
-            else if (this.choice == "Normal") {
-                for(let y = 0; y < this.gridLayoutAngleX.length; y++){
-                    this.gridLayoutAngleX.pop
-                }
-                for(let i = 0; i < 2; i++){
-                    this.gridLayoutAngleX = "22"
-                    console.log(this.gridLayoutAngleX[i])
-                }
-             }
-             else if (this.choice == "Hard") {
-                for(let y = 0; y < this.gridLayoutAngleX.length; y++){
-                    this.gridLayoutAngleX.pop
-                }
-                for(let i = 0; i < 3; i++){
-                    this.gridLayoutAngleX = "333"
-                    this.gridLayoutAngleX = "333"
-                    console.log(this.gridLayoutAngleX[i])
-                }
-             }
-             else if (this.choice == "Extreme") {
-                for(let y = 0; y < this.gridLayoutAngleX.length; y++){
-                    this.gridLayoutAngleX.pop
-                }
-                for(let i = 0; i < 4; i++){
-                    this.gridLayoutAngleX = "1234567894"
-                    this.gridLayoutAngleY = "4444444444"
-                    console.log(this.gridLayoutAngleX[i][i])
-                }
-             }
-        },
+        diffTest(){
+            this.displayGrid= true
+        }
     }
-}
+    }
