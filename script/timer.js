@@ -7,7 +7,7 @@ export default{
             <p id="timer-display">Time Remaining: {{ time }}</p>
         </div>
     `,
-    data() {
+    data: function() {
         return {
             time: 0,
             presetOne: 120,
@@ -28,7 +28,6 @@ export default{
                         clearInterval();
                         return;
                     }
-                    console.log(mainScope.time);
                 }, 1000);
             } else if (isTimerEnable == 'false'){
                 return;
