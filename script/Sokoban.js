@@ -17,7 +17,7 @@ export default{
     <button type="button" id="difficultySubmit" @click="diffTest">Load difficulty</button>
     </section>
     <div id="game">
-        <Grid v-if="displayGrid"></Grid>
+        <Grid v-if="displayGrid" :difficulty="difficulty"></Grid>
         </div>
     </div>
     `,
