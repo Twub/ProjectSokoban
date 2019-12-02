@@ -4,7 +4,7 @@ import sound from './utility/SoundUtility.js';
 
 
 export default{
-    mixins: [sound],
+    mixins: [sound, timer],
     components: {
         settingsTab,
         timer,
@@ -28,6 +28,12 @@ export default{
     `,
     methods: {
         startGame: function(){
+            this.setTime(120);
+            window.setInterval(function(){
+                if (this.updateTime() == false){
+                    clearInterval();
+                }
+              }, 1000);
             this.buttonClick();
         },
 
