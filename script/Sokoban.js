@@ -20,8 +20,8 @@ export default{
     <div id="game">
         <arrowKeys />
         <Grid v-if="displayGrid" :difficulty="difficulty"></Grid>
-        </div>
-        
+    </div>
+    </div>    
     
     `,
     data(){
