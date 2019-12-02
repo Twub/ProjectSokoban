@@ -1,8 +1,9 @@
 import Grid from "./Grid.js"
-
+import arrowKeys from './Controls/arrowKeys.js'
 export default{
     components:{
-        Grid
+        Grid,
+        arrowKeys
     },
     template:`
     <div class="sokoban" id="sokobanGrid">
@@ -17,9 +18,11 @@ export default{
     <button type="button" id="difficultySubmit" @click="diffTest">Load difficulty</button>
     </section>
     <div id="game">
+        <arrowKeys />
         <Grid v-if="displayGrid" :difficulty="difficulty"></Grid>
         </div>
-    </div>
+        
+    
     `,
     data(){
         return{
