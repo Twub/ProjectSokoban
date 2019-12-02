@@ -28,12 +28,7 @@ export default{
     `,
     methods: {
         startGame: function(){
-            this.setTime(120);
-            window.setInterval(function(){
-                if (this.updateTime() == false){
-                    clearInterval();
-                }
-              }, 1000);
+            this.run(60);
             this.buttonClick();
         },
 

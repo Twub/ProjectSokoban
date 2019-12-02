@@ -1,4 +1,4 @@
-import cookieHelper from './utility/CookieUtility.js';
+import cookieHelper from '/script/utility/CookieUtility.js';
 
 export default {
     mixins: [cookieHelper],
@@ -49,7 +49,7 @@ export default {
     },
     methods: {
         saveSettings: function(){
-            this.setCookie("Hej", "Hello");
+            this.saveAsCookie();
             if (this.isTimerEnable == true) document.getElementById("timer").style.display = 'block';
             if (this.isTimerEnable == false) document.getElementById("timer").style.display = 'none';
             this.showSodokoGrid();
@@ -64,6 +64,16 @@ export default {
             document.getElementById("sokobanGrid").style.display = 'flex';
             document.getElementById("arrows").style.display = 'flex';
         },
+        saveAsCookie: function(){
+            // store cookie name as variables.
+            let soundEnableCookie = "soundEnableCookie";
+            let timerEnableCookie = "timerEnableCookie";
+            let volumeCookie = "volumeCookie";
+            // add cookie to website
+            this.addCookie(soundEnableCookie, this.isSoundEnable);
+            this.addCookie(timerEnableCookie, this.isTimerEnable);
+            this.addCookie(volumeCookie, this.volume);
+        }
 
     }
 }
