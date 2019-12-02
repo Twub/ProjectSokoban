@@ -25,6 +25,7 @@ export default{
             ground: "/images/img11.png",
             boxGoal: "/images/img20.png",
             renderMap: 1,
+            playerPosition: '',
             map1: [
                 ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W'],
                 ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'G','W'],
@@ -63,17 +64,22 @@ export default{
                 ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'G','G','G','G','W'],
                 ['W','P', 'G', 'G', 'G','G', 'G', 'G', 'G','G','G','G','W'],
                 ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W','W','W','W'],
-            ]
+            ], /* Tänker att vi gör map4(Extreme) tillsammans då den skall  vi maxa på, blir avslutnings område */
         }
     },
     methods:{
         onMovePlayerOnClick(x,y){
-            if(this.tiles[x][y].img != this.wall){
-                this.tiles[x][y].img = this.player
-                this.renderMap++
-                console.log('test check')
-
+            let activeCell = this.tiles[x][y].img
+            if(activeCell != this.wall){
+                if(activeCell == this.block){
+                    alert('box')
+                }
+                else if(activeCell == this.boxGoal){
+                    alert('goal')
+                }
             } 
+            this.tiles[x][y].img = this.player
+            this.renderMap++
             console.log(this.tiles)
         },
     },
