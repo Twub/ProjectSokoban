@@ -16,6 +16,7 @@ export default{
     <option value="Extreme">Extreme</option>
     </select>
     <button type="button" id="difficultySubmit" @click="diffTest">Load difficulty</button>
+    <button type="button" id="reLoadButton" @click="reLoad">Restart game</button>
     </section>
     <div id="game">
         <arrowKeys />
@@ -33,7 +34,10 @@ export default{
     },
     methods:{
         diffTest(){
-            this.displayGrid= true
+                this.displayGrid= true       
+        },
+        reLoad(){
+            window.location.reload()    
         }
     }
     }
