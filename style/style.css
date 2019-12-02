@@ -26,14 +26,16 @@
     box-shadow: 0px 0px 30px red;
  }
  #grid{
-     justify-content: center;
      flex-wrap: wrap;
      display: flex;
-     width: 17vw;
-     
+     width: 60vw;
  }
- .grids{
-     display: flex; 
+ #grids{
+     justify-content: center;
+ }
+ .cell{
+     width: 10%;
+     height: 3.5vw;
  }
  #game{
      margin-top:2%;

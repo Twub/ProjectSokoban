@@ -4,14 +4,20 @@ export default{
 
 props:['position'],
 template: `
-    <img :src="position.img" ref="tile" width="30" height="30" id="grids">
+    <img :src="img" ref="tile" width="30" height="30" class="cell" @click="movePlayerOnClick">
 `,
 methods:{
-    createTile(){
-        console.log(this.position.x,  this.position.y)
+    movePlayerOnClick(){
+        this.img = "images/img9.png"
+        console.log('click test')
     }
 },
-mounted(){
-    this.$refs.tile.style.setProperty('background-image',`url(${this.position.img})`)
+data(){
+    return{
+        img: ''
+    }
+},
+created(){
+    this.img = this.position.img
 }
 }

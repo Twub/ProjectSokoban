@@ -12,7 +12,8 @@ export default{
         v-for="(tile, i) of flatTiles"
         :position="tile"
         :key="'tile'+ i + tile.x + tile.y"
-        id="grids"></Tile>
+        id="grids"
+        @movePlayerOnClick="onMovePlayerOnClick"></Tile>
         
     </div>
     `,
@@ -27,6 +28,16 @@ export default{
 
             
 
+        }
+    },
+    methods:{
+        onMovePlayerOnClick(x,y){
+            if(this.tiles[x][y].img == this.ground){
+                console.log('first check')
+                this.tiles[x][y].img == this.player
+                this.tiles[x-1][y].img == this.ground
+                
+            } 
         }
     },
     created(){
