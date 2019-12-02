@@ -1,8 +1,7 @@
-import cookieHelper from '/script/utility/CookieUtility.js';
 import storage from '/script/utility/StorageUtility.js';
 
 export default {
-    mixins: [cookieHelper, storage],
+    mixins: [storage],
     template: `
         <div id="settings-tab">
 

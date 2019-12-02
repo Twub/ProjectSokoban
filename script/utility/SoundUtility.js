@@ -1,7 +1,7 @@
-import cookie from './CookieUtility.js';
+import storage from './StorageUtility.js';
 
 export default {
-    mixins: [cookie],
+    mixins: [storage],
     methods: {
         buttonClick: function(){
             if (this.isSoundEnable() == true){
@@ -16,9 +16,8 @@ export default {
             }  
         },
         isSoundEnable: function(){
-            let cookieState = this.getCookie("soundEnableCookie");
-            let isVolumeEnable = cookieState.split("=");
-            if (isVolumeEnable[1] == true){
+            let volumeEnable = this.getItem('isSoundEnable');
+            if (volumeEnable == 'true'){
                 return true;
             }
             return false;
