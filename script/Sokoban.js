@@ -8,7 +8,7 @@ export default{
     <div class="sokoban" id="sokobanGrid">
     <section class="difficulty">
     <label for="mapSelect" id="text">Difficulty: </label>
-    <select id="mapSelect" v-model="difficulty">
+    <select id="mapSelect" v-model="difficulty" :value="difficulty">
     <option value="Easy">Easy</option>
     <option value="Normal">Normal</option>
     <option value="Hard">Hard</option>
