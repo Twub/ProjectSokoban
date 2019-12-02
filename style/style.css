@@ -28,14 +28,14 @@
  #grid{
      flex-wrap: wrap;
      display: flex;
-     width: 60vw;
+     width: 30vw;
  }
  #grids{
      justify-content: center;
  }
  .cell{
      width: 10%;
-     height: 3.5vw;
+     height: 2.5vw;
  }
  #game{
      margin-top:2%;
