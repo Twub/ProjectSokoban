@@ -1,7 +1,8 @@
 import cookieHelper from '/script/utility/CookieUtility.js';
+import storage from '/script/utility/StorageUtility.js';
 
 export default {
-    mixins: [cookieHelper],
+    mixins: [cookieHelper, storage],
     template: `
         <div id="settings-tab">
 
@@ -42,14 +43,14 @@ export default {
     `,
     data() {
         return {
-            isSoundEnable: '',
-            isTimerEnable: '',
+            isSoundEnable: true,
+            isTimerEnable: false,
             volume: 50,
         }
     },
     methods: {
         saveSettings: function(){
-            this.saveAsCookie();
+            this.saveToStorage();
             if (this.isTimerEnable == true) document.getElementById("timer").style.display = 'block';
             if (this.isTimerEnable == false) document.getElementById("timer").style.display = 'none';
             this.showSodokoGrid();
@@ -64,15 +65,10 @@ export default {
             document.getElementById("sokobanGrid").style.display = 'flex';
             document.getElementById("arrows").style.display = 'flex';
         },
-        saveAsCookie: function(){
-            // store cookie name as variables.
-            let soundEnableCookie = "soundEnableCookie";
-            let timerEnableCookie = "timerEnableCookie";
-            let volumeCookie = "volumeCookie";
-            // add cookie to website
-            this.addCookie(soundEnableCookie, this.isSoundEnable);
-            this.addCookie(timerEnableCookie, this.isTimerEnable);
-            this.addCookie(volumeCookie, this.volume);
+        saveToStorage: function(){
+            this.addItem('isSoundEnable', this.isSoundEnable);
+            this.addItem('isTimerEnable', this.isTimerEnable);
+            this.addItem('volume', this.volume);
         }
 
     }
