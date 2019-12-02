@@ -2,6 +2,7 @@ import settingsTab from './tabs/settings.js';
 import timer from './timer.js';
 import sound from './utility/SoundUtility.js';
 
+
 export default{
     mixins: [sound],
     components: {
