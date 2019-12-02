@@ -7,11 +7,10 @@ export default{
     },
     template: `
     <div id="grid">
-        
     <Tile 
-        v-for="(tile, i) of flatTiles"
+        v-for="(tile, id) of flatTiles"
         :position="tile"
-        :key="'tile'+ i + tile.x + tile.y"
+        :key="'tile'+ id + tile.x + tile.y + renderMap"
         id="grids"
         @movePlayerOnClick="onMovePlayerOnClick"></Tile>
         
@@ -25,6 +24,7 @@ export default{
             block: "/images/img2.png",
             ground: "/images/img11.png",
             boxGoal: "/images/img20.png",
+            renderMap: 1,
             map1: [
                 ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W'],
                 ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'G','W'],
@@ -70,8 +70,9 @@ export default{
         onMovePlayerOnClick(x,y){
             if(this.tiles[x][y].img != this.wall){
                 this.tiles[x][y].img = this.player
-                this.tiles[x-1][y].img = this.ground
+                this.renderMap++
                 console.log('test check')
+
             } 
             console.log(this.tiles)
         },
@@ -84,8 +85,8 @@ export default{
                     this.tiles[row] = []
                     for(let col = 0; col < size; col++){
                         let position = {
-                            x: col,
-                            y: row,
+                            x: row,
+                            y: col,
                             img: Image
                         }
                         this.tiles[row].push(position)
@@ -130,8 +131,8 @@ export default{
                     this.tiles[row] = []
                     for(let col = 0; col < size; col++){
                         let position = {
-                            x: col,
-                            y: row,
+                            x: row,
+                            y: col,
                             img: Image
                         }
                         this.tiles[row].push(position)
@@ -178,8 +179,8 @@ export default{
                     this.tiles[row] = []
                     for(let col = 0; col < size; col++){
                         let position = {
-                            x: col,
-                            y: row,
+                            x: row,
+                            y: col,
                             img: Image
                         }
                         this.tiles[row].push(position)
