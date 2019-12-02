@@ -1,43 +1,40 @@
 import settingsTab from './tabs/settings.js';
+import timer from './timer.js';
 
 export default{
     components: {
         settingsTab,
+        timer,
     },
     template: `
         <div id="header">
-<<<<<<< HEAD
             <div id="menu-bar">
                 <button id="start-game-button" class="header-buttons" v-on:click="startGame">Start!</button>
                 <button id="settings-button" class="header-buttons" v-on:click="showSettings">Settings</button>
                 <button id="end-game-button" class="header-buttons" v-on:click="stopGame">Stop!</button>
             </div>
             <div id="tab">
-                <settingsTab id="settings-tab" hidden></settingsTab> // Enkapsulera det du vill göma/visa i tag och sen använd css för att hide/show -->
+                <settingsTab id="settings-tab" hidden></settingsTab> 
             </div>
-=======
-            <button id="start-game-button" class="header-buttons" v-on:click="startGame">Start!</button>
-            <button id="settings-button" class="header-buttons" v-on:click="showSettings">Settings</button>
-            <button id="end-game-button" class="header-buttons" v-on:click="stopGame">Stop!</button>
-            <settingsTab></settingsTab> <!-- Enkapsulera det du vill göma/visa i tag och sen använd css för att hide/show -->
->>>>>>> developer
+            <div id="timer">
+                <timer></timer>
+            </div>
         </div>
 
     `,
     methods: {
         startGame: function(){
-
+            
         },
 
         stopGame: function(){
-
+            
         },
 
         showSettings: function(){
-         //   document.getElementById("sokobanGrid").style.visibility = 'hidden'; // bara för test just nu ska inte använda mig av denna implementation senare.
             document.getElementById("settings-tab").style.display = 'block';
-        }
+            document.getElementById("sokobanGrid").style.display = 'none';
+            document.getElementById("arrows").style.display = 'none';
+        },
     }
 }
-
-// <settingsTab id="settings-tab" hidden></settingsTab>
