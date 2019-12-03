@@ -62,13 +62,13 @@
      display:flex;
      color: rgb(245, 34, 7);
      font-size: 50px ;
+     align-items: center;
  }
  #upDownArrows{
      display:flex;
      flex-direction: column;
  }
- #sideArrows{
-     margin-top: 25px;
+
  }
  #timer-content{
      text-align: center;

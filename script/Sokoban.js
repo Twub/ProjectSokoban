@@ -1,8 +1,9 @@
 import Grid from "./Grid.js"
-
+import arrowKeys from './Controls/arrowKeys.js'
 export default{
     components:{
-        Grid
+        Grid,
+        arrowKeys
     },
     template:`
     <div class="sokoban" id="sokobanGrid">
@@ -15,11 +16,14 @@ export default{
     <option value="Extreme">Extreme</option>
     </select>
     <button type="button" id="difficultySubmit" @click="diffTest">Load difficulty</button>
+    <button type="button" id="reLoadButton" @click="reLoad">Restart game</button>
     </section>
     <div id="game">
+        <arrowKeys />
         <Grid v-if="displayGrid" :difficulty="difficulty"></Grid>
-        </div>
     </div>
+    </div>    
+    
     `,
     data(){
         return{
@@ -30,7 +34,10 @@ export default{
     },
     methods:{
         diffTest(){
-            this.displayGrid= true
+                this.displayGrid= true       
+        },
+        reLoad(){
+            window.location.reload()    
         }
     }
     }
