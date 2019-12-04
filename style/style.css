@@ -41,6 +41,11 @@
      width: 10%;
      height: 2.5vw;
  }
+ .Player{
+     position: absolute;
+     width: 1.5%;
+  /*   margin: 2.7% 3% 3% 3.3%;  Test position */
+ }
  #game{
      margin-top:1px;
      display: flex;

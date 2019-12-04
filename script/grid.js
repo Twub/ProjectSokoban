@@ -1,9 +1,11 @@
 import Tile from './Tile.js'
+import Player from './player.js'
 
 export default{
     props:['difficulty','displayGrid'],
     components:{
         Tile,
+        Player
     },
     template: `
     <div id="grid">
@@ -13,7 +15,7 @@ export default{
         :key="'tile'+ id + tile.x + tile.y"
         id="grids"
         @movePlayerOnClick="onMovePlayerOnClick"></Tile>
-        
+        <Player class="Player"></Player>
     </div>
     `,
     data(){
@@ -37,9 +39,9 @@ export default{
                 ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'G','W'],
                 ['W','G', 'G', 'G', 'G','G', 'G', 'F', 'G','W'],
                 ['W','G', 'B', 'B', 'G','G', 'G', 'F', 'G','W'],
-                ['W','G', 'B', 'P', 'G','G', 'G', 'F', 'G','W'],
+                ['W','G', 'B', 'G', 'G','G', 'G', 'F', 'G','W'],
                 ['W','G', 'B', 'G', 'G','G', 'G', 'F', 'B','W'],
-                ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'B','W'],
+                ['W','G', 'P', 'G', 'G','G', 'G', 'G', 'B','W'],
                 ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'B','W'],
                 ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W']
             ],
@@ -70,12 +72,26 @@ export default{
                 ['W','P', 'G', 'G', 'G','G', 'G', 'G', 'G','G','G','G','W'],
                 ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W','W','W','W'],
             ], /* Tänker att vi gör map4(Extreme) tillsammans då den skall  vi maxa på, blir avslutnings område */
+            playerPosition:{
+                x: 1,
+                y: 2
+            }
         }
     },
     methods:{ /* Detta är logiken i spelet */
         onMovePlayerOnClick(x,y){
             this.actualTile = this.tiles[y][x].img
+            /*if(this.tiles[y][x].img == this.boxGoal){
+                this.cloudTile = this.boxGoal
+                console.log(this.cloudTile)
+            } För framtida finish */
+            this.cloudTile = this.tiles[y][x].img
             if(this.actualTile != this.wall){
+                if(this.player == this.tiles[y-1][x].img ||
+                    this.player == this.tiles[y+1][x].img ||
+                    this.player == this.tiles[y][x-1].img ||
+                    this.player == this.tiles[y][x+1].img){ /* Logic start here */
+                        
                 if(this.tiles[y-1][x].img == this.player) {
                         this.pastTile = this.tiles[y-1][x].img
                         this.tiles[y-1][x].img = this.actualTile
@@ -98,6 +114,10 @@ export default{
                 }
                 this.tiles[y][x].img = this.player
             }
+            else{
+                alert('You can only go 1 tile (for now)')
+            }
+        }
             else{
                 alert('You cant go there')
             }
