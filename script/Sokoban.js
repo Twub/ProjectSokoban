@@ -19,9 +19,10 @@ export default{
     <button type="button" id="reLoadButton" @click="reLoad">Restart game</button>
     </section>
     <div id="game">
-        <arrowKeys />
         <Grid v-if="displayGrid" :difficulty="difficulty"></Grid>
+       
     </div>
+    <arrowKeys />
     </div>    
     
     `,
