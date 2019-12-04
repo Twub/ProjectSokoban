@@ -52,9 +52,9 @@ export default{
                 ['W','G', 'G', 'B', 'G','G', 'G', 'F', 'G','W'],
                 ['W','G', 'B', 'G', 'G','G', 'G', 'F', 'G','W'],
                 ['W','G', 'B', 'P', 'G','G', 'G', 'F', 'G','W'],
-                ['W','G', 'B', 'G', 'G','G', 'G', 'F', 'B','W'],
-                ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'B','W'],
-                ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'B','W'],
+                ['W','G', 'B', 'G', 'G','G', 'G', 'F', 'G','W'],
+                ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'G','W'],
+                ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'G','W'],
                 ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W']
             ],
             map3: [
@@ -96,11 +96,15 @@ export default{
                     if( this.tiles[y][x].img == this.block && this.tiles[y+1][x].img == this.block){
                         console.log('None')
                     }
-                    else if(this.tiles[y][x].img == this.block && this.tiles[y+1][x].img != this.wall){ /* Denna kollar när gubben går neråt */
+                    else if(this.tiles[y][x].img == this.block && (this.tiles[y+1][x].img != this.wall)){ /* Denna kollar när gubben går neråt */
                         this.pastTile = this.tiles[y-1][x].img
                         this.tiles[y-1][x].img = this.ground
                         this.tiles[y+1][x].img = this.block
                         this.tiles[y][x].img = this.player
+                        console.log('Else if')
+                    }
+                    else if(this.tiles[y][x].img == this.block && (this.tiles[y+1][x].img == this.wall)){
+                        console.log('Wall hit')
                     }
                     else{
                         this.pastTile = this.tiles[y-1][x].img
@@ -120,6 +124,9 @@ export default{
                     this.tiles[y-1][x].img = this.block
                     this.tiles[y][x].img = this.player
                 }
+                else if(this.tiles[y][x].img == this.block && this.tiles[y-1][x].img == this.wall){
+                    console.log('Wall hit')
+                }
                 else{
                     this.pastTile = this.tiles[y-1][x].img
                     this.tiles[y+1][x].img = this.ground
@@ -138,6 +145,9 @@ export default{
                         this.tiles[y][x+1].img = this.block
                         this.tiles[y][x].img = this.player
                     }
+                    else if(this.tiles[y][x].img == this.block && this.tiles[y][x+1].img == this.wall){
+                        console.log('Wall hit')
+                    }
                     else{
                         this.pastTile = this.tiles[y-1][x].img
                         this.tiles[y][x-1].img = this.ground
@@ -155,6 +165,9 @@ export default{
                         this.tiles[y][x+1].img = this.ground
                         this.tiles[y][x-1].img = this.block
                         this.tiles[y][x].img = this.player
+                    }
+                    else if(this.tiles[y][x].img == this.block && this.tiles[y][x-1].img == this.wall){
+                        console.log('Wall hit')
                     }
                     else{
                         this.pastTile = this.tiles[y-1][x].img
@@ -238,9 +251,9 @@ export default{
                         this.tiles[col].push(position)
                             switch(this.map2[col][row]){
                                 case 'W':{
-                                    this.wall = "images/img24.png"
+                                    
                                     this.tiles[col][row].img = this.wall
-                                    this.wall = "images/img23.png"
+                                    
                                     console.log('W')
                                     break
                                 }
@@ -255,9 +268,9 @@ export default{
                                     break
                                 }
                                 case 'G':{
-                                    this.ground = "images/img19.png"
+                                    
                                     this.tiles[col][row].img = this.ground
-                                    this.ground = "images/img11.png"
+                                   
                                     console.log('G')
                                     break
                                 }
