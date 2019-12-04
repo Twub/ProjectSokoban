@@ -93,6 +93,7 @@ export default{
                     this.player == this.tiles[y][x+1].img){ /* Logic start here */
                         
                 if(this.tiles[y-1][x].img == this.player) { /* Denna if är till för sätta tile rätt och undvika dupe player */
+                    if(this.tiles[y+1][x].img != this.block){
                     if(this.tiles[y][x].img == this.block && this.tiles[y+1][x].img != this.wall){
                         this.pastTile = this.tiles[y-1][x].img
                         this.tiles[y-1][x].img = this.ground
@@ -102,9 +103,12 @@ export default{
                         this.pastTile = this.tiles[y-1][x].img
                         this.tiles[y-1][x].img = this.ground
                     }
+                    this.tiles[y][x].img = this.player
                         console.log(this.pastTile)
                 }
+            }
                else if(this.tiles[y+1][x].img == this.player) {
+                   if(this.tiles[y-1][x].img != this.block){
                 if(this.tiles[y][x].img == this.block && this.tiles[y-1][x].img != this.wall){
                     this.pastTile = this.tiles[y-1][x].img
                     this.tiles[y+1][x].img = this.ground
@@ -114,9 +118,12 @@ export default{
                     this.pastTile = this.tiles[y-1][x].img
                     this.tiles[y+1][x].img = this.ground
                 }
+                this.tiles[y][x].img = this.player
                     console.log(this.pastTile)
                 }
+            }
                 else if(this.tiles[y][x-1].img == this.player) {
+                    if(this.tiles[y][x+1].img != this.block){
                     if(this.tiles[y][x].img == this.block && this.tiles[y][x+1].img != this.wall){
                         this.pastTile = this.tiles[y-1][x].img
                         this.tiles[y][x-1].img = this.ground
@@ -126,9 +133,12 @@ export default{
                         this.pastTile = this.tiles[y-1][x].img
                         this.tiles[y][x-1].img = this.ground
                     }
+                    this.tiles[y][x].img = this.player
                     console.log(this.pastTile)
                 }
+            }
                 else if(this.tiles[y][x+1].img == this.player) {
+                    if(this.tiles[y+1][x].img != this.block){
                     if(this.tiles[y][x].img == this.block && this.tiles[y+1][x].img != this.wall){
                         this.pastTile = this.tiles[y-1][x].img
                         this.tiles[y-1][x].img = this.ground
@@ -138,9 +148,11 @@ export default{
                         this.pastTile = this.tiles[y-1][x].img
                         this.tiles[y][x+1].img = this.ground
                     }
+                    this.tiles[y][x].img = this.player
                     console.log(this.pastTile)
                 }
-                this.tiles[y][x].img = this.player
+            }
+                
             }
             else{
                 alert('You can only go 1 tile (for now)')
