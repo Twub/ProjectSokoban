@@ -92,24 +92,52 @@ export default{
                     this.player == this.tiles[y][x-1].img ||
                     this.player == this.tiles[y][x+1].img){ /* Logic start here */
                         
-                if(this.tiles[y-1][x].img == this.player) {
+                if(this.tiles[y-1][x].img == this.player) { /* Denna if är till för sätta tile rätt och undvika dupe player */
+                    if(this.tiles[y][x].img == this.block && this.tiles[y+1][x].img != this.wall){
                         this.pastTile = this.tiles[y-1][x].img
-                        this.tiles[y-1][x].img = this.actualTile
+                        this.tiles[y-1][x].img = this.ground
+                        this.tiles[y+1][x].img = this.block
+                    }
+                    else{
+                        this.pastTile = this.tiles[y-1][x].img
+                        this.tiles[y-1][x].img = this.ground
+                    }
                         console.log(this.pastTile)
                 }
                else if(this.tiles[y+1][x].img == this.player) {
-                    this.pastTile = this.tiles[y+1][x].img
-                    this.tiles[y+1][x].img = this.actualTile
+                if(this.tiles[y][x].img == this.block && this.tiles[y-1][x].img != this.wall){
+                    this.pastTile = this.tiles[y-1][x].img
+                    this.tiles[y+1][x].img = this.ground
+                    this.tiles[y-1][x].img = this.block
+                }
+                else{
+                    this.pastTile = this.tiles[y-1][x].img
+                    this.tiles[y+1][x].img = this.ground
+                }
                     console.log(this.pastTile)
                 }
                 else if(this.tiles[y][x-1].img == this.player) {
-                    this.pastTile = this.tiles[y][x-1].img
-                    this.tiles[y][x-1].img = this.actualTile
+                    if(this.tiles[y][x].img == this.block && this.tiles[y][x+1].img != this.wall){
+                        this.pastTile = this.tiles[y-1][x].img
+                        this.tiles[y][x-1].img = this.ground
+                        this.tiles[y][x+1].img = this.block
+                    }
+                    else{
+                        this.pastTile = this.tiles[y-1][x].img
+                        this.tiles[y][x-1].img = this.ground
+                    }
                     console.log(this.pastTile)
                 }
                 else if(this.tiles[y][x+1].img == this.player) {
-                    this.pastTile = this.tiles[y][x+1].img
-                    this.tiles[y][x+1].img = this.actualTile
+                    if(this.tiles[y][x].img == this.block && this.tiles[y+1][x].img != this.wall){
+                        this.pastTile = this.tiles[y-1][x].img
+                        this.tiles[y-1][x].img = this.ground
+                        this.tiles[y+1][x].img = this.block
+                    }
+                    else{
+                        this.pastTile = this.tiles[y-1][x].img
+                        this.tiles[y][x+1].img = this.ground
+                    }
                     console.log(this.pastTile)
                 }
                 this.tiles[y][x].img = this.player
