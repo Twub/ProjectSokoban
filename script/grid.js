@@ -27,7 +27,10 @@ export default{
             ground: "/images/img11.png",
             boxGoal: "/images/img20.png",
             renderMap: 0,
-            playerPosition: '',
+            actualTile: '',
+            pastTile: '',
+            cloudTile: '',
+            moves: 0,
             map1: [
                 ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W'],
                 ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'G','W'],
@@ -71,17 +74,37 @@ export default{
     },
     methods:{
         onMovePlayerOnClick(x,y){
+            this.actualTile = this.tiles[y][x].img
+            if(this.moves > 0){
+            this.cloudTile = this.tiles[y][x].img
+            }
+            if(this.actualTile != this.wall){
+                if(this.tiles[y-1][x].img == this.player) {
+                        this.pastTile = this.tiles[y-1][x].img
+                        if(this.moves > 0){
+                        this.tiles[y-1][x].img = this.actualTile
+                        }
+                        console.log(this.pastTile)
+                }
+               else if(this.tiles[y+1][x].img == this.player) {
+                    this.pastTile = this.tiles[y+1][x].img
+                    this.tiles[y+1][x].img = this.actualTile
+                    console.log(this.pastTile)
+                }
+                else if(this.tiles[y][x-1].img == this.player) {
+                    this.pastTile = this.tiles[y][x-1].img
+                    this.tiles[y][x-1].img = this.actualTile
+                    console.log(this.pastTile)
+                }
+                else if(this.tiles[y][x+1].img == this.player) {
+                    this.pastTile = this.tiles[y][x+1].img
+                    this.tiles[y][x+1].img = this.actualTile
+                    console.log(this.pastTile)
+                }
+            }
             
-            let activeCell = this.tiles[y][x].img
-            if(activeCell != this.wall){
-                if(activeCell == this.block){
-                    this.tiles[y][x+1].img = activeCell
-                }
-                else if(activeCell == this.boxGoal){
-                    alert('goal')
-                }
-            } 
             this.tiles[y][x].img = this.player
+            this.moves++
             console.log(this.tiles[y][x])
             this.flatTiles = this.tiles.flat()
         },
