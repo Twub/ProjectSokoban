@@ -40,9 +40,9 @@ export default{
                 ['W','G', 'G', 'G', 'G','G', 'G', 'F', 'G','W'],
                 ['W','G', 'B', 'B', 'G','G', 'G', 'F', 'G','W'],
                 ['W','G', 'B', 'G', 'G','G', 'G', 'F', 'G','W'],
-                ['W','G', 'B', 'G', 'G','G', 'G', 'F', 'B','W'],
-                ['W','G', 'P', 'G', 'G','G', 'G', 'G', 'B','W'],
-                ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'B','W'],
+                ['W','G', 'B', 'G', 'G','G', 'G', 'F', 'G','W'],
+                ['W','G', 'P', 'G', 'G','G', 'G', 'G', 'G','W'],
+                ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'G','W'],
                 ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W']
             ],
             map2: [
@@ -110,7 +110,7 @@ export default{
                else if(this.tiles[y+1][x].img == this.player) {
                    if(this.tiles[y-1][x].img != this.block){
                 if(this.tiles[y][x].img == this.block && this.tiles[y-1][x].img != this.wall){
-                    this.pastTile = this.tiles[y-1][x].img
+                    this.pastTile = this.tiles[y+1][x].img
                     this.tiles[y+1][x].img = this.ground
                     this.tiles[y-1][x].img = this.block
                 }
@@ -125,7 +125,7 @@ export default{
                 else if(this.tiles[y][x-1].img == this.player) {
                     if(this.tiles[y][x+1].img != this.block){
                     if(this.tiles[y][x].img == this.block && this.tiles[y][x+1].img != this.wall){
-                        this.pastTile = this.tiles[y-1][x].img
+                        this.pastTile = this.tiles[y][x-1].img
                         this.tiles[y][x-1].img = this.ground
                         this.tiles[y][x+1].img = this.block
                     }
@@ -138,11 +138,11 @@ export default{
                 }
             }
                 else if(this.tiles[y][x+1].img == this.player) {
-                    if(this.tiles[y+1][x].img != this.block){
-                    if(this.tiles[y][x].img == this.block && this.tiles[y+1][x].img != this.wall){
-                        this.pastTile = this.tiles[y-1][x].img
-                        this.tiles[y-1][x].img = this.ground
-                        this.tiles[y+1][x].img = this.block
+                    if(this.tiles[y][x-1].img != this.block){
+                    if(this.tiles[y][x].img == this.block && this.tiles[y][x-1].img != this.wall){
+                        this.pastTile = this.tiles[y][x+1].img
+                        this.tiles[y][x+1].img = this.ground
+                        this.tiles[y][x-1].img = this.block
                     }
                     else{
                         this.pastTile = this.tiles[y-1][x].img
@@ -161,6 +161,7 @@ export default{
             else{
                 alert('You cant go there')
             }
+            
             this.moves++
             console.log(this.tiles[y][x])
             this.flatTiles = this.tiles.flat()
