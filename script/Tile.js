@@ -8,11 +8,21 @@ template: `
 `,
 methods:{
     movePlayerOnClick(){
-        this.$emit('movePlayerOnClick',this.position.x,this.position.y)
         console.log(this.position.x, this.position.y)
+        const x = this.position.x
+        const y = this.position.y
+        this.$emit('movePlayerOnClick',x,y)
     }
 },
 mounted(){
     this.$refs.tile.style.setProperty('background-image',`url(${this.position.img})`)
+},
+watch:{
+    position:{
+        deep: true,
+        handler(){
+            this.$refs.tile.style.setProperty('background-image',`url(${this.position.img})`)
+        }
+    }
 }
 }

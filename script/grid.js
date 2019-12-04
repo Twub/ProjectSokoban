@@ -10,7 +10,7 @@ export default{
     <Tile 
         v-for="(tile, id) of flatTiles"
         :position="tile"
-        :key="'tile'+ id + tile.x + tile.y + renderMap"
+        :key="'tile'+ id + tile.x + tile.y"
         id="grids"
         @movePlayerOnClick="onMovePlayerOnClick"></Tile>
         
@@ -19,12 +19,14 @@ export default{
     data(){
         return{
             tiles:[],
+            grid: [],
+            flatTiles:[],
             wall: "/images/img23.png",
             player: "/images/playerDown.png",
             block: "/images/img2.png",
             ground: "/images/img11.png",
             boxGoal: "/images/img20.png",
-            renderMap: 1,
+            renderMap: 0,
             playerPosition: '',
             map1: [
                 ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W'],
@@ -69,56 +71,56 @@ export default{
     },
     methods:{
         onMovePlayerOnClick(x,y){
-            let activeCell = this.tiles[x][y].img
+            
+            let activeCell = this.tiles[y][x].img
             if(activeCell != this.wall){
                 if(activeCell == this.block){
-                    alert('box')
+                    this.tiles[y][x+1].img = activeCell
                 }
                 else if(activeCell == this.boxGoal){
                     alert('goal')
                 }
             } 
-            this.tiles[x][y].img = this.player
-            this.renderMap++
-            console.log(this.tiles)
+            this.tiles[y][x].img = this.player
+            console.log(this.tiles[y][x])
+            this.flatTiles = this.tiles.flat()
         },
     },
     created(){
         if(this.displayGrid = true){
             if(this.difficulty == "Easy"){
                 let size = 10
-                for(let row = 0; row < size; row++){
-                    this.tiles[row] = []
-                    for(let col = 0; col < size; col++){
+                for(let col = 0; col < size; col++){
+                    this.tiles[col] = []
+                    for(let row = 0; row < size; row++){
                         let position = {
                             x: row,
                             y: col,
-                            img: Image
                         }
-                        this.tiles[row].push(position)
-                            switch(this.map1[row][col]){
+                        this.tiles[col].push(position)
+                            switch(this.map1[col][row]){
                                 case 'W':{
-                                    this.tiles[row][col].img = this.wall
+                                    this.tiles[col][row].img = this.wall
                                     console.log('W')
                                     break
                                 }
                                 case 'P':{
-                                    this.tiles[row][col].img = this.player
+                                    this.tiles[col][row].img = this.player
                                     console.log('P')
                                     break
                                 }
                                 case 'B':{
-                                    this.tiles[row][col].img = this.block
+                                    this.tiles[col][row].img = this.block
                                     console.log('B')
                                     break
                                 }
                                 case 'G':{
-                                    this.tiles[row][col].img = this.ground
+                                    this.tiles[col][row].img = this.ground
                                     console.log('G')
                                     break
                                 }
                                 case 'F':{
-                                    this.tiles[row][col].img = this.boxGoal
+                                    this.tiles[col][row].img = this.boxGoal
                                     console.log('F')
                                     break
                                 }
@@ -133,42 +135,41 @@ export default{
             }
             else if(this.difficulty == "Normal"){
                 let size = 10
-                for(let row = 0; row < size; row++){
-                    this.tiles[row] = []
-                    for(let col = 0; col < size; col++){
+                for(let col = 0; col < size; col++){
+                    this.tiles[col] = []
+                    for(let row = 0; row < size; row++){
                         let position = {
                             x: row,
                             y: col,
-                            img: Image
                         }
-                        this.tiles[row].push(position)
-                            switch(this.map2[row][col]){
+                        this.tiles[col].push(position)
+                            switch(this.map2[col][row]){
                                 case 'W':{
-                                    this.wall = "/images/img24.png"
-                                    this.tiles[row][col].img = this.wall
-                                    this.wall = "/images/img23.png"
+                                    this.wall = "images/img24.png"
+                                    this.tiles[col][row].img = this.wall
+                                    this.wall = "images/img23.png"
                                     console.log('W')
                                     break
                                 }
                                 case 'P':{
-                                    this.tiles[row][col].img = this.player
+                                    this.tiles[col][row].img = this.player
                                     console.log('P')
                                     break
                                 }
                                 case 'B':{
-                                    this.tiles[row][col].img = this.block
+                                    this.tiles[col][row].img = this.block
                                     console.log('B')
                                     break
                                 }
                                 case 'G':{
-                                    this.ground = "/images/img19.png",
-                                    this.tiles[row][col].img = this.ground
-                                    this.ground = "/images/img11.png"
+                                    this.ground = "images/img19.png"
+                                    this.tiles[col][row].img = this.ground
+                                    this.ground = "images/img11.png"
                                     console.log('G')
                                     break
                                 }
                                 case 'F':{
-                                    this.tiles[row][col].img = this.boxGoal
+                                    this.tiles[col][row].img = this.boxGoal
                                     console.log('F')
                                     break
                                 }
@@ -176,43 +177,43 @@ export default{
                     }
                     
                     
-            }
-            }
+    }
+    
+}
             }
             else if(this.difficulty == "Hard"){
                 let size = 13
-                for(let row = 0; row < size; row++){
-                    this.tiles[row] = []
-                    for(let col = 0; col < size; col++){
+                for(let col = 0; col < size; col++){
+                    this.tiles[col] = []
+                    for(let row = 0; row < size; row++){
                         let position = {
                             x: row,
                             y: col,
-                            img: Image
                         }
-                        this.tiles[row].push(position)
-                            switch(this.map3[row][col]){
+                        this.tiles[col].push(position)
+                            switch(this.map3[col][row]){
                                 case 'W':{
-                                    this.tiles[row][col].img = this.wall
+                                    this.tiles[col][row].img = this.wall
                                     console.log('W')
                                     break
                                 }
                                 case 'P':{
-                                    this.tiles[row][col].img = this.player
+                                    this.tiles[col][row].img = this.player
                                     console.log('P')
                                     break
                                 }
                                 case 'B':{
-                                    this.tiles[row][col].img = this.block
+                                    this.tiles[col][row].img = this.block
                                     console.log('B')
                                     break
                                 }
                                 case 'G':{
-                                    this.tiles[row][col].img = this.ground
+                                    this.tiles[col][row].img = this.ground
                                     console.log('G')
                                     break
                                 }
                                 case 'F':{
-                                    this.tiles[row][col].img = this.boxGoal
+                                    this.tiles[col][row].img = this.boxGoal
                                     console.log('F')
                                     break
                                 }
@@ -220,14 +221,23 @@ export default{
                     }
                     
                     
+    }
+    
+}
             }
             }
-            }
-            }
+            this.flatTiles = this.tiles.flat()
 },
     computed:{
         flatTiles(){
             return this.tiles.flat()
         }
     },
+    watch:{
+        renderMap(val){
+            console.log(`Number of moves: ${val}`)
+          /*  localStorage.setItem('counter-value', this.renderMap)
+            localStorage.setItem('savedMap',JSON.stringify(this.tiles)) */
+        },
+    }
 }
