@@ -119,3 +119,8 @@
     border:none;
     cursor:pointer
  }
+ #start-screen{
+    font-family: 'Press Start 2P', cursive; 
+    color: red;
+    font-size: 80px;
+ }
