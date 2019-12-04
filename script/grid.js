@@ -27,7 +27,10 @@ export default{
             ground: "/images/img11.png",
             boxGoal: "/images/img20.png",
             renderMap: 0,
-            playerPosition: '',
+            actualTile: '',
+            pastTile: '',
+            cloudTile: '',
+            moves: 0,
             map1: [
                 ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W'],
                 ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'G','W'],
@@ -69,19 +72,36 @@ export default{
             ], /* Tänker att vi gör map4(Extreme) tillsammans då den skall  vi maxa på, blir avslutnings område */
         }
     },
-    methods:{
+    methods:{ /* Detta är logiken i spelet */
         onMovePlayerOnClick(x,y){
-            
-            let activeCell = this.tiles[y][x].img
-            if(activeCell != this.wall){
-                if(activeCell == this.block){
-                    this.tiles[y][x+1].img = activeCell
+            this.actualTile = this.tiles[y][x].img
+            if(this.actualTile != this.wall){
+                if(this.tiles[y-1][x].img == this.player) {
+                        this.pastTile = this.tiles[y-1][x].img
+                        this.tiles[y-1][x].img = this.actualTile
+                        console.log(this.pastTile)
                 }
-                else if(activeCell == this.boxGoal){
-                    alert('goal')
+               else if(this.tiles[y+1][x].img == this.player) {
+                    this.pastTile = this.tiles[y+1][x].img
+                    this.tiles[y+1][x].img = this.actualTile
+                    console.log(this.pastTile)
                 }
-            } 
-            this.tiles[y][x].img = this.player
+                else if(this.tiles[y][x-1].img == this.player) {
+                    this.pastTile = this.tiles[y][x-1].img
+                    this.tiles[y][x-1].img = this.actualTile
+                    console.log(this.pastTile)
+                }
+                else if(this.tiles[y][x+1].img == this.player) {
+                    this.pastTile = this.tiles[y][x+1].img
+                    this.tiles[y][x+1].img = this.actualTile
+                    console.log(this.pastTile)
+                }
+                this.tiles[y][x].img = this.player
+            }
+            else{
+                alert('You cant go there')
+            }
+            this.moves++
             console.log(this.tiles[y][x])
             this.flatTiles = this.tiles.flat()
         },
