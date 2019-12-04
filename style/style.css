@@ -62,15 +62,26 @@
  .difficulty{
      display: flex;
      margin-top:1%;
-    justify-content: center;
-    height: 30px;
-     width: 300px;
+     height: 100px;
+     width: 180px;
+     font-family: 'Press Start 2P', cursive;
+     align-items: center;
+     flex-wrap: wrap;
+     
+     
  }
- #mapSelect{
-    width: 7%;
+ 
+ #reLoadButton,#difficultySubmit{
+     height: 30px;
+     border:none;
+     background-color: red;
+     font-family: 'Press Start 2P', cursive;
+     font-size: 10px;
  }
+
+
  #text{
-     color: white;
+     color:red;
  }
  #arrows{
      display:flex;
@@ -83,7 +94,7 @@
      flex-direction: column;
  }
 
- }
+ 
  #timer-content{
      text-align: center;
      color: white;
@@ -96,4 +107,10 @@
  }
  #timer{
      display: none;
+ }
+ select{
+    font-family: 'Press Start 2P', cursive; 
+    font-size: 15px;
+    background-color: red;
+    border:none
  }
