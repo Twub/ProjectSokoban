@@ -72,18 +72,13 @@ export default{
             ], /* Tänker att vi gör map4(Extreme) tillsammans då den skall  vi maxa på, blir avslutnings område */
         }
     },
-    methods:{
+    methods:{ /* Detta är logiken i spelet */
         onMovePlayerOnClick(x,y){
             this.actualTile = this.tiles[y][x].img
-            if(this.moves > 0){
-            this.cloudTile = this.tiles[y][x].img
-            }
             if(this.actualTile != this.wall){
                 if(this.tiles[y-1][x].img == this.player) {
                         this.pastTile = this.tiles[y-1][x].img
-                        if(this.moves > 0){
                         this.tiles[y-1][x].img = this.actualTile
-                        }
                         console.log(this.pastTile)
                 }
                else if(this.tiles[y+1][x].img == this.player) {
@@ -101,9 +96,11 @@ export default{
                     this.tiles[y][x+1].img = this.actualTile
                     console.log(this.pastTile)
                 }
+                this.tiles[y][x].img = this.player
             }
-            
-            this.tiles[y][x].img = this.player
+            else{
+                alert('You cant go there')
+            }
             this.moves++
             console.log(this.tiles[y][x])
             this.flatTiles = this.tiles.flat()
