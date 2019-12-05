@@ -94,6 +94,7 @@ export default{
                     this.player == this.tiles[y][x+1].img){ /* Logic start here */
                         
                 if(this.tiles[y-1][x].img == this.player) { /* Denna if är till för sätta tile rätt och undvika dupe player */
+                    this.player = "/images/playerDown.png"
                     if( this.tiles[y][x].img == this.block && this.tiles[y+1][x].img == this.block){
                         console.log('None')
                     }
@@ -122,6 +123,7 @@ export default{
                 }
             
                else if(this.tiles[y+1][x].img == this.player) { /* Denna kollar när gubben går uppåt */
+                this.player = "/images/playerUp.png"
                 if( this.tiles[y][x].img == this.block && this.tiles[y-1][x].img == this.block){
                     console.log('None')
                 }
@@ -148,6 +150,7 @@ export default{
                 }
             
                 else if(this.tiles[y][x-1].img == this.player) { /* Kollar n'r gubben går åt vänster */
+                this.player = "/images/playerRight.png"
                 if( this.tiles[y][x].img == this.block && this.tiles[y][x+1].img == this.block){
                     console.log('None')
                 }
@@ -176,6 +179,7 @@ export default{
                 }
             
                 else if(this.tiles[y][x+1].img == this.player) { /* Gubben går åt höger */
+                    this.player = "/images/playerLeft.png"
                     if( this.tiles[y][x].img == this.block && this.tiles[y][x-1].img == this.block ){
                         console.log('None')
                     }
