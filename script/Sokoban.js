@@ -8,7 +8,7 @@ export default{
     <div class="sokoban" id="sokobanGrid">
     <section class="difficulty">
     <label for="mapSelect" id="text">Difficulty: </label>
-    <select id="mapSelect" v-model="choice" :choice="choice">
+    <select id="mapSelect" v-model="difficulty" :value="difficulty">
     <option value="Easy">Easy</option>
     <option value="Normal">Normal</option>
     <option value="Hard">Hard</option>
@@ -17,14 +17,15 @@ export default{
     <button type="button" id="difficultySubmit" @click="diffTest">Load difficulty</button>
     </section>
     <div id="game">
-        <Grid v-if="displayGrid"></Grid>
+        <Grid v-if="displayGrid" :difficulty="difficulty"></Grid>
         </div>
     </div>
     `,
     data(){
         return{
             choice:' ',
-            displayGrid: false
+            displayGrid: false,
+            difficulty: 'Easy'
         }
     },
     methods:{

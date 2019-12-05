@@ -4,11 +4,12 @@ export default{
 
 props:['position'],
 template: `
-    <img :src="position.img" ref="tile" width="30" height="30" id="grids">
+    <img :src="position.img" ref="tile" width="30" height="30" class="cell" @click="movePlayerOnClick">
 `,
 methods:{
-    createTile(){
-        console.log(this.position.x,  this.position.y)
+    movePlayerOnClick(){
+        this.$emit('movePlayerOnClick',this.position.x,this.position.y)
+        console.log(this.position.x, this.position.y)
     }
 },
 mounted(){

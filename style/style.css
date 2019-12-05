@@ -26,14 +26,16 @@
     box-shadow: 0px 0px 30px red;
  }
  #grid{
-     justify-content: center;
      flex-wrap: wrap;
      display: flex;
-     width: 17vw;
-     
+     width: 30vw;
  }
- .grids{
-     display: flex; 
+ #grids{
+     justify-content: center;
+ }
+ .cell{
+     width: 10%;
+     height: 2.5vw;
  }
  #game{
      margin-top:2%;
@@ -68,10 +70,6 @@
  #sideArrows{
      margin-top: 25px;
  }
- .tile{
-     background-image: url("/images/img11.png");
- }
-
  #timer-content{
      text-align: center;
      color: white;
