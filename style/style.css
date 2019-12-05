@@ -74,11 +74,11 @@
  }
  
  #reLoadButton,#difficultySubmit{
-     height: 30px;
+     height: 3vh;
      border:none;
      background-color: red;
      font-family: 'Press Start 2P', cursive;
-     font-size: 10px;
+     font-size: 1vh;
      cursor:pointer
  }
 
@@ -89,7 +89,7 @@
  #arrows{
      display:flex;
      color: rgb(245, 34, 7);
-     font-size: 50px ;
+     font-size: 8vh ;
      align-items: center;
      cursor:pointer
  }
@@ -122,5 +122,5 @@
  #start-screen{
     font-family: 'Press Start 2P', cursive; 
     color: red;
-    font-size: 80px;
+    font-size:4vw;
  }
