@@ -28,6 +28,7 @@ export default{
             block: "/images/img2.png",
             ground: "/images/img11.png",
             boxGoal: "/images/img20.png",
+            blockOnGoal: "/images/img4.png",
             renderMap: 0,
             actualTile: '',
             pastTile: '',
@@ -96,7 +97,7 @@ export default{
                     if( this.tiles[y][x].img == this.block && this.tiles[y+1][x].img == this.block){
                         console.log('None')
                     }
-                    else if(this.tiles[y][x].img == this.block && (this.tiles[y+1][x].img != this.wall)){ /* Denna kollar när gubben går neråt */
+                    else if(this.tiles[y][x].img == this.block && (this.tiles[y+1][x].img != this.wall) ||this.tiles[y][x].img == this.blockOnGoal){ /* Denna kollar när gubben går neråt */
                         this.pastTile = this.tiles[y-1][x].img
                         this.tiles[y-1][x].img = this.ground
                         this.tiles[y+1][x].img = this.block
@@ -118,7 +119,7 @@ export default{
                 if( this.tiles[y][x].img == this.block && this.tiles[y-1][x].img == this.block){
                     console.log('None')
                 }
-                else if(this.tiles[y][x].img == this.block && this.tiles[y-1][x].img != this.wall){
+                else if(this.tiles[y][x].img == this.block && this.tiles[y-1][x].img != this.wall  ||this.tiles[y][x].img == this.blockOnGoal){
                     this.pastTile = this.tiles[y+1][x].img
                     this.tiles[y+1][x].img = this.ground
                     this.tiles[y-1][x].img = this.block
@@ -139,13 +140,13 @@ export default{
                 if( this.tiles[y][x].img == this.block && this.tiles[y][x+1].img == this.block){
                     console.log('None')
                 }
-                   else if(this.tiles[y][x].img == this.block && this.tiles[y][x+1].img != this.wall){
+                   else if(this.tiles[y][x].img == this.block && this.tiles[y][x+1].img != this.wall  ||this.tiles[y][x].img == this.blockOnGoal){
                         this.pastTile = this.tiles[y][x-1].img
                         this.tiles[y][x-1].img = this.ground
                         this.tiles[y][x+1].img = this.block
                         this.tiles[y][x].img = this.player
                     }
-                    else if(this.tiles[y][x].img == this.block && this.tiles[y][x+1].img == this.wall){
+                    else if(this.tiles[y][x].img == this.block && this.tiles[y][x+1].img == this.wall ){
                         console.log('Wall hit')
                     }
                     else{
@@ -157,16 +158,16 @@ export default{
                 }
             
                 else if(this.tiles[y][x+1].img == this.player) { /* Gubben går åt höger */
-                    if( this.tiles[y][x].img == this.block && this.tiles[y][x-1].img == this.block){
+                    if( this.tiles[y][x].img == this.block && this.tiles[y][x-1].img == this.block ){
                         console.log('None')
                     }
-                    else if(this.tiles[y][x].img == this.block && this.tiles[y][x-1].img != this.wall){
+                    else if(this.tiles[y][x].img == this.block && this.tiles[y][x-1].img != this.wall  ||this.tiles[y][x].img == this.blockOnGoal){
                         this.pastTile = this.tiles[y][x+1].img
                         this.tiles[y][x+1].img = this.ground
                         this.tiles[y][x-1].img = this.block
                         this.tiles[y][x].img = this.player
                     }
-                    else if(this.tiles[y][x].img == this.block && this.tiles[y][x-1].img == this.wall){
+                    else if(this.tiles[y][x].img == this.block && this.tiles[y][x-1].img == this.wall ){
                         console.log('Wall hit')
                     }
                     else{
@@ -189,7 +190,13 @@ export default{
             }
             for(let i = 0; i < this.tiles.length; i++){ /* This loop checks and keeps the boxGoal in its place */
                 for(let j = 0; j < this.tiles[i].length; j++){
-                    if(this.grid[j][i] == 'F' && this.tiles[j][i].img == this.block || this.tiles[j][i].img == this.player){
+                    if(this.grid[j][i] == 'F' && this.tiles[j][i].img == this.block || this.tiles[j][i].img == this.player || this.tiles[j][i].img == this.blockOnGoal){
+                        if(this.grid[j][i] == 'F' && this.tiles[j][i].img == this.block || this.tiles[j][i].img == this.blockOnGoal){
+                            this.tiles[j][i].img = this.blockOnGoal
+                        }
+                        else{
+                            console.log('player on goal test')
+                        }
                         console.log('Goal test')
                     }
                     else if(this.grid[j][i] == 'F' && this.tiles[j][i].img != this.boxGoal){
