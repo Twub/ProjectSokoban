@@ -51,8 +51,8 @@ export default{
                 ['W','G', 'G', 'B', 'W','W', 'G', 'G', 'G','W'],
                 ['W','G', 'G', 'B', 'G','G', 'G', 'F', 'G','W'],
                 ['W','G', 'B', 'G', 'G','G', 'G', 'F', 'G','W'],
-                ['W','G', 'B', 'P', 'G','G', 'G', 'F', 'G','W'],
-                ['W','G', 'B', 'G', 'G','G', 'G', 'F', 'G','W'],
+                ['W','G', 'B', 'P', 'G','G', 'G', 'G', 'F','W'],
+                ['W','G', 'B', 'G', 'G','G', 'G', 'G', 'F','W'],
                 ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'G','W'],
                 ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'G','W'],
                 ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W']
@@ -177,16 +177,27 @@ export default{
                     console.log(this.pastTile)
                 }
             }
-                
-        
+            else if(this.tiles[y][x].img == this.player){
+                console.log('This is you')
+            }
             else{
-                alert('You can only go 1 tile (for now)')
+                console.log('You can only go 1 tile (for now)')
             }
         }
             else{
                 alert('You cant go there')
             }
-            
+            for(let i = 0; i < this.tiles.length; i++){
+                for(let j = 0; j < this.tiles[i].length; j++){
+                    if(this.grid[j][i] == 'F' && this.tiles[j][i].img == this.player ){
+                        console.log('boxGoal tile save test, player on goal')
+                    }
+                    else if(this.grid[j][i] == 'F' && this.tiles[j][i].img != this.boxGoal){
+                        this.tiles[j][i].img = this.boxGoal
+                        console.log('Moved from boxGoal tile')
+                    }
+                }
+            }
             this.moves++
             console.log(this.tiles[y][x])
             this.flatTiles = this.tiles.flat()
@@ -229,15 +240,11 @@ export default{
                                     this.tiles[col][row].img = this.boxGoal
                                     console.log('F')
                                     break
-                                }
-                            
-                    }
-                    
-                    
+                                }     
+                    }         
     }
     
 }
-
             }
             else if(this.difficulty == "Normal"){
                 let size = 10
@@ -322,14 +329,56 @@ export default{
                                     this.tiles[col][row].img = this.boxGoal
                                     console.log('F')
                                     break
-                                }
-                            
-                    }
-                    
-                    
+                                }   
+                    }            
     }
     
 }
+            }
+            if(this.difficulty == "Easy"){
+                this.grid = [
+                    ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W'],
+                    ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'G','W'],
+                    ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'G','W'],
+                    ['W','G', 'G', 'G', 'G','G', 'G', 'F', 'G','W'],
+                    ['W','G', 'B', 'B', 'G','G', 'G', 'F', 'G','W'],
+                    ['W','G', 'B', 'G', 'G','G', 'G', 'F', 'G','W'],
+                    ['W','G', 'B', 'G', 'G','G', 'G', 'F', 'G','W'],
+                    ['W','G', 'P', 'G', 'G','G', 'G', 'G', 'G','W'],
+                    ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'G','W'],
+                    ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W']
+                ]
+            }
+            else if(this.difficulty == "Normal"){
+                this.grid = [
+                    ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W'],
+                    ['W','G', 'G', 'G', 'W','W', 'G', 'G', 'G','W'],
+                    ['W','G', 'G', 'B', 'W','W', 'G', 'G', 'G','W'],
+                    ['W','G', 'G', 'B', 'G','G', 'G', 'F', 'G','W'],
+                    ['W','G', 'B', 'G', 'G','G', 'G', 'F', 'G','W'],
+                    ['W','G', 'B', 'P', 'G','G', 'G', 'G', 'F','W'],
+                    ['W','G', 'B', 'G', 'G','G', 'G', 'G', 'F','W'],
+                    ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'G','W'],
+                    ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'G','W'],
+                    ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W']
+                ]
+            }
+            else if(this.difficulty == "Hard"){
+                [
+                    ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W','W','W','W'],
+                    ['W','G', 'W', 'G', 'G','G', 'G', 'G', 'G','G','G','G','W'],
+                    ['W','G', 'B', 'G', 'G','G', 'G', 'G', 'G','G','G','G','W'],
+                    ['W','G', 'W', 'G', 'G','G', 'G', 'G', 'G','G','G','G','W'],
+                    ['W','G', 'W', 'G', 'G','G', 'G', 'G', 'G','G','G','F','W'],
+                    ['W','G', 'W', 'G', 'G','G', 'G', 'G', 'G','G','G','F','W'],
+                    ['W','G', 'B', 'G', 'G','G', 'G', 'G', 'G','G','G','G','W'],
+                    ['W','G', 'W', 'G', 'G','G', 'G', 'G', 'G','G','G','G','W'],
+                    ['W','G', 'W', 'G', 'G','G', 'G', 'G', 'G','G','G','G','W'],
+                    ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'G','G','G','G','W'],
+                    ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'G','G','G','G','W'],
+                    ['W','P', 'G', 'G', 'G','G', 'G', 'G', 'G','G','G','G','W'],
+                    ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W','W','W','W'],
+                ]
             }
             }
             this.flatTiles = this.tiles.flat()
