@@ -19,6 +19,7 @@ export default{
     <button type="button" id="reLoadButton" @click="reLoad">Restart game</button>
     </section>
     <div id="game">
+        <h1 id="start-screen">{{startScreen}}</h1>
         <Grid v-if="displayGrid" :difficulty="difficulty"></Grid>
        
     </div>
@@ -30,12 +31,14 @@ export default{
         return{
             choice:' ',
             displayGrid: false,
-            difficulty: 'Easy'
+            difficulty: 'Easy',
+            startScreen: 'sokoban'
         }
     },
     methods:{
         diffTest(){
-                this.displayGrid= true       
+                this.displayGrid= true 
+                this.startScreen=''      
         },
         reLoad(){
             window.location.reload()    
