@@ -187,10 +187,10 @@ export default{
             else{
                 alert('You cant go there')
             }
-            for(let i = 0; i < this.tiles.length; i++){
+            for(let i = 0; i < this.tiles.length; i++){ /* This loop checks and keeps the boxGoal in its place */
                 for(let j = 0; j < this.tiles[i].length; j++){
-                    if(this.grid[j][i] == 'F' && this.tiles[j][i].img == this.player ){
-                        console.log('boxGoal tile save test, player on goal')
+                    if(this.grid[j][i] == 'F' && this.tiles[j][i].img == this.block || this.tiles[j][i].img == this.player){
+                        console.log('Goal test')
                     }
                     else if(this.grid[j][i] == 'F' && this.tiles[j][i].img != this.boxGoal){
                         this.tiles[j][i].img = this.boxGoal
@@ -335,7 +335,7 @@ export default{
     
 }
             }
-            if(this.difficulty == "Easy"){
+            if(this.difficulty == "Easy"){ /* This section makes checking for boxGoal easier and dynamic */
                 this.grid = [
                     ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W'],
                     ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'G','W'],
