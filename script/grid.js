@@ -29,6 +29,7 @@ export default{
             ground: "/images/img11.png",
             boxGoal: "/images/img20.png",
             blockOnGoal: "/images/img4.png",
+            blackBox: "images/blackBox.png",
             goals: 0,
             points: 0,
             actualTile: '',
@@ -36,9 +37,9 @@ export default{
             cloudTile: '',
             moves: 0,
             map1: [
-                ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W'],
-                ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'G','W'],
-                ['W','G', 'G', 'G', 'G','G', 'G', 'W', 'G','W'],
+                ['W','W', 'S', 'W', 'W','W', 'W', 'W', 'W','W'],
+                ['W','W', 'S', 'W', 'G','G', 'G', 'G', 'G','W'],
+                ['W','W', 'W', 'W', 'G','G', 'G', 'W', 'G','W'],
                 ['W','G', 'G', 'G', 'G','G', 'W', 'F', 'G','W'],
                 ['W','G', 'B', 'B', 'G','G', 'G', 'F', 'G','W'],
                 ['W','G', 'B', 'G', 'G','G', 'G', 'F', 'G','W'],
@@ -93,7 +94,6 @@ export default{
                 if(this.tiles[y-1][x].img == this.player) { /* Denna if är till för sätta tile rätt och undvika dupe player */
                     this.player = "/images/playerDown.png"
                     if( this.tiles[y][x].img == this.block && this.tiles[y+1][x].img == this.block){
-                        console.log('None')
                     }
                     else if(this.tiles[y][x].img == this.blockOnGoal && this.tiles[y+1][x].img == this.wall || 
                         this.tiles[y][x].img == this.blockOnGoal && this.tiles[y+1][x].img == this.blockOnGoal || 
@@ -117,18 +117,15 @@ export default{
                         this.tiles[y][x].img = this.player
                         this.moves++
                     }
-                        console.log(this.pastTile)
                 }
             
                else if(this.tiles[y+1][x].img == this.player) { /* Denna kollar när gubben går uppåt */
                 this.player = "/images/playerUp.png"
                 if( this.tiles[y][x].img == this.block && this.tiles[y-1][x].img == this.block){
-                    console.log('None')
                 }
                 else if(this.tiles[y][x].img == this.blockOnGoal && this.tiles[y-1][x].img == this.wall || 
                     this.tiles[y][x].img == this.blockOnGoal && this.tiles[y-1][x].img == this.blockOnGoal || 
                     this.tiles[y][x].img == this.blockOnGoal &&  this.tiles[y-1][x].img == this.block){
-                    console.log('BoxOnGoal to wall test')
                 }
                 else if(this.tiles[y][x].img == this.block && this.tiles[y-1][x].img != this.wall  ||this.tiles[y][x].img == this.blockOnGoal){
                     this.pastTile = this.tiles[y+1][x].img
@@ -146,13 +143,11 @@ export default{
                     this.tiles[y][x].img = this.player
                     this.moves++
                 }
-                    console.log(this.pastTile)
                 }
             
                 else if(this.tiles[y][x-1].img == this.player) { /* Kollar n'r gubben går åt vänster */
                 this.player = "/images/playerRight.png"
                 if( this.tiles[y][x].img == this.block && this.tiles[y][x+1].img == this.block){
-                    console.log('None')
                 }
                 else if(this.tiles[y][x].img == this.blockOnGoal && this.tiles[y][x+1].img == this.wall || 
                     this.tiles[y][x].img == this.blockOnGoal && this.tiles[y][x+1].img == this.blockOnGoal || 
@@ -244,7 +239,6 @@ export default{
             console.log(this.points)
             this.points = 0
             console.log(`You have moved: ${this.moves} times`)
-            console.log(this.tiles[y][x])
             this.flatTiles = this.tiles.flat()
         },
     },
@@ -284,6 +278,10 @@ export default{
                                 case 'F':{
                                     this.tiles[col][row].img = this.boxGoal
                                     console.log('F')
+                                    break
+                                }
+                                case 'S':{
+                                    this.tiles[col][row].img = this.blackBox
                                     break
                                 }     
                     }         
@@ -437,8 +435,8 @@ export default{
         }
     },
     watch:{
-        renderMap(val){
-            console.log(`Number of moves: ${val}`)
+        points(){
+            
           /*  localStorage.setItem('counter-value', this.renderMap)
             localStorage.setItem('savedMap',JSON.stringify(this.tiles)) */
         },
