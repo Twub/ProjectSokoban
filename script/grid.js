@@ -28,7 +28,8 @@ export default{
             block: "/images/img2.png",
             ground: "/images/img11.png",
             boxGoal: "/images/img20.png",
-            renderMap: 0,
+            blockOnGoal: "/images/img4.png",
+            points: 0,
             actualTile: '',
             pastTile: '',
             cloudTile: '',
@@ -36,25 +37,25 @@ export default{
             map1: [
                 ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W'],
                 ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'G','W'],
-                ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'G','W'],
-                ['W','G', 'G', 'G', 'G','G', 'G', 'F', 'G','W'],
+                ['W','G', 'G', 'G', 'G','G', 'G', 'W', 'G','W'],
+                ['W','G', 'G', 'G', 'G','G', 'W', 'F', 'G','W'],
                 ['W','G', 'B', 'B', 'G','G', 'G', 'F', 'G','W'],
                 ['W','G', 'B', 'G', 'G','G', 'G', 'F', 'G','W'],
-                ['W','G', 'B', 'G', 'G','G', 'G', 'F', 'B','W'],
-                ['W','G', 'P', 'G', 'G','G', 'G', 'G', 'B','W'],
-                ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'B','W'],
+                ['W','G', 'B', 'G', 'G','G', 'G', 'F', 'W','W'],
+                ['W','G', 'P', 'G', 'G','G', 'G', 'W', 'G','W'],
+                ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'G','W'],
                 ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W']
             ],
             map2: [
                 ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W'],
                 ['W','G', 'G', 'G', 'W','W', 'G', 'G', 'G','W'],
-                ['W','G', 'G', 'B', 'W','W', 'G', 'G', 'G','W'],
+                ['W','G', 'G', 'G', 'W','W', 'G', 'G', 'G','W'],
                 ['W','G', 'G', 'B', 'G','G', 'G', 'F', 'G','W'],
-                ['W','G', 'B', 'G', 'G','G', 'G', 'F', 'G','W'],
-                ['W','G', 'B', 'P', 'G','G', 'G', 'F', 'G','W'],
-                ['W','G', 'B', 'G', 'G','G', 'G', 'F', 'B','W'],
-                ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'B','W'],
-                ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'B','W'],
+                ['W','G', 'B', 'G', 'W','W', 'G', 'F', 'G','W'],
+                ['W','G', 'B', 'P', 'W','W', 'G', 'G', 'F','W'],
+                ['W','G', 'B', 'G', 'W','W', 'G', 'G', 'F','W'],
+                ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'G','W'],
+                ['W','G', 'G', 'G', 'W','W', 'G', 'G', 'G','W'],
                 ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W']
             ],
             map3: [
@@ -93,62 +94,144 @@ export default{
                     this.player == this.tiles[y][x+1].img){ /* Logic start here */
                         
                 if(this.tiles[y-1][x].img == this.player) { /* Denna if är till för sätta tile rätt och undvika dupe player */
-                    if(this.tiles[y][x].img == this.block && this.tiles[y+1][x].img != this.wall){
+                    this.player = "/images/playerDown.png"
+                    if( this.tiles[y][x].img == this.block && this.tiles[y+1][x].img == this.block){
+                        console.log('None')
+                    }
+                    else if(this.tiles[y][x].img == this.blockOnGoal && this.tiles[y+1][x].img == this.wall || 
+                        this.tiles[y][x].img == this.blockOnGoal && this.tiles[y+1][x].img == this.blockOnGoal || 
+                        this.tiles[y][x].img == this.blockOnGoal && this.tiles[y+1][x].img == this.block ||
+                        this.tiles[y][x].img == this.block && this.tiles[y+1][x].img == this.blockOnGoal){
+                        
+                    }
+                    else if(this.tiles[y][x].img == this.block && (this.tiles[y+1][x].img != this.wall) ||this.tiles[y][x].img == this.blockOnGoal){ /* Denna kollar när gubben går neråt */
                         this.pastTile = this.tiles[y-1][x].img
                         this.tiles[y-1][x].img = this.ground
                         this.tiles[y+1][x].img = this.block
+                        this.tiles[y][x].img = this.player
+                        console.log('Else if')
+                    }
+                    else if(this.tiles[y][x].img == this.block && (this.tiles[y+1][x].img == this.wall)){
+                        console.log('Wall hit')
                     }
                     else{
                         this.pastTile = this.tiles[y-1][x].img
                         this.tiles[y-1][x].img = this.ground
+                        this.tiles[y][x].img = this.player
                     }
                         console.log(this.pastTile)
                 }
-               else if(this.tiles[y+1][x].img == this.player) {
-                if(this.tiles[y][x].img == this.block && this.tiles[y-1][x].img != this.wall){
-                    this.pastTile = this.tiles[y-1][x].img
+            
+               else if(this.tiles[y+1][x].img == this.player) { /* Denna kollar när gubben går uppåt */
+                this.player = "/images/playerUp.png"
+                if( this.tiles[y][x].img == this.block && this.tiles[y-1][x].img == this.block){
+                    console.log('None')
+                }
+                else if(this.tiles[y][x].img == this.blockOnGoal && this.tiles[y-1][x].img == this.wall || 
+                    this.tiles[y][x].img == this.blockOnGoal && this.tiles[y-1][x].img == this.blockOnGoal || 
+                    this.tiles[y][x].img == this.blockOnGoal &&  this.tiles[y-1][x].img == this.block){
+                    console.log('BoxOnGoal to wall test')
+                }
+                else if(this.tiles[y][x].img == this.block && this.tiles[y-1][x].img != this.wall  ||this.tiles[y][x].img == this.blockOnGoal){
+                    this.pastTile = this.tiles[y+1][x].img
                     this.tiles[y+1][x].img = this.ground
                     this.tiles[y-1][x].img = this.block
+                    this.tiles[y][x].img = this.player
+                }
+                else if(this.tiles[y][x].img == this.block && this.tiles[y-1][x].img == this.wall){
+                    console.log('Wall hit')
                 }
                 else{
                     this.pastTile = this.tiles[y-1][x].img
                     this.tiles[y+1][x].img = this.ground
+                    this.tiles[y][x].img = this.player
                 }
                     console.log(this.pastTile)
                 }
-                else if(this.tiles[y][x-1].img == this.player) {
-                    if(this.tiles[y][x].img == this.block && this.tiles[y][x+1].img != this.wall){
-                        this.pastTile = this.tiles[y-1][x].img
+            
+                else if(this.tiles[y][x-1].img == this.player) { /* Kollar n'r gubben går åt vänster */
+                this.player = "/images/playerRight.png"
+                if( this.tiles[y][x].img == this.block && this.tiles[y][x+1].img == this.block){
+                    console.log('None')
+                }
+                else if(this.tiles[y][x].img == this.blockOnGoal && this.tiles[y][x+1].img == this.wall || 
+                    this.tiles[y][x].img == this.blockOnGoal && this.tiles[y][x+1].img == this.blockOnGoal || 
+                    this.tiles[y][x].img == this.blockOnGoal && this.tiles[y][x+1].img == this.block ||
+                    this.tiles[y][x].img == this.block && this.tiles[y][x+1].img == this.blockOnGoal){
+
+                }
+                   else if(this.tiles[y][x].img == this.block && this.tiles[y][x+1].img != this.wall  ||this.tiles[y][x].img == this.blockOnGoal){
+                        this.pastTile = this.tiles[y][x-1].img
                         this.tiles[y][x-1].img = this.ground
                         this.tiles[y][x+1].img = this.block
+                        this.tiles[y][x].img = this.player
                     }
+                    else if(this.tiles[y][x].img == this.block && this.tiles[y][x+1].img == this.wall ){
+                        console.log('Wall hit')
+                    }
+                    
                     else{
                         this.pastTile = this.tiles[y-1][x].img
                         this.tiles[y][x-1].img = this.ground
+                        this.tiles[y][x].img = this.player
                     }
                     console.log(this.pastTile)
                 }
-                else if(this.tiles[y][x+1].img == this.player) {
-                    if(this.tiles[y][x].img == this.block && this.tiles[y+1][x].img != this.wall){
-                        this.pastTile = this.tiles[y-1][x].img
-                        this.tiles[y-1][x].img = this.ground
-                        this.tiles[y+1][x].img = this.block
+            
+                else if(this.tiles[y][x+1].img == this.player) { /* Gubben går åt höger */
+                    this.player = "/images/playerLeft.png"
+                    if( this.tiles[y][x].img == this.block && this.tiles[y][x-1].img == this.block ){
+                        console.log('None')
+                    }
+                    else if(this.tiles[y][x].img == this.blockOnGoal && this.tiles[y][x-1].img == this.wall || 
+                        this.tiles[y][x].img == this.blockOnGoal && this.tiles[y][x-1].img == this.blockOnGoal || 
+                        this.tiles[y][x].img == this.blockOnGoal && this.tiles[y][x-1].img == this.block ||
+                        this.tiles[y][x].img == this.block && this.tiles[y][x-1].img == this.blockOnGoal ){
+                        
+                    }
+                    else if(this.tiles[y][x].img == this.block && this.tiles[y][x-1].img != this.wall  || this.tiles[y][x].img == this.blockOnGoal){
+                        this.pastTile = this.tiles[y][x+1].img
+                        this.tiles[y][x+1].img = this.ground
+                        this.tiles[y][x-1].img = this.block
+                        this.tiles[y][x].img = this.player
+                    }
+                    else if(this.tiles[y][x].img == this.block && this.tiles[y][x-1].img == this.wall ){
+                        console.log('Wall hit')
                     }
                     else{
                         this.pastTile = this.tiles[y-1][x].img
                         this.tiles[y][x+1].img = this.ground
+                        this.tiles[y][x].img = this.player
                     }
                     console.log(this.pastTile)
                 }
-                this.tiles[y][x].img = this.player
+            }
+            else if(this.tiles[y][x].img == this.player){
+                console.log('This is you')
             }
             else{
-                alert('You can only go 1 tile (for now)')
+                console.log('You can only go 1 tile (for now)')
             }
         }
             else{
                 alert('You cant go there')
             }
+            for(let i = 0; i < this.tiles.length; i++){ /* This loop checks and keeps the boxGoal in its place */
+                for(let j = 0; j < this.tiles[i].length; j++){
+                    if(this.grid[j][i] == 'F' && this.tiles[j][i].img == this.block || this.tiles[j][i].img == this.player || this.tiles[j][i].img == this.blockOnGoal){
+                        if(this.grid[j][i] == 'F' && this.tiles[j][i].img == this.block || this.tiles[j][i].img == this.blockOnGoal){
+                            this.tiles[j][i].img = this.blockOnGoal
+                        }
+                        else{
+                            
+                        }
+                    }
+                    else if(this.grid[j][i] == 'F' && this.tiles[j][i].img != this.boxGoal){
+                        this.tiles[j][i].img = this.boxGoal
+                    }
+                }
+            }
+            console.log(this.points)
             this.moves++
             console.log(this.tiles[y][x])
             this.flatTiles = this.tiles.flat()
@@ -191,15 +274,11 @@ export default{
                                     this.tiles[col][row].img = this.boxGoal
                                     console.log('F')
                                     break
-                                }
-                            
-                    }
-                    
-                    
+                                }     
+                    }         
     }
     
 }
-
             }
             else if(this.difficulty == "Normal"){
                 let size = 10
@@ -213,9 +292,9 @@ export default{
                         this.tiles[col].push(position)
                             switch(this.map2[col][row]){
                                 case 'W':{
-                                    this.wall = "images/img24.png"
+                                    
                                     this.tiles[col][row].img = this.wall
-                                    this.wall = "images/img23.png"
+                                    
                                     console.log('W')
                                     break
                                 }
@@ -230,9 +309,9 @@ export default{
                                     break
                                 }
                                 case 'G':{
-                                    this.ground = "images/img19.png"
+                                    
                                     this.tiles[col][row].img = this.ground
-                                    this.ground = "images/img11.png"
+                                   
                                     console.log('G')
                                     break
                                 }
@@ -284,14 +363,56 @@ export default{
                                     this.tiles[col][row].img = this.boxGoal
                                     console.log('F')
                                     break
-                                }
-                            
-                    }
-                    
-                    
+                                }   
+                    }            
     }
     
 }
+            }
+            if(this.difficulty == "Easy"){ /* This section makes checking for boxGoal easier and dynamic */
+                this.grid = [
+                    ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W'],
+                    ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'G','W'],
+                    ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'G','W'],
+                    ['W','G', 'G', 'G', 'G','G', 'G', 'F', 'G','W'],
+                    ['W','G', 'B', 'B', 'G','G', 'G', 'F', 'G','W'],
+                    ['W','G', 'B', 'G', 'G','G', 'G', 'F', 'G','W'],
+                    ['W','G', 'B', 'G', 'G','G', 'G', 'F', 'G','W'],
+                    ['W','G', 'P', 'G', 'G','G', 'G', 'G', 'G','W'],
+                    ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'G','W'],
+                    ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W']
+                ]
+            }
+            else if(this.difficulty == "Normal"){
+                this.grid = [
+                    ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W'],
+                    ['W','G', 'G', 'G', 'W','W', 'G', 'G', 'G','W'],
+                    ['W','G', 'G', 'B', 'W','W', 'G', 'G', 'G','W'],
+                    ['W','G', 'G', 'B', 'G','G', 'G', 'F', 'G','W'],
+                    ['W','G', 'B', 'G', 'G','G', 'G', 'F', 'G','W'],
+                    ['W','G', 'B', 'P', 'G','G', 'G', 'G', 'F','W'],
+                    ['W','G', 'B', 'G', 'G','G', 'G', 'G', 'F','W'],
+                    ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'G','W'],
+                    ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'G','W'],
+                    ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W']
+                ]
+            }
+            else if(this.difficulty == "Hard"){
+                [
+                    ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W','W','W','W'],
+                    ['W','G', 'W', 'G', 'G','G', 'G', 'G', 'G','G','G','G','W'],
+                    ['W','G', 'B', 'G', 'G','G', 'G', 'G', 'G','G','G','G','W'],
+                    ['W','G', 'W', 'G', 'G','G', 'G', 'G', 'G','G','G','G','W'],
+                    ['W','G', 'W', 'G', 'G','G', 'G', 'G', 'G','G','G','F','W'],
+                    ['W','G', 'W', 'G', 'G','G', 'G', 'G', 'G','G','G','F','W'],
+                    ['W','G', 'B', 'G', 'G','G', 'G', 'G', 'G','G','G','G','W'],
+                    ['W','G', 'W', 'G', 'G','G', 'G', 'G', 'G','G','G','G','W'],
+                    ['W','G', 'W', 'G', 'G','G', 'G', 'G', 'G','G','G','G','W'],
+                    ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'G','G','G','G','W'],
+                    ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'G','G','G','G','W'],
+                    ['W','P', 'G', 'G', 'G','G', 'G', 'G', 'G','G','G','G','W'],
+                    ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W','W','W','W'],
+                ]
             }
             }
             this.flatTiles = this.tiles.flat()
