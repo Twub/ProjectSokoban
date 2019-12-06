@@ -1,16 +1,18 @@
 export default {
     methods: {
         moveLeft: function(){
-            console.log("left")
+            console.log("left");
         },
         moveRight: function(){
-            console.log("Right")
+            console.log("Right");
         },
         moveUp: function(){
-            console.log("Up")
+            console.log("Up");
         },
         moveDown: function(){
-            console.log("Down")
+            console.log("Down");
         }
     }
 }
+
+// TODO give this class access to change/move the tiles.

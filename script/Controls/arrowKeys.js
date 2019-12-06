@@ -34,7 +34,6 @@ export default{
        goLeft(){
            this.playSound('/sound/moveSound.wav');
            this.moveLeft();
-           
        }
    }
 }
