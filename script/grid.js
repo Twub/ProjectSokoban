@@ -30,23 +30,23 @@ export default{
             boxGoal: "/images/img20.png",
             blockOnGoal: "/images/img4.png",
             blackBox: "images/blackBox.png",
-            goals: 0,
+            goals: 0, /* Om ni skall ändra antalet goals/boxGoal så glöm inte ändra denna data i created */
             points: 0,
             actualTile: '',
             pastTile: '',
             cloudTile: '',
             moves: 0,
-            map1: [
-                ['W','W', 'S', 'W', 'W','W', 'W', 'W', 'W','W'],
-                ['W','W', 'S', 'W', 'G','G', 'G', 'G', 'G','W'],
-                ['W','W', 'W', 'W', 'G','G', 'G', 'W', 'G','W'],
-                ['W','G', 'G', 'G', 'G','G', 'W', 'F', 'G','W'],
-                ['W','G', 'B', 'B', 'G','G', 'G', 'F', 'G','W'],
-                ['W','G', 'B', 'G', 'G','G', 'G', 'F', 'G','W'],
-                ['W','G', 'B', 'G', 'G','G', 'G', 'F', 'W','W'],
-                ['W','G', 'P', 'G', 'G','G', 'G', 'W', 'G','W'],
-                ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'G','W'],
-                ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W']
+            map1: [ /* Skall ni ändra map layout så ändra också grid:en i created */
+                ['S','S', 'W', 'W', 'W','W', 'W', 'W', 'W','W'],
+                ['S','S', 'W', 'G', 'G','G', 'G', 'W', 'F','W'],
+                ['S','S', 'W', 'G', 'G','G', 'G', 'W', 'G','W'],
+                ['S','S', 'W', 'G', 'G','G', 'G', 'W', 'G','W'],
+                ['S','S', 'W', 'W', 'B','G', 'G', 'G', 'G','W'],
+                ['S','S', 'W', 'P', 'G','G', 'G', 'W', 'G','W'],
+                ['S','S', 'W', 'W', 'B','G', 'G', 'G', 'G','W'],
+                ['S','S', 'W', 'G', 'G','G', 'G', 'W', 'G','W'],
+                ['S','S', 'W', 'G', 'G','G', 'G', 'W', 'F','W'],
+                ['S','S', 'W', 'W', 'W','W', 'W', 'W', 'W','W']
             ],
             map2: [
                 ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W'],
@@ -329,6 +329,10 @@ export default{
                                     console.log('F')
                                     break
                                 }
+                                case 'S':{
+                                    this.tiles[col][row].img = this.blackBox
+                                    break
+                                }  
                             
                     }
                     
@@ -372,25 +376,29 @@ export default{
                                     this.tiles[col][row].img = this.boxGoal
                                     console.log('F')
                                     break
-                                }   
+                                } 
+                                case 'S':{
+                                    this.tiles[col][row].img = this.blackBox
+                                    break
+                                }    
                     }            
     }
     
 }
             }
             if(this.difficulty == "Easy"){ /* This section makes checking for boxGoal easier and dynamic */
-                this.goals = 4
+                this.goals = 2
                 this.grid = [
-                    ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W'],
-                    ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'G','W'],
-                    ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'G','W'],
-                    ['W','G', 'G', 'G', 'G','G', 'G', 'F', 'G','W'],
-                    ['W','G', 'B', 'B', 'G','G', 'G', 'F', 'G','W'],
-                    ['W','G', 'B', 'G', 'G','G', 'G', 'F', 'G','W'],
-                    ['W','G', 'B', 'G', 'G','G', 'G', 'F', 'G','W'],
-                    ['W','G', 'P', 'G', 'G','G', 'G', 'G', 'G','W'],
-                    ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'G','W'],
-                    ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W']
+                    ['S','S', 'W', 'W', 'W','W', 'W', 'W', 'W','W'],
+                    ['S','S', 'W', 'G', 'G','G', 'G', 'W', 'F','W'],
+                    ['S','S', 'W', 'G', 'G','G', 'G', 'W', 'G','W'],
+                    ['S','S', 'W', 'G', 'G','G', 'G', 'W', 'G','W'],
+                    ['S','S', 'W', 'W', 'B','G', 'G', 'G', 'G','W'],
+                    ['S','S', 'W', 'P', 'G','G', 'G', 'W', 'G','W'],
+                    ['S','S', 'W', 'W', 'B','G', 'G', 'G', 'G','W'],
+                    ['S','S', 'W', 'G', 'G','G', 'G', 'W', 'G','W'],
+                    ['S','S', 'W', 'G', 'G','G', 'G', 'W', 'F','W'],
+                    ['S','S', 'W', 'W', 'W','W', 'W', 'W', 'W','W']
                 ]
             }
             else if(this.difficulty == "Normal"){
