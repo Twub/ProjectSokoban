@@ -4,7 +4,7 @@ export default{
     mixins: [sound],
    template:`
    <div id="arrows">
-   <i @click="goLeft" class="fa fa-arrow-circle-left" id="sideArrows"></i>
+   <i @click="goLeft" class="fa fa-arrow-circle-left" id="sideArrows" @keyup.left="goUp"></i>
    <div id="upDownArrows">   
    <i @click="goUp" class="fa fa-arrow-circle-up"></i>
    <i @click="goDown" class="fa fa-arrow-circle-down"></i>

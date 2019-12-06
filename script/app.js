@@ -6,14 +6,13 @@ export default{
     components:{
         mainHead,
         sokobanGame,
-        arrowKeys
+        arrowKeys,
     },
     template: `
     <div id="content">
         <mainHead></mainHead>
         <sokobanGame></sokobanGame>
         <arrowKeys />
-        
     </div>
     `
 }
