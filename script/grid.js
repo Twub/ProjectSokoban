@@ -82,10 +82,6 @@ export default{
     methods:{ /* Detta är logiken i spelet */
         onMovePlayerOnClick(x,y){
             this.actualTile = this.tiles[y][x].img
-            /*if(this.tiles[y][x].img == this.boxGoal){
-                this.cloudTile = this.boxGoal
-                console.log(this.cloudTile)
-            } För framtida finish */
             this.cloudTile = this.tiles[y][x].img
             if(this.actualTile != this.wall){
                 if(this.player == this.tiles[y-1][x].img ||
@@ -109,7 +105,7 @@ export default{
                         this.tiles[y-1][x].img = this.ground
                         this.tiles[y+1][x].img = this.block
                         this.tiles[y][x].img = this.player
-                        console.log('Else if')
+                        this.moves++
                     }
                     else if(this.tiles[y][x].img == this.block && (this.tiles[y+1][x].img == this.wall)){
                         console.log('Wall hit')
@@ -118,6 +114,7 @@ export default{
                         this.pastTile = this.tiles[y-1][x].img
                         this.tiles[y-1][x].img = this.ground
                         this.tiles[y][x].img = this.player
+                        this.moves++
                     }
                         console.log(this.pastTile)
                 }
@@ -137,6 +134,7 @@ export default{
                     this.tiles[y+1][x].img = this.ground
                     this.tiles[y-1][x].img = this.block
                     this.tiles[y][x].img = this.player
+                    this.moves++
                 }
                 else if(this.tiles[y][x].img == this.block && this.tiles[y-1][x].img == this.wall){
                     console.log('Wall hit')
@@ -145,6 +143,7 @@ export default{
                     this.pastTile = this.tiles[y-1][x].img
                     this.tiles[y+1][x].img = this.ground
                     this.tiles[y][x].img = this.player
+                    this.moves++
                 }
                     console.log(this.pastTile)
                 }
@@ -165,6 +164,7 @@ export default{
                         this.tiles[y][x-1].img = this.ground
                         this.tiles[y][x+1].img = this.block
                         this.tiles[y][x].img = this.player
+                        this.moves++
                     }
                     else if(this.tiles[y][x].img == this.block && this.tiles[y][x+1].img == this.wall ){
                         console.log('Wall hit')
@@ -174,6 +174,7 @@ export default{
                         this.pastTile = this.tiles[y-1][x].img
                         this.tiles[y][x-1].img = this.ground
                         this.tiles[y][x].img = this.player
+                        this.moves++
                     }
                     console.log(this.pastTile)
                 }
@@ -194,6 +195,7 @@ export default{
                         this.tiles[y][x+1].img = this.ground
                         this.tiles[y][x-1].img = this.block
                         this.tiles[y][x].img = this.player
+                        this.moves++
                     }
                     else if(this.tiles[y][x].img == this.block && this.tiles[y][x-1].img == this.wall ){
                         console.log('Wall hit')
@@ -202,6 +204,7 @@ export default{
                         this.pastTile = this.tiles[y-1][x].img
                         this.tiles[y][x+1].img = this.ground
                         this.tiles[y][x].img = this.player
+                        this.moves++
                     }
                     console.log(this.pastTile)
                 }
@@ -232,7 +235,7 @@ export default{
                 }
             }
             console.log(this.points)
-            this.moves++
+            console.log(`You have moved: ${this.moves} times`)
             console.log(this.tiles[y][x])
             this.flatTiles = this.tiles.flat()
         },
