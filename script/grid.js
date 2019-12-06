@@ -39,12 +39,12 @@ export default{
             map1: [ /* Skall ni ändra map layout så ändra också grid:en i created */
                 ['S','S', 'W', 'W', 'W','W', 'W', 'W', 'W','W'],
                 ['S','S', 'W', 'G', 'G','G', 'G', 'W', 'F','W'],
-                ['S','S', 'W', 'G', 'G','G', 'G', 'W', 'G','W'],
-                ['S','S', 'W', 'G', 'G','G', 'G', 'W', 'G','W'],
-                ['S','S', 'W', 'W', 'B','G', 'G', 'G', 'G','W'],
-                ['S','S', 'W', 'P', 'G','G', 'G', 'W', 'G','W'],
-                ['S','S', 'W', 'W', 'B','G', 'G', 'G', 'G','W'],
-                ['S','S', 'W', 'G', 'G','G', 'G', 'W', 'G','W'],
+                ['S','S', 'W', 'G', 'G','G', 'G', 'G', 'G','W'],
+                ['S','S', 'W', 'W', 'B','G', 'G', 'W', 'G','W'],
+                ['S','S', 'W', 'G', 'G','G', 'G', 'G', 'G','W'],
+                ['S','S', 'W', 'P', 'G','G', 'G', 'G', 'G','W'],
+                ['S','S', 'W', 'W', 'B','G', 'G', 'W', 'G','W'],
+                ['S','S', 'W', 'G', 'G','G', 'G', 'G', 'G','W'],
                 ['S','S', 'W', 'G', 'G','G', 'G', 'W', 'F','W'],
                 ['S','S', 'W', 'W', 'W','W', 'W', 'W', 'W','W']
             ],
@@ -389,15 +389,15 @@ export default{
             if(this.difficulty == "Easy"){ /* This section makes checking for boxGoal easier and dynamic */
                 /* Ändra goals baserat på hur många 'F' det finns och grid:en skall vara samma för respektive map och svårighetsgrad */
                 this.goals = 2
-                this.grid = [
+                this.grid = [ /* Skall ni ändra map layout så ändra också grid:en i data */
                     ['S','S', 'W', 'W', 'W','W', 'W', 'W', 'W','W'],
                     ['S','S', 'W', 'G', 'G','G', 'G', 'W', 'F','W'],
-                    ['S','S', 'W', 'G', 'G','G', 'G', 'W', 'G','W'],
-                    ['S','S', 'W', 'G', 'G','G', 'G', 'W', 'G','W'],
-                    ['S','S', 'W', 'W', 'B','G', 'G', 'G', 'G','W'],
-                    ['S','S', 'W', 'P', 'G','G', 'G', 'W', 'G','W'],
-                    ['S','S', 'W', 'W', 'B','G', 'G', 'G', 'G','W'],
-                    ['S','S', 'W', 'G', 'G','G', 'G', 'W', 'G','W'],
+                    ['S','S', 'W', 'G', 'G','G', 'G', 'G', 'G','W'],
+                    ['S','S', 'W', 'W', 'B','G', 'G', 'W', 'G','W'],
+                    ['S','S', 'W', 'G', 'G','G', 'G', 'G', 'G','W'],
+                    ['S','S', 'W', 'P', 'G','G', 'G', 'G', 'G','W'],
+                    ['S','S', 'W', 'W', 'B','G', 'G', 'W', 'G','W'],
+                    ['S','S', 'W', 'G', 'G','G', 'G', 'G', 'G','W'],
                     ['S','S', 'W', 'G', 'G','G', 'G', 'W', 'F','W'],
                     ['S','S', 'W', 'W', 'W','W', 'W', 'W', 'W','W']
                 ]
