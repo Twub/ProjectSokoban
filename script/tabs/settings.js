@@ -1,7 +1,7 @@
+import storage from '/script/utility/StorageUtility.js';
+
 export default {
-    components: {
-        
-    },
+    mixins: [storage],
     template: `
         <div id="settings-tab">
 
@@ -42,14 +42,14 @@ export default {
     `,
     data() {
         return {
-            isSoundEnable: '',
-            isTimerEnable: '',
+            isSoundEnable: true,
+            isTimerEnable: false,
             volume: 50,
         }
     },
     methods: {
         saveSettings: function(){
-            console.log(this.isTimerEnable);
+            this.saveToStorage();
             if (this.isTimerEnable == true) document.getElementById("timer").style.display = 'block';
             if (this.isTimerEnable == false) document.getElementById("timer").style.display = 'none';
             this.showSodokoGrid();
@@ -63,6 +63,11 @@ export default {
             document.getElementById("settings-tab").style.display = 'none';
             document.getElementById("sokobanGrid").style.display = 'flex';
             document.getElementById("arrows").style.display = 'flex';
+        },
+        saveToStorage: function(){
+            this.addItem('isSoundEnable', this.isSoundEnable);
+            this.addItem('isTimerEnable', this.isTimerEnable);
+            this.addItem('volume', this.volume);
         }
 
     }
