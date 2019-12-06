@@ -387,6 +387,7 @@ export default{
 }
             }
             if(this.difficulty == "Easy"){ /* This section makes checking for boxGoal easier and dynamic */
+                /* Ändra goals baserat på hur många 'F' det finns och grid:en skall vara samma för respektive map och svårighetsgrad */
                 this.goals = 2
                 this.grid = [
                     ['S','S', 'W', 'W', 'W','W', 'W', 'W', 'W','W'],
