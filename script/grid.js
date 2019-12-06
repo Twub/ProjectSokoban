@@ -50,14 +50,14 @@ export default{
             ],
             map2: [
                 ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W'],
-                ['W','G', 'G', 'G', 'W','W', 'G', 'G', 'G','W'],
-                ['W','G', 'G', 'G', 'W','W', 'G', 'G', 'G','W'],
-                ['W','G', 'G', 'B', 'G','G', 'G', 'F', 'G','W'],
-                ['W','G', 'B', 'G', 'W','W', 'G', 'F', 'G','W'],
-                ['W','G', 'B', 'P', 'W','W', 'G', 'G', 'F','W'],
-                ['W','G', 'B', 'G', 'W','W', 'G', 'G', 'F','W'],
-                ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'G','W'],
-                ['W','G', 'G', 'G', 'W','W', 'G', 'G', 'G','W'],
+                ['W','F', 'G', 'G', 'G','G', 'G', 'G', 'F','W'],
+                ['W','G', 'W', 'G', 'W','W', 'G', 'G', 'G','W'],
+                ['W','G', 'W', 'G', 'G','G', 'G', 'W', 'W','W'],
+                ['W','G', 'W', 'G', 'B','B', 'G', 'W', 'S','S'],
+                ['W','G', 'W', 'G', 'G','P', 'G', 'W', 'W','W'],
+                ['W','G', 'W', 'W', 'B','B', 'G', 'G', 'G','W'],
+                ['W','G', 'G', 'G', 'G','W', 'W', 'W', 'G','W'],
+                ['W','F', 'G', 'G', 'G','G', 'G', 'F', 'G','W'],
                 ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W']
             ],
             map3: [
@@ -213,8 +213,9 @@ export default{
             }
         }
             else{
-                alert('You cant go there')
+                console.log('You cant go there')
             }
+            
             for(let i = 0; i < this.tiles.length; i++){ /* This loop checks and keeps the boxGoal in its place */
                 for(let j = 0; j < this.tiles[i].length; j++){
                     if(this.grid[j][i] == 'F' && this.tiles[j][i].img == this.block || this.tiles[j][i].img == this.player || this.tiles[j][i].img == this.blockOnGoal){
@@ -406,14 +407,14 @@ export default{
                 this.goals = 4
                 this.grid = [
                     ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W'],
-                    ['W','G', 'G', 'G', 'W','W', 'G', 'G', 'G','W'],
-                    ['W','G', 'G', 'B', 'W','W', 'G', 'G', 'G','W'],
-                    ['W','G', 'G', 'B', 'G','G', 'G', 'F', 'G','W'],
-                    ['W','G', 'B', 'G', 'G','G', 'G', 'F', 'G','W'],
-                    ['W','G', 'B', 'P', 'G','G', 'G', 'G', 'F','W'],
-                    ['W','G', 'B', 'G', 'G','G', 'G', 'G', 'F','W'],
-                    ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'G','W'],
-                    ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'G','W'],
+                    ['W','F', 'G', 'G', 'G','G', 'G', 'G', 'F','W'],
+                    ['W','G', 'W', 'G', 'W','W', 'G', 'G', 'G','W'],
+                    ['W','G', 'W', 'G', 'G','G', 'G', 'W', 'W','W'],
+                    ['W','G', 'W', 'G', 'B','B', 'G', 'W', 'S','S'],
+                    ['W','G', 'W', 'G', 'G','P', 'G', 'W', 'W','W'],
+                    ['W','G', 'W', 'W', 'B','B', 'G', 'G', 'G','W'],
+                    ['W','G', 'G', 'G', 'G','W', 'W', 'W', 'G','W'],
+                    ['W','F', 'G', 'G', 'G','G', 'G', 'F', 'G','W'],
                     ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W']
                 ]
             }
