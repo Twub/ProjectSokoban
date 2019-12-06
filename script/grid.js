@@ -234,7 +234,7 @@ export default{
                 }
             }
             if(this.points == this.goals){
-                alert(`You have completed ${this.difficulty}`)
+                alert(`You have completed ${this.difficulty} in ${this.moves} moves`)
             }
             console.log(this.points)
             this.points = 0
