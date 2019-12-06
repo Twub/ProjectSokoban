@@ -29,6 +29,7 @@ export default{
             ground: "/images/img11.png",
             boxGoal: "/images/img20.png",
             blockOnGoal: "/images/img4.png",
+            goals: 0,
             points: 0,
             actualTile: '',
             pastTile: '',
@@ -232,9 +233,16 @@ export default{
                     else if(this.grid[j][i] == 'F' && this.tiles[j][i].img != this.boxGoal){
                         this.tiles[j][i].img = this.boxGoal
                     }
+                    if(this.tiles[j][i].img == this.blockOnGoal){
+                        this.points++
+                    }
                 }
             }
+            if(this.points == this.goals){
+                alert(`You have completed ${this.difficulty}`)
+            }
             console.log(this.points)
+            this.points = 0
             console.log(`You have moved: ${this.moves} times`)
             console.log(this.tiles[y][x])
             this.flatTiles = this.tiles.flat()
@@ -373,6 +381,7 @@ export default{
 }
             }
             if(this.difficulty == "Easy"){ /* This section makes checking for boxGoal easier and dynamic */
+                this.goals = 4
                 this.grid = [
                     ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W'],
                     ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'G','W'],
@@ -387,6 +396,7 @@ export default{
                 ]
             }
             else if(this.difficulty == "Normal"){
+                this.goals = 4
                 this.grid = [
                     ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W'],
                     ['W','G', 'G', 'G', 'W','W', 'G', 'G', 'G','W'],
@@ -401,7 +411,8 @@ export default{
                 ]
             }
             else if(this.difficulty == "Hard"){
-                [
+                this.goals = 2
+                this.grid = [
                     ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W','W','W','W'],
                     ['W','G', 'W', 'G', 'G','G', 'G', 'G', 'G','G','G','G','W'],
                     ['W','G', 'B', 'G', 'G','G', 'G', 'G', 'G','G','G','G','W'],
