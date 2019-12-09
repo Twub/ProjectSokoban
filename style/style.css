@@ -28,7 +28,7 @@
     justify-content: space-evenly;
  }
 
- #grid{ /* Tror @media  skall vara på detta ID */
+ #grid{ 
      flex-wrap: wrap;
      display: flex;
      width: 100%;
@@ -38,6 +38,7 @@
  .powerUps{
      position: absolute;
      justify-content: center;
+     width: 10%;
      
  }
  .small{  /* Olika map storlekar */
