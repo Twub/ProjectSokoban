@@ -40,12 +40,12 @@
      justify-content: center;
      
  }
- .small{ /* eller @media på denna, denna ändrar hur grid:en visas */
+ .small{  /* Olika map storlekar */
      width: 10%;
      height: 2.5vw;
  }
  .medium{
-    width: 7.3%;
+    width: 7.5%;
     height: 2vw;
  }
  .large{

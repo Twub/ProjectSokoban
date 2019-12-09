@@ -26,7 +26,7 @@ export default{
         return{
             tiles:[],
             grid: [],
-            powerUps: 'Powerup',
+            powerUps: '',
             flatTiles:[],
             hasPowerUp: false,
             wall: "/images/img23.png",
@@ -43,16 +43,16 @@ export default{
             pastTile: '',
             moves: 0,
             map1: [ /* Skall ni ändra map layout så ändra också grid:en i created */
-                ['S','S', 'W', 'W', 'W','W', 'W', 'W', 'W','W'],
-                ['S','S', 'W', 'G', 'G','G', 'G', 'W', 'F','W'],
-                ['S','S', 'W', 'G', 'G','G', 'G', 'G', 'G','W'],
-                ['S','S', 'W', 'W', 'B','G', 'G', 'W', 'G','W'],
-                ['S','S', 'W', 'U', 'G','G', 'G', 'G', 'G','W'],
-                ['S','S', 'W', 'P', 'G','G', 'G', 'G', 'G','W'],
-                ['S','S', 'W', 'W', 'B','G', 'G', 'W', 'G','W'],
-                ['S','S', 'W', 'G', 'G','G', 'G', 'G', 'G','W'],
-                ['S','S', 'W', 'G', 'G','G', 'G', 'W', 'F','W'],
-                ['S','S', 'W', 'W', 'W','W', 'W', 'W', 'W','W']
+                ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W'],
+                ['W','G', 'G', 'G', 'B','G', 'G', 'W', 'F','W'],
+                ['W','G', 'B', 'G', 'G','G', 'G', 'G', 'G','W'],
+                ['W','W', 'W', 'W', 'B','G', 'G', 'W', 'G','W'],
+                ['W','U', 'G', 'G', 'G','G', 'G', 'G', 'G','W'],
+                ['W','P', 'G', 'G', 'G','G', 'G', 'G', 'G','W'],
+                ['W','W', 'W', 'W', 'B','G', 'G', 'W', 'G','W'],
+                ['W','G', 'B', 'G', 'G','G', 'G', 'G', 'G','W'],
+                ['W','G', 'G', 'G', 'B','G', 'G', 'W', 'F','W'],
+                ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W']
             ],
             map2: [
                 ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W'],
@@ -92,10 +92,12 @@ export default{
             let ableToMove = this.getItem("isAbleToMove");
             if (ableToMove == 'true'){
                 this.buttonClick();
-
-            /* Lägg if(canMove = true) här, fungerar teoretiskt */
-
             this.actualTile = this.tiles[y][x].img
+            if(this.actualTile == this.powerUp){
+                this.powerUps = "You have powerup"
+                this.hasPowerUp = true
+                console.log('You have a powerup')
+            }
             if(this.actualTile != this.wall){
                 if(this.player == this.tiles[y-1][x].img ||
                     this.player == this.tiles[y+1][x].img ||
@@ -110,7 +112,6 @@ export default{
                         this.tiles[y][x].img == this.blockOnGoal && this.tiles[y+1][x].img == this.blockOnGoal || 
                         this.tiles[y][x].img == this.blockOnGoal && this.tiles[y+1][x].img == this.block ||
                         this.tiles[y][x].img == this.block && this.tiles[y+1][x].img == this.blockOnGoal){
-                        
                     }
                     else if(this.tiles[y][x].img == this.block && (this.tiles[y+1][x].img != this.wall) ||this.tiles[y][x].img == this.blockOnGoal){ /* Denna kollar när gubben går neråt */
                         this.pastTile = this.tiles[y-1][x].img
@@ -247,6 +248,15 @@ export default{
             }
             if(this.points == this.goals){
                 alert(`You have completed ${this.difficulty} in ${this.moves} moves`)
+                let choice = confirm("Continue to next difficulty?")
+                if(choice == true){
+                    if(this.difficulty == "Easy"){
+                        this.difficulty = "Normal"
+                    }
+                    else if(this.difficulty == "Normal"){
+                        this.difficulty = "Hard"
+                    }
+                }
             }
             console.log(this.points)
             this.points = 0
@@ -437,16 +447,16 @@ export default{
                 /* Ändra goals baserat på hur många 'F' det finns och grid:en skall vara samma för respektive map och svårighetsgrad */
                 this.goals = 2
                 this.grid = [ /* Skall ni ändra map layout så ändra också grid:en i data */
-                    ['S','S', 'W', 'W', 'W','W', 'W', 'W', 'W','W'],
-                    ['S','S', 'W', 'G', 'G','G', 'G', 'W', 'F','W'],
-                    ['S','S', 'W', 'G', 'G','G', 'G', 'G', 'G','W'],
-                    ['S','S', 'W', 'W', 'B','G', 'G', 'W', 'G','W'],
-                    ['S','S', 'W', 'U', 'G','G', 'G', 'G', 'G','W'],
-                    ['S','S', 'W', 'P', 'G','G', 'G', 'G', 'G','W'],
-                    ['S','S', 'W', 'W', 'B','G', 'G', 'W', 'G','W'],
-                    ['S','S', 'W', 'G', 'G','G', 'G', 'G', 'G','W'],
-                    ['S','S', 'W', 'G', 'G','G', 'G', 'W', 'F','W'],
-                    ['S','S', 'W', 'W', 'W','W', 'W', 'W', 'W','W']
+                    ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W'],
+                    ['W','G', 'G', 'G', 'B','G', 'G', 'W', 'F','W'],
+                    ['W','G', 'B', 'G', 'G','G', 'G', 'G', 'G','W'],
+                    ['W','W', 'W', 'W', 'B','G', 'G', 'W', 'G','W'],
+                    ['W','U', 'G', 'G', 'G','G', 'G', 'G', 'G','W'],
+                    ['W','P', 'G', 'G', 'G','G', 'G', 'G', 'G','W'],
+                    ['W','W', 'W', 'W', 'B','G', 'G', 'W', 'G','W'],
+                    ['W','G', 'B', 'G', 'G','G', 'G', 'G', 'G','W'],
+                    ['W','G', 'G', 'G', 'B','G', 'G', 'W', 'F','W'],
+                    ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W']
                 ]
             }
             else if(this.difficulty == "Normal"){
@@ -490,11 +500,4 @@ export default{
             return this.tiles.flat()
         }
     },
-    watch:{
-        points(){
-            
-          /*  localStorage.setItem('counter-value', this.renderMap)
-            localStorage.setItem('savedMap',JSON.stringify(this.tiles)) */
-        },
-    }
 }
