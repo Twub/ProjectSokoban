@@ -5,7 +5,7 @@ import storage from './utility/StorageUtility.js';
 
 
 export default{
-    mixins: [sound, timer, ],
+    mixins: [sound, timer, storage],
     components: {
         settingsTab,
         timer,
@@ -29,6 +29,7 @@ export default{
     `,
     methods: {
         startGame: function(){
+            this.addItem("isAbleToMove", true);
             this.run(60);
             this.buttonClick();
         },
