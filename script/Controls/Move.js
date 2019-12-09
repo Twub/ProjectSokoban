@@ -13,7 +13,7 @@ export default {
             this.arrowCords.x=(this.arrowCords.x)+1;
             console.log(this.arrowCords.x)
             console.log(this.arrowCords.y)
-            this.$emit('moveLeft',this.arrowCords)
+            this.$emit('moveleft',this.arrowCords)
             console.log("hejdå")
  
         },

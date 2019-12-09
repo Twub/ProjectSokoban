@@ -22,7 +22,7 @@ export default{
 
         <Move
         v-bind:arrowCords="arrowCords"
-        @moveLeft = "onMovePlayerOnArrows"
+        @moveleft = "onMovePlayerOnArrows"
         ></Move>
     </div>
     `,
