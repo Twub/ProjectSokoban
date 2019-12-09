@@ -27,10 +27,14 @@ export default{
         },
         updater: function(){
             this.time -= 1;
+            if(this.time < 1){
+                clearInterval(this.timerUpdater);
+                alert("Game Over!!!");
+            }
             document.getElementById("timer-display").innerText = "Time Remaining: " + this.time;
         },
         stop: function(){
-            window.clearInterval(this.timerUpdater);
+            clearInterval(this.timerUpdater);
         }
     }
 }
