@@ -1,7 +1,10 @@
 import Tile from './Tile.js'
 import Player from './player.js'
+import sound from '../utility/SoundUtility.js';
+import storage from '../utility/StorageUtility.js';
 
 export default{
+    mixins: [sound, storage],
     props:['difficulty','displayGrid'],
     components:{
         Tile,
@@ -13,16 +16,19 @@ export default{
         v-for="(tile, id) of flatTiles"
         :position="tile"
         :key="'tile'+ id + tile.x + tile.y"
-        id="grids"
+        class="grids"
         @movePlayerOnClick="onMovePlayerOnClick"></Tile>
-        <Player class="Player"></Player>
+       <!-- <Player class="Player"></Player> -->
+        <span class="powerUps">{{powerUps}}</span>
     </div>
     `,
     data(){
         return{
             tiles:[],
             grid: [],
+            powerUps: 'Powerup',
             flatTiles:[],
+            hasPowerUp: false,
             wall: "/images/img23.png",
             player: "/images/playerDown.png",
             block: "/images/img2.png",
@@ -30,18 +36,18 @@ export default{
             boxGoal: "/images/img20.png",
             blockOnGoal: "/images/img4.png",
             blackBox: "images/blackBox.png",
+            powerUp: "images/powerCoin.png",
             goals: 0, /* Om ni skall ändra antalet goals/boxGoal så glöm inte ändra denna data i created */
             points: 0,
             actualTile: '',
             pastTile: '',
-            cloudTile: '',
             moves: 0,
             map1: [ /* Skall ni ändra map layout så ändra också grid:en i created */
                 ['S','S', 'W', 'W', 'W','W', 'W', 'W', 'W','W'],
                 ['S','S', 'W', 'G', 'G','G', 'G', 'W', 'F','W'],
                 ['S','S', 'W', 'G', 'G','G', 'G', 'G', 'G','W'],
                 ['S','S', 'W', 'W', 'B','G', 'G', 'W', 'G','W'],
-                ['S','S', 'W', 'G', 'G','G', 'G', 'G', 'G','W'],
+                ['S','S', 'W', 'U', 'G','G', 'G', 'G', 'G','W'],
                 ['S','S', 'W', 'P', 'G','G', 'G', 'G', 'G','W'],
                 ['S','S', 'W', 'W', 'B','G', 'G', 'W', 'G','W'],
                 ['S','S', 'W', 'G', 'G','G', 'G', 'G', 'G','W'],
@@ -83,8 +89,13 @@ export default{
     },
     methods:{ /* Detta är logiken i spelet */
         onMovePlayerOnClick(x,y){
+            let ableToMove = this.getItem("isAbleToMove");
+            if (ableToMove == 'true'){
+                this.buttonClick();
+
+            /* Lägg if(canMove = true) här, fungerar teoretiskt */
+
             this.actualTile = this.tiles[y][x].img
-            this.cloudTile = this.tiles[y][x].img
             if(this.actualTile != this.wall){
                 if(this.player == this.tiles[y-1][x].img ||
                     this.player == this.tiles[y+1][x].img ||
@@ -241,6 +252,11 @@ export default{
             this.points = 0
             console.log(`You have moved: ${this.moves} times`)
             this.flatTiles = this.tiles.flat()
+            }
+            else{
+                alert('Press start to enable movement')
+            }
+            
         },
     },
     created(){
@@ -258,33 +274,45 @@ export default{
                             switch(this.map1[col][row]){
                                 case 'W':{
                                     this.tiles[col][row].img = this.wall
+                                    this.tiles[col][row].class = "small"
                                     console.log('W')
                                     break
                                 }
                                 case 'P':{
                                     this.tiles[col][row].img = this.player
+                                    this.tiles[col][row].class = "small"
                                     console.log('P')
                                     break
                                 }
                                 case 'B':{
                                     this.tiles[col][row].img = this.block
+                                    this.tiles[col][row].class = "small"
                                     console.log('B')
                                     break
                                 }
                                 case 'G':{
                                     this.tiles[col][row].img = this.ground
+                                    this.tiles[col][row].class = "small"
                                     console.log('G')
                                     break
                                 }
                                 case 'F':{
                                     this.tiles[col][row].img = this.boxGoal
+                                    this.tiles[col][row].class = "small"
                                     console.log('F')
                                     break
                                 }
                                 case 'S':{
                                     this.tiles[col][row].img = this.blackBox
+                                    this.tiles[col][row].class = "small"
                                     break
-                                }     
+                                }
+                                case 'U':{
+                                    this.tiles[col][row].img = this.powerUp
+                                    this.tiles[col][row].class = "small"
+                                    break
+                                }
+
                     }         
     }
     
@@ -302,38 +330,45 @@ export default{
                         this.tiles[col].push(position)
                             switch(this.map2[col][row]){
                                 case 'W':{
-                                    
                                     this.tiles[col][row].img = this.wall
-                                    
+                                    this.tiles[col][row].class = "small"
                                     console.log('W')
                                     break
                                 }
                                 case 'P':{
                                     this.tiles[col][row].img = this.player
+                                    this.tiles[col][row].class = "small"
                                     console.log('P')
                                     break
                                 }
                                 case 'B':{
                                     this.tiles[col][row].img = this.block
+                                    this.tiles[col][row].class = "small"
                                     console.log('B')
                                     break
                                 }
                                 case 'G':{
-                                    
                                     this.tiles[col][row].img = this.ground
-                                   
+                                    this.tiles[col][row].class = "small"
                                     console.log('G')
                                     break
                                 }
                                 case 'F':{
                                     this.tiles[col][row].img = this.boxGoal
+                                    this.tiles[col][row].class = "small"
                                     console.log('F')
                                     break
                                 }
                                 case 'S':{
                                     this.tiles[col][row].img = this.blackBox
+                                    this.tiles[col][row].class = "small"
                                     break
                                 }  
+                                case 'U':{
+                                    this.tiles[col][row].img = this.powerUp
+                                    this.tiles[col][row].class = "small"
+                                    break
+                                }
                             
                     }
                     
@@ -355,33 +390,44 @@ export default{
                             switch(this.map3[col][row]){
                                 case 'W':{
                                     this.tiles[col][row].img = this.wall
+                                    this.tiles[col][row].class = "medium"
                                     console.log('W')
                                     break
                                 }
                                 case 'P':{
                                     this.tiles[col][row].img = this.player
+                                    this.tiles[col][row].class = "medium"
                                     console.log('P')
                                     break
                                 }
                                 case 'B':{
                                     this.tiles[col][row].img = this.block
+                                    this.tiles[col][row].class = "medium"
                                     console.log('B')
                                     break
                                 }
                                 case 'G':{
                                     this.tiles[col][row].img = this.ground
+                                    this.tiles[col][row].class = "medium"
                                     console.log('G')
                                     break
                                 }
                                 case 'F':{
                                     this.tiles[col][row].img = this.boxGoal
+                                    this.tiles[col][row].class = "medium"
                                     console.log('F')
                                     break
-                                } 
+                                }
                                 case 'S':{
                                     this.tiles[col][row].img = this.blackBox
+                                    this.tiles[col][row].class = "medium"
                                     break
-                                }    
+                                }  
+                                case 'U':{
+                                    this.tiles[col][row].img = this.powerUp
+                                    this.tiles[col][row].class = "medium"
+                                    break
+                                } 
                     }            
     }
     
@@ -395,7 +441,7 @@ export default{
                     ['S','S', 'W', 'G', 'G','G', 'G', 'W', 'F','W'],
                     ['S','S', 'W', 'G', 'G','G', 'G', 'G', 'G','W'],
                     ['S','S', 'W', 'W', 'B','G', 'G', 'W', 'G','W'],
-                    ['S','S', 'W', 'G', 'G','G', 'G', 'G', 'G','W'],
+                    ['S','S', 'W', 'U', 'G','G', 'G', 'G', 'G','W'],
                     ['S','S', 'W', 'P', 'G','G', 'G', 'G', 'G','W'],
                     ['S','S', 'W', 'W', 'B','G', 'G', 'W', 'G','W'],
                     ['S','S', 'W', 'G', 'G','G', 'G', 'G', 'G','W'],
