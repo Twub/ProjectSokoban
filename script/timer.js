@@ -13,26 +13,24 @@ export default{
             presetOne: 120,
             presetTwo: 90,
             presetThree: 60,
+            timerUpdater: ''
         }
     },
     methods: {
         run(time){
             this.time = time;
-            let mainScope = this;
+            document.getElementById("timer-display").innerText = "Time Remaining: " + this.time;
             let isTimerEnable = this.getItem("isTimerEnable");
             if (isTimerEnable == 'true'){
-                window.setInterval(function(){
-                    mainScope.time -= 1;
-                    console.log(mainScope.time);
-                    document.getElementById("timer-display").innerText = "Time Remaining: " + mainScope.time;
-                    if(this.time <= 0){
-                        clearInterval();
-                        return;
-                    }
-                }, 1000);
-            } else if (isTimerEnable == 'false'){
-                return;
+                this.timerUpdater = setInterval(this.updater, 1000);
             }
         },
+        updater: function(){
+            this.time -= 1;
+            document.getElementById("timer-display").innerText = "Time Remaining: " + this.time;
+        },
+        stop: function(){
+            window.clearInterval(this.timerUpdater);
+        }
     }
 }
