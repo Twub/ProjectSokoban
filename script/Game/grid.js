@@ -2,13 +2,15 @@ import Tile from './Tile.js'
 import Player from './player.js'
 import sound from '../utility/SoundUtility.js';
 import storage from '../utility/StorageUtility.js';
+import Move from '../Controls/Move.js'
 
 export default{
     mixins: [sound, storage],
     props:['difficulty','displayGrid'],
     components:{
         Tile,
-        Player
+        Player,
+        Move
     },
     template: `
     <div id="grid">
@@ -20,10 +22,15 @@ export default{
         @movePlayerOnClick="onMovePlayerOnClick"></Tile>
        <!-- <Player class="Player"></Player> -->
         <span class="powerUps">{{powerUps}}</span>
+        <Move
+        v-bind:arrowCords="arrowCords"
+        @moveleft = "onMovePlayerOnArrows"
+        ></Move>
     </div>
     `,
     data(){
         return{
+            arrowCords:"",
             tiles:[],
             grid: [],
             powerUps: '',
@@ -268,6 +275,10 @@ export default{
             }
             
         },
+        onMovePlayerOnArrows(){
+            let test= this.arrowCords
+            console.log("hej")
+        }
     },
     created(){
         if(this.displayGrid = true){

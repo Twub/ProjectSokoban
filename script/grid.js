@@ -30,7 +30,6 @@ export default{
         return{
             tiles:[],
             grid: [],
-            flatTiles:[],
             wall: "/images/img23.png",
             player: "/images/playerDown.png",
             block: "/images/img2.png",
@@ -254,7 +253,7 @@ export default{
         }
     },
     created(){
-        if(this.displayGrid = true){
+        if(this.displayGrid == true){
             if(this.difficulty == "Easy"){
                 let size = 10
                 for(let col = 0; col < size; col++){
