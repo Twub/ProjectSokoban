@@ -23,7 +23,7 @@ export default{
        <!-- <Player class="Player"></Player> -->
         <span class="powerUps">{{powerUps}}</span>
         <Move
-        v-on:moveLeft= "onMovePlayerOnArrows"
+        v-on:moveLeft= onMovePlayerOnArrows
         v-bind:arrowCords="arrowCords"
         ></Move>
     </div>

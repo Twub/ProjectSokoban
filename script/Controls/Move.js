@@ -17,9 +17,7 @@ export default {
             console.log(this.arrowCords.x)
             console.log(this.arrowCords.y)
             this.$emit('moveLeft',this.arrowCords)
-            this.arrowCords.x=0
-
-            
+            this.arrowCords.x=0  
  
         },
         moveRight: function(){
