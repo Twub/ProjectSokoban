@@ -1,11 +1,13 @@
 import Tile from './Tile.js'
 import Player from './player.js'
+import Move from './Controls/Move.js'
 
 export default{
     props:['difficulty','displayGrid'],
     components:{
         Tile,
-        Player
+        Player,
+        Move
     },
     template: `
     <div id="grid">
@@ -15,7 +17,13 @@ export default{
         :key="'tile'+ id + tile.x + tile.y"
         id="grids"
         @movePlayerOnClick="onMovePlayerOnClick"></Tile>
+
         <Player class="Player"></Player>
+
+        <Move
+        v-bind:arrowCords="arrowCords"
+        @moveLeft = "onMovePlayerOnArrows"
+        ></Move>
     </div>
     `,
     data(){
@@ -77,7 +85,8 @@ export default{
             playerPosition:{
                 x: 1,
                 y: 2
-            }
+            },
+           
         }
     },
     methods:{ /* Detta är logiken i spelet */
@@ -240,6 +249,9 @@ export default{
             console.log(`You have moved: ${this.moves} times`)
             this.flatTiles = this.tiles.flat()
         },
+        onMovePlayerOnArrows(){
+            console.log("hej")
+        }
     },
     created(){
         if(this.displayGrid = true){
