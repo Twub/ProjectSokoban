@@ -28,8 +28,10 @@ export default{
             grid: [],
             powerUps: '',
             flatTiles:[],
+            amountOfPowerUps: 0,
             hasPowerUp: false,
             wall: "/images/img23.png",
+            breakableWall:  "/images/img25.png",
             player: "/images/playerDown.png",
             block: "/images/img2.png",
             ground: "/images/img11.png",
@@ -45,10 +47,10 @@ export default{
             map1: [ /* Skall ni ändra map layout så ändra också grid:en i created */
                 ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W'],
                 ['W','G', 'G', 'G', 'B','G', 'G', 'W', 'F','W'],
-                ['W','G', 'B', 'G', 'G','G', 'G', 'G', 'G','W'],
+                ['W','U', 'B', 'G', 'G','G', 'G', 'G', 'G','W'],
                 ['W','W', 'W', 'W', 'B','G', 'G', 'W', 'G','W'],
-                ['W','U', 'G', 'G', 'G','G', 'G', 'G', 'G','W'],
-                ['W','P', 'G', 'G', 'G','G', 'G', 'G', 'G','W'],
+                ['W','G', 'G', 'G', 'G','G', 'G', 'D', 'G','W'],
+                ['W','P', 'G', 'G', 'G','G', 'G', 'D', 'G','W'],
                 ['W','W', 'W', 'W', 'B','G', 'G', 'W', 'G','W'],
                 ['W','G', 'B', 'G', 'G','G', 'G', 'G', 'G','W'],
                 ['W','G', 'G', 'G', 'B','G', 'G', 'W', 'F','W'],
@@ -94,11 +96,20 @@ export default{
                 this.buttonClick();
             this.actualTile = this.tiles[y][x].img
             if(this.actualTile == this.powerUp){
-                this.powerUps = "You have powerup"
+                this.amountOfPowerUps++
+                this.powerUps = `You have ${this.amountOfPowerUps} powerups`
                 this.hasPowerUp = true
                 console.log('You have a powerup')
             }
-            if(this.actualTile != this.wall){
+            if(this.tiles[y][x].img == this.breakableWall && this.hasPowerUp == true){
+                this.tiles[y][x].img = this.ground
+                this.hasPowerUp = false
+                this.amountOfPowerUps--
+            }
+            else if(this.tiles[y][x].img == this.breakableWall && this.hasPowerUp == false){
+                console.log('You have no powerup')
+            }
+            else if(this.actualTile != this.wall){
                 if(this.player == this.tiles[y-1][x].img ||
                     this.player == this.tiles[y+1][x].img ||
                     this.player == this.tiles[y][x-1].img ||
@@ -107,6 +118,9 @@ export default{
                 if(this.tiles[y-1][x].img == this.player) { /* Denna if är till för sätta tile rätt och undvika dupe player */
                     this.player = "/images/playerDown.png"
                     if( this.tiles[y][x].img == this.block && this.tiles[y+1][x].img == this.block){
+                    }
+                    else if(this.tiles[y][x].img == this.block && this.tiles[y+1][x].img == this.breakableWall){
+
                     }
                     else if(this.tiles[y][x].img == this.blockOnGoal && this.tiles[y+1][x].img == this.wall || 
                         this.tiles[y][x].img == this.blockOnGoal && this.tiles[y+1][x].img == this.blockOnGoal || 
@@ -120,7 +134,7 @@ export default{
                         this.tiles[y][x].img = this.player
                         this.moves++
                     }
-                    else if(this.tiles[y][x].img == this.block && (this.tiles[y+1][x].img == this.wall)){
+                    else if(this.tiles[y][x].img == this.block && this.tiles[y+1][x].img == this.wall){
                         console.log('Wall hit')
                     }
                     else{
@@ -134,6 +148,9 @@ export default{
                else if(this.tiles[y+1][x].img == this.player) { /* Denna kollar när gubben går uppåt */
                 this.player = "/images/playerUp.png"
                 if( this.tiles[y][x].img == this.block && this.tiles[y-1][x].img == this.block){
+                }
+                else if(this.tiles[y][x].img == this.block && this.tiles[y-1][x].img == this.breakableWall){
+
                 }
                 else if(this.tiles[y][x].img == this.blockOnGoal && this.tiles[y-1][x].img == this.wall || 
                     this.tiles[y][x].img == this.blockOnGoal && this.tiles[y-1][x].img == this.blockOnGoal || 
@@ -161,6 +178,9 @@ export default{
                 this.player = "/images/playerRight.png"
                 if( this.tiles[y][x].img == this.block && this.tiles[y][x+1].img == this.block){
                 }
+                else if(this.tiles[y][x].img == this.block && this.tiles[y][x+1].img == this.breakableWall){
+
+                }
                 else if(this.tiles[y][x].img == this.blockOnGoal && this.tiles[y][x+1].img == this.wall || 
                     this.tiles[y][x].img == this.blockOnGoal && this.tiles[y][x+1].img == this.blockOnGoal || 
                     this.tiles[y][x].img == this.blockOnGoal && this.tiles[y][x+1].img == this.block ||
@@ -174,7 +194,7 @@ export default{
                         this.tiles[y][x].img = this.player
                         this.moves++
                     }
-                    else if(this.tiles[y][x].img == this.block && this.tiles[y][x+1].img == this.wall ){
+                    else if(this.tiles[y][x].img == this.block && this.tiles[y][x+1].img == this.wall){
                         console.log('Wall hit')
                     }
                     
@@ -192,6 +212,9 @@ export default{
                     if( this.tiles[y][x].img == this.block && this.tiles[y][x-1].img == this.block ){
                         console.log('None')
                     }
+                    else if(this.tiles[y][x].img == this.block && this.tiles[y][x-1].img == this.breakableWall){
+
+                    }
                     else if(this.tiles[y][x].img == this.blockOnGoal && this.tiles[y][x-1].img == this.wall || 
                         this.tiles[y][x].img == this.blockOnGoal && this.tiles[y][x-1].img == this.blockOnGoal || 
                         this.tiles[y][x].img == this.blockOnGoal && this.tiles[y][x-1].img == this.block ||
@@ -205,7 +228,7 @@ export default{
                         this.tiles[y][x].img = this.player
                         this.moves++
                     }
-                    else if(this.tiles[y][x].img == this.block && this.tiles[y][x-1].img == this.wall ){
+                    else if(this.tiles[y][x].img == this.block && this.tiles[y][x-1].img == this.wall){
                         console.log('Wall hit')
                     }
                     else{
@@ -318,6 +341,11 @@ export default{
                                     this.tiles[col][row].class = "small"
                                     break
                                 }
+                                case 'D':{
+                                    this.tiles[col][row].img = this.breakableWall
+                                    this.tiles[col][row].class = "small"
+                                    break
+                                }
 
                     }         
     }
@@ -367,6 +395,11 @@ export default{
                                 }
                                 case 'U':{
                                     this.tiles[col][row].img = this.powerUp
+                                    this.tiles[col][row].class = "small"
+                                    break
+                                }
+                                case 'D':{
+                                    this.tiles[col][row].img = this.breakableWall
                                     this.tiles[col][row].class = "small"
                                     break
                                 }
@@ -424,6 +457,11 @@ export default{
                                     this.tiles[col][row].class = "medium"
                                     break
                                 } 
+                                case 'D':{
+                                    this.tiles[col][row].img = this.breakableWall
+                                    this.tiles[col][row].class = "medium"
+                                    break
+                                }
                     }            
     }
     
@@ -435,10 +473,10 @@ export default{
                 this.grid = [ /* Skall ni ändra map layout så ändra också grid:en i data */
                     ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W'],
                     ['W','G', 'G', 'G', 'B','G', 'G', 'W', 'F','W'],
-                    ['W','G', 'B', 'G', 'G','G', 'G', 'G', 'G','W'],
+                    ['W','U', 'B', 'G', 'G','G', 'G', 'G', 'G','W'],
                     ['W','W', 'W', 'W', 'B','G', 'G', 'W', 'G','W'],
-                    ['W','U', 'G', 'G', 'G','G', 'G', 'G', 'G','W'],
-                    ['W','P', 'G', 'G', 'G','G', 'G', 'G', 'G','W'],
+                    ['W','G', 'G', 'G', 'G','G', 'G', 'D', 'G','W'],
+                    ['W','P', 'G', 'G', 'G','G', 'G', 'D', 'G','W'],
                     ['W','W', 'W', 'W', 'B','G', 'G', 'W', 'G','W'],
                     ['W','G', 'B', 'G', 'G','G', 'G', 'G', 'G','W'],
                     ['W','G', 'G', 'G', 'B','G', 'G', 'W', 'F','W'],

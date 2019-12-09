@@ -39,6 +39,8 @@
      position: absolute;
      justify-content: center;
      width: 10%;
+     margin: 0;
+     padding: 0;
      
  }
  .small{  /* Olika map storlekar */
