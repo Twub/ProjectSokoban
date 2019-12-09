@@ -26,7 +26,7 @@ export default{
         return{
             tiles:[],
             grid: [],
-            powerUps: '',
+            powerUps:`You have 0 powerups`,
             flatTiles:[],
             amountOfPowerUps: 0,
             hasPowerUp: false,
@@ -60,11 +60,11 @@ export default{
                 ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W'],
                 ['W','F', 'G', 'G', 'G','G', 'G', 'G', 'F','W'],
                 ['W','G', 'W', 'G', 'W','W', 'W', 'W', 'W','W'],
-                ['W','G', 'W', 'G', 'G','G', 'G', 'W', 'S','S'],
-                ['W','G', 'W', 'G', 'B','G', 'B', 'W', 'W','S'],
-                ['W','G', 'G', 'G', 'G','P', 'G', 'G', 'W','W'],
-                ['W','G', 'W', 'G', 'B','G', 'B', 'G', 'G','W'],
-                ['W','G', 'W', 'W', 'G','W', 'W', 'G', 'G','W'],
+                ['W','G', 'W', 'B', 'G','G', 'U', 'W', 'S','S'],
+                ['W','G', 'W', 'G', 'G','W', 'W', 'W', 'W','S'],
+                ['W','G', 'D', 'B', 'G','P', 'G', 'G', 'W','W'],
+                ['W','G', 'W', 'G', 'G','B', 'G', 'B', 'G','W'],
+                ['W','G', 'W', 'W', 'D','W', 'W', 'G', 'G','W'],
                 ['W','F', 'G', 'G', 'G','G', 'G', 'F', 'G','W'],
                 ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W']
             ],
@@ -95,37 +95,35 @@ export default{
             if (ableToMove == 'true'){
                 this.buttonClick();
             this.actualTile = this.tiles[y][x].img
+            if(this.player == this.tiles[y-1][x].img ||
+                this.player == this.tiles[y+1][x].img ||
+                this.player == this.tiles[y][x-1].img ||
+                this.player == this.tiles[y][x+1].img){
+
+           if(this.actualTile != this.wall){ /* Logic start here */
+                        
             if(this.actualTile == this.powerUp){
                 this.amountOfPowerUps++
                 this.powerUps = `You have ${this.amountOfPowerUps} powerups`
-                this.hasPowerUp = true
                 console.log('You have a powerup')
             }
-            if(this.tiles[y][x].img == this.breakableWall && this.hasPowerUp == true){
+            if(this.tiles[y][x].img == this.breakableWall && this.amountOfPowerUps > 0){
                 this.tiles[y][x].img = this.ground
-                this.hasPowerUp = false
                 this.amountOfPowerUps--
+                this.powerUps = `You have ${this.amountOfPowerUps} powerups`
             }
             else if(this.tiles[y][x].img == this.breakableWall && this.hasPowerUp == false){
                 console.log('You have no powerup')
             }
-            else if(this.actualTile != this.wall){
-                if(this.player == this.tiles[y-1][x].img ||
-                    this.player == this.tiles[y+1][x].img ||
-                    this.player == this.tiles[y][x-1].img ||
-                    this.player == this.tiles[y][x+1].img){ /* Logic start here */
-                        
                 if(this.tiles[y-1][x].img == this.player) { /* Denna if är till för sätta tile rätt och undvika dupe player */
                     this.player = "/images/playerDown.png"
-                    if( this.tiles[y][x].img == this.block && this.tiles[y+1][x].img == this.block){
-                    }
-                    else if(this.tiles[y][x].img == this.block && this.tiles[y+1][x].img == this.breakableWall){
-
-                    }
-                    else if(this.tiles[y][x].img == this.blockOnGoal && this.tiles[y+1][x].img == this.wall || 
+                    if( this.tiles[y][x].img == this.block && this.tiles[y+1][x].img == this.block || 
+                        this.tiles[y][x].img == this.block && this.tiles[y+1][x].img == this.breakableWall ||
+                        this.tiles[y][x].img == this.blockOnGoal && this.tiles[y+1][x].img == this.wall || 
                         this.tiles[y][x].img == this.blockOnGoal && this.tiles[y+1][x].img == this.blockOnGoal || 
                         this.tiles[y][x].img == this.blockOnGoal && this.tiles[y+1][x].img == this.block ||
                         this.tiles[y][x].img == this.block && this.tiles[y+1][x].img == this.blockOnGoal){
+                            console.log('None')
                     }
                     else if(this.tiles[y][x].img == this.block && (this.tiles[y+1][x].img != this.wall) ||this.tiles[y][x].img == this.blockOnGoal){ /* Denna kollar när gubben går neråt */
                         this.pastTile = this.tiles[y-1][x].img
@@ -137,6 +135,9 @@ export default{
                     else if(this.tiles[y][x].img == this.block && this.tiles[y+1][x].img == this.wall){
                         console.log('Wall hit')
                     }
+                    else if(this.tiles[y][x].img == this.breakableWall){
+                        console.log('This is a thin wall')
+                    }
                     else{
                         this.pastTile = this.tiles[y-1][x].img
                         this.tiles[y-1][x].img = this.ground
@@ -147,14 +148,13 @@ export default{
             
                else if(this.tiles[y+1][x].img == this.player) { /* Denna kollar när gubben går uppåt */
                 this.player = "/images/playerUp.png"
-                if( this.tiles[y][x].img == this.block && this.tiles[y-1][x].img == this.block){
-                }
-                else if(this.tiles[y][x].img == this.block && this.tiles[y-1][x].img == this.breakableWall){
-
-                }
-                else if(this.tiles[y][x].img == this.blockOnGoal && this.tiles[y-1][x].img == this.wall || 
+                if( this.tiles[y][x].img == this.block && this.tiles[y-1][x].img == this.block ||
+                    this.tiles[y][x].img == this.block && this.tiles[y-1][x].img == this.breakableWall ||
+                    this.tiles[y][x].img == this.blockOnGoal && this.tiles[y-1][x].img == this.wall || 
                     this.tiles[y][x].img == this.blockOnGoal && this.tiles[y-1][x].img == this.blockOnGoal || 
-                    this.tiles[y][x].img == this.blockOnGoal &&  this.tiles[y-1][x].img == this.block){
+                    this.tiles[y][x].img == this.blockOnGoal &&  this.tiles[y-1][x].img == this.block ||
+                    this.tiles[y][x].img == this.block && this.tiles[y-1][x].img == this.blockOnGoal){
+                        console.log('None')
                 }
                 else if(this.tiles[y][x].img == this.block && this.tiles[y-1][x].img != this.wall  ||this.tiles[y][x].img == this.blockOnGoal){
                     this.pastTile = this.tiles[y+1][x].img
@@ -166,6 +166,9 @@ export default{
                 else if(this.tiles[y][x].img == this.block && this.tiles[y-1][x].img == this.wall){
                     console.log('Wall hit')
                 }
+                else if(this.tiles[y][x].img == this.breakableWall){
+                    console.log('This is a thin wall')
+                }
                 else{
                     this.pastTile = this.tiles[y-1][x].img
                     this.tiles[y+1][x].img = this.ground
@@ -176,16 +179,13 @@ export default{
             
                 else if(this.tiles[y][x-1].img == this.player) { /* Kollar n'r gubben går åt vänster */
                 this.player = "/images/playerRight.png"
-                if( this.tiles[y][x].img == this.block && this.tiles[y][x+1].img == this.block){
-                }
-                else if(this.tiles[y][x].img == this.block && this.tiles[y][x+1].img == this.breakableWall){
-
-                }
-                else if(this.tiles[y][x].img == this.blockOnGoal && this.tiles[y][x+1].img == this.wall || 
+                if( this.tiles[y][x].img == this.block && this.tiles[y][x+1].img == this.block ||
+                    this.tiles[y][x].img == this.block && this.tiles[y][x+1].img == this.breakableWall ||
+                    this.tiles[y][x].img == this.blockOnGoal && this.tiles[y][x+1].img == this.wall || 
                     this.tiles[y][x].img == this.blockOnGoal && this.tiles[y][x+1].img == this.blockOnGoal || 
                     this.tiles[y][x].img == this.blockOnGoal && this.tiles[y][x+1].img == this.block ||
                     this.tiles[y][x].img == this.block && this.tiles[y][x+1].img == this.blockOnGoal){
-
+                        console.log('None')
                 }
                    else if(this.tiles[y][x].img == this.block && this.tiles[y][x+1].img != this.wall  ||this.tiles[y][x].img == this.blockOnGoal){
                         this.pastTile = this.tiles[y][x-1].img
@@ -197,7 +197,9 @@ export default{
                     else if(this.tiles[y][x].img == this.block && this.tiles[y][x+1].img == this.wall){
                         console.log('Wall hit')
                     }
-                    
+                    else if(this.tiles[y][x].img == this.breakableWall){
+                        console.log('This is a thin wall')
+                    }
                     else{
                         this.pastTile = this.tiles[y-1][x].img
                         this.tiles[y][x-1].img = this.ground
@@ -209,17 +211,13 @@ export default{
             
                 else if(this.tiles[y][x+1].img == this.player) { /* Gubben går åt höger */
                     this.player = "/images/playerLeft.png"
-                    if( this.tiles[y][x].img == this.block && this.tiles[y][x-1].img == this.block ){
-                        console.log('None')
-                    }
-                    else if(this.tiles[y][x].img == this.block && this.tiles[y][x-1].img == this.breakableWall){
-
-                    }
-                    else if(this.tiles[y][x].img == this.blockOnGoal && this.tiles[y][x-1].img == this.wall || 
+                    if( this.tiles[y][x].img == this.block && this.tiles[y][x-1].img == this.block ||
+                        this.tiles[y][x].img == this.block && this.tiles[y][x-1].img == this.breakableWall ||
+                        this.tiles[y][x].img == this.blockOnGoal && this.tiles[y][x-1].img == this.wall || 
                         this.tiles[y][x].img == this.blockOnGoal && this.tiles[y][x-1].img == this.blockOnGoal || 
                         this.tiles[y][x].img == this.blockOnGoal && this.tiles[y][x-1].img == this.block ||
                         this.tiles[y][x].img == this.block && this.tiles[y][x-1].img == this.blockOnGoal ){
-                        
+                        console.log('None')
                     }
                     else if(this.tiles[y][x].img == this.block && this.tiles[y][x-1].img != this.wall  || this.tiles[y][x].img == this.blockOnGoal){
                         this.pastTile = this.tiles[y][x+1].img
@@ -230,6 +228,9 @@ export default{
                     }
                     else if(this.tiles[y][x].img == this.block && this.tiles[y][x-1].img == this.wall){
                         console.log('Wall hit')
+                    }
+                    else if(this.tiles[y][x].img == this.breakableWall){
+                        console.log('This is a thin wall')
                     }
                     else{
                         this.pastTile = this.tiles[y-1][x].img
@@ -244,13 +245,13 @@ export default{
                 console.log('This is you')
             }
             else{
-                console.log('You can only go 1 tile (for now)')
+                console.log('This is a wall')
             }
         }
             else{
-                console.log('You cant go there')
+                console.log('Too far away')
             }
-            
+            console.log(this.actualTile)
             for(let i = 0; i < this.tiles.length; i++){ /* This loop checks and keeps the boxGoal in its place */
                 for(let j = 0; j < this.tiles[i].length; j++){
                     if(this.grid[j][i] == 'F' && this.tiles[j][i].img == this.block || this.tiles[j][i].img == this.player || this.tiles[j][i].img == this.blockOnGoal){
@@ -489,11 +490,11 @@ export default{
                     ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W'],
                     ['W','F', 'G', 'G', 'G','G', 'G', 'G', 'F','W'],
                     ['W','G', 'W', 'G', 'W','W', 'W', 'W', 'W','W'],
-                    ['W','G', 'W', 'G', 'G','G', 'G', 'W', 'S','S'],
-                    ['W','G', 'W', 'G', 'B','G', 'B', 'W', 'W','S'],
-                    ['W','G', 'G', 'G', 'G','P', 'G', 'G', 'W','W'],
-                    ['W','G', 'W', 'G', 'B','G', 'B', 'G', 'G','W'],
-                    ['W','G', 'W', 'W', 'G','W', 'W', 'G', 'G','W'],
+                    ['W','G', 'W', 'B', 'G','G', 'U', 'W', 'S','S'],
+                    ['W','G', 'W', 'G', 'G','W', 'W', 'W', 'W','S'],
+                    ['W','G', 'D', 'B', 'G','P', 'G', 'G', 'W','W'],
+                    ['W','G', 'W', 'G', 'G','B', 'G', 'B', 'G','W'],
+                    ['W','G', 'W', 'W', 'D','W', 'W', 'G', 'G','W'],
                     ['W','F', 'G', 'G', 'G','G', 'G', 'F', 'G','W'],
                     ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W']
                 ]
