@@ -1,7 +1,7 @@
 import Tile from './Tile.js'
 import Player from './player.js'
-import sound from './utility/SoundUtility.js';
-import storage from './utility/StorageUtility.js';
+import sound from '../utility/SoundUtility.js';
+import storage from '../utility/StorageUtility.js';
 
 export default{
     mixins: [sound, storage],
@@ -88,7 +88,6 @@ export default{
     },
     methods:{ /* Detta är logiken i spelet */
         onMovePlayerOnClick(x,y){
-
             let ableToMove = this.getItem("isAbleToMove");
             if (ableToMove == 'true'){
                 this.buttonClick();
@@ -252,6 +251,9 @@ export default{
             this.points = 0
             console.log(`You have moved: ${this.moves} times`)
             this.flatTiles = this.tiles.flat()
+            }
+            else{
+                alert('Press start to enable movement')
             }
             
         },
