@@ -1,11 +1,11 @@
 import settingsTab from './tabs/settings.js';
 import timer from './timer.js';
 import sound from './utility/SoundUtility.js';
-
+import storage from './utility/StorageUtility.js';
 
 
 export default{
-    mixins: [sound, timer],
+    mixins: [sound, timer, ],
     components: {
         settingsTab,
         timer,
