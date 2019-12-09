@@ -15,6 +15,18 @@ export default {
                 audio.play();
             }  
         },
+        playBoxSound: function(){
+            if (this.isSoundEnable() == true){
+                var audio = new Audio('/sound/moveBoxSound.wav');
+                audio.play();
+            }
+        },
+        playGoalSound: function(){
+            if (this.isSoundEnable() == true){
+                var audio = new Audio('/sound/goalSound.wav');
+                audio.play();
+            }
+        },
         isSoundEnable: function(){
             let volumeEnable = this.getItem('isSoundEnable');
             if (volumeEnable == 'true'){
