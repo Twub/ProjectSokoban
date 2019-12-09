@@ -1,9 +1,10 @@
 import Tile from './Tile.js'
 import Player from './player.js'
 import sound from './utility/SoundUtility.js';
+import storage from './utility/StorageUtility.js';
 
 export default{
-    mixins: [sound],
+    mixins: [sound, storage],
     props:['difficulty','displayGrid'],
     components:{
         Tile,
@@ -85,7 +86,9 @@ export default{
     },
     methods:{ /* Detta är logiken i spelet */
         onMovePlayerOnClick(x,y){
-            this.buttonClick();
+            let ableToMove = this.getItem("isAbleToMove");
+            if (ableToMove == 'true'){
+                this.buttonClick();
             this.actualTile = this.tiles[y][x].img
             this.cloudTile = this.tiles[y][x].img
             if(this.actualTile != this.wall){
@@ -244,6 +247,8 @@ export default{
             this.points = 0
             console.log(`You have moved: ${this.moves} times`)
             this.flatTiles = this.tiles.flat()
+            }
+            
         },
     },
     created(){
