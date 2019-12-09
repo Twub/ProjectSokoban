@@ -40,12 +40,17 @@
      justify-content: center;
      
  }
- #grids{
-     justify-content: center;
- }
- .cell{ /* eller @media på denna, denna ändrar hur grid:en visas */
+ .small{ /* eller @media på denna, denna ändrar hur grid:en visas */
      width: 10%;
      height: 2.5vw;
+ }
+ .medium{
+    width: 7.3%;
+    height: 2vw;
+ }
+ .large{
+    width: 10%;
+    height: 2.5vw;
  }
  .Player{
      position: absolute;
