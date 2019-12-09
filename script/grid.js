@@ -82,6 +82,7 @@ export default{
     },
     methods:{ /* Detta är logiken i spelet */
         onMovePlayerOnClick(x,y){
+            /* Lägg if(canMove = true) här, fungerar teoretiskt */
             this.actualTile = this.tiles[y][x].img
             if(this.actualTile != this.wall){
                 if(this.player == this.tiles[y-1][x].img ||
