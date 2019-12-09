@@ -37,7 +37,6 @@ export default{
             points: 0,
             actualTile: '',
             pastTile: '',
-            cloudTile: '',
             moves: 0,
             map1: [ /* Skall ni ändra map layout så ändra också grid:en i created */
                 ['S','S', 'W', 'W', 'W','W', 'W', 'W', 'W','W'],
@@ -86,11 +85,14 @@ export default{
     },
     methods:{ /* Detta är logiken i spelet */
         onMovePlayerOnClick(x,y){
+
             let ableToMove = this.getItem("isAbleToMove");
             if (ableToMove == 'true'){
                 this.buttonClick();
+
+            /* Lägg if(canMove = true) här, fungerar teoretiskt */
+
             this.actualTile = this.tiles[y][x].img
-            this.cloudTile = this.tiles[y][x].img
             if(this.actualTile != this.wall){
                 if(this.player == this.tiles[y-1][x].img ||
                     this.player == this.tiles[y+1][x].img ||
@@ -266,31 +268,37 @@ export default{
                             switch(this.map1[col][row]){
                                 case 'W':{
                                     this.tiles[col][row].img = this.wall
+                                    this.tiles[col][row].class = "cell"
                                     console.log('W')
                                     break
                                 }
                                 case 'P':{
                                     this.tiles[col][row].img = this.player
+                                    this.tiles[col][row].class = "cell"
                                     console.log('P')
                                     break
                                 }
                                 case 'B':{
                                     this.tiles[col][row].img = this.block
+                                    this.tiles[col][row].class = "cell"
                                     console.log('B')
                                     break
                                 }
                                 case 'G':{
                                     this.tiles[col][row].img = this.ground
+                                    this.tiles[col][row].class = "cell"
                                     console.log('G')
                                     break
                                 }
                                 case 'F':{
                                     this.tiles[col][row].img = this.boxGoal
+                                    this.tiles[col][row].class = "cell"
                                     console.log('F')
                                     break
                                 }
                                 case 'S':{
                                     this.tiles[col][row].img = this.blackBox
+                                    this.tiles[col][row].class = "cell"
                                     break
                                 }     
                     }         
@@ -310,36 +318,38 @@ export default{
                         this.tiles[col].push(position)
                             switch(this.map2[col][row]){
                                 case 'W':{
-                                    
                                     this.tiles[col][row].img = this.wall
-                                    
+                                    this.tiles[col][row].class = "cell"
                                     console.log('W')
                                     break
                                 }
                                 case 'P':{
                                     this.tiles[col][row].img = this.player
+                                    this.tiles[col][row].class = "cell"
                                     console.log('P')
                                     break
                                 }
                                 case 'B':{
                                     this.tiles[col][row].img = this.block
+                                    this.tiles[col][row].class = "cell"
                                     console.log('B')
                                     break
                                 }
                                 case 'G':{
-                                    
                                     this.tiles[col][row].img = this.ground
-                                   
+                                    this.tiles[col][row].class = "cell"
                                     console.log('G')
                                     break
                                 }
                                 case 'F':{
                                     this.tiles[col][row].img = this.boxGoal
+                                    this.tiles[col][row].class = "cell"
                                     console.log('F')
                                     break
                                 }
                                 case 'S':{
                                     this.tiles[col][row].img = this.blackBox
+                                    this.tiles[col][row].class = "cell"
                                     break
                                 }  
                             
@@ -363,33 +373,39 @@ export default{
                             switch(this.map3[col][row]){
                                 case 'W':{
                                     this.tiles[col][row].img = this.wall
+                                    this.tiles[col][row].class = "cell"
                                     console.log('W')
                                     break
                                 }
                                 case 'P':{
                                     this.tiles[col][row].img = this.player
+                                    this.tiles[col][row].class = "cell"
                                     console.log('P')
                                     break
                                 }
                                 case 'B':{
                                     this.tiles[col][row].img = this.block
+                                    this.tiles[col][row].class = "cell"
                                     console.log('B')
                                     break
                                 }
                                 case 'G':{
                                     this.tiles[col][row].img = this.ground
+                                    this.tiles[col][row].class = "cell"
                                     console.log('G')
                                     break
                                 }
                                 case 'F':{
                                     this.tiles[col][row].img = this.boxGoal
+                                    this.tiles[col][row].class = "cell"
                                     console.log('F')
                                     break
-                                } 
+                                }
                                 case 'S':{
                                     this.tiles[col][row].img = this.blackBox
+                                    this.tiles[col][row].class = "cell"
                                     break
-                                }    
+                                }   
                     }            
     }
     
