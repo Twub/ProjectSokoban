@@ -1,10 +1,10 @@
-import cookie from './utility/CookieUtility.js';
+import storage from '../utility/StorageUtility.js';
 
 export default{
-    mixins: [cookie],
+    mixins: [storage],
     template: `
         <div id="timer-content">
-            <p id="timer-display">Time Remaining: {{ time }}</p>
+            <p id="timer-display" >Time Remaining: {{ time }}</p>
         </div>
     `,
     data: function() {
@@ -16,14 +16,15 @@ export default{
         }
     },
     methods: {
-        run: function(time){
+        run(time){
             this.time = time;
             let mainScope = this;
-            let isTimerEnable = this.getCookie("timerEnableCookie").split("=");
-            isTimerEnable = isTimerEnable[1];
+            let isTimerEnable = this.getItem("isTimerEnable");
             if (isTimerEnable == 'true'){
                 window.setInterval(function(){
                     mainScope.time -= 1;
+                    console.log(mainScope.time);
+                    document.getElementById("timer-display").innerText = "Time Remaining: " + mainScope.time;
                     if(this.time <= 0){
                         clearInterval();
                         return;

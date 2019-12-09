@@ -33,14 +33,24 @@
      display: flex;
      width: 100%;
      height: 50%;
-     cursor:pointer
+     cursor:pointer;
  }
- #grids{
+ .powerUps{
+     position: absolute;
      justify-content: center;
+     
  }
- .cell{ /* eller @media på denna, denna ändrar hur grid:en visas */
+ .small{  /* Olika map storlekar */
      width: 10%;
      height: 2.5vw;
+ }
+ .medium{
+    width: 7.5%;
+    height: 2vw;
+ }
+ .large{
+    width: 10%;
+    height: 2.5vw;
  }
  .Player{
      position: absolute;

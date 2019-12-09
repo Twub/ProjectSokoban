@@ -1,6 +1,9 @@
-import Grid from "./Grid.js"
-import arrowKeys from './Controls/arrowKeys.js'
+import Grid from "./grid.js"
+import arrowKeys from '../Controls/arrowKeys.js'
+import storage from '../utility/StorageUtility.js';
+
 export default{
+    mixins: [storage],
     components:{
         Grid,
         arrowKeys
