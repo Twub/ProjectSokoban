@@ -24,6 +24,7 @@ export default{
                 window.setInterval(function(){
                     mainScope.time -= 1;
                     console.log(mainScope.time);
+                    document.getElementById("timer-display").innerText = "Time Remaining: " + mainScope.time;
                     if(this.time <= 0){
                         clearInterval();
                         return;
