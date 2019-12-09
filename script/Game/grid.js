@@ -1,7 +1,10 @@
 import Tile from './Tile.js'
 import Player from './player.js'
+import sound from './utility/SoundUtility.js';
+import storage from './utility/StorageUtility.js';
 
 export default{
+    mixins: [sound, storage],
     props:['difficulty','displayGrid'],
     components:{
         Tile,
@@ -85,7 +88,13 @@ export default{
     },
     methods:{ /* Detta är logiken i spelet */
         onMovePlayerOnClick(x,y){
+
+            let ableToMove = this.getItem("isAbleToMove");
+            if (ableToMove == 'true'){
+                this.buttonClick();
+
             /* Lägg if(canMove = true) här, fungerar teoretiskt */
+
             this.actualTile = this.tiles[y][x].img
             if(this.actualTile != this.wall){
                 if(this.player == this.tiles[y-1][x].img ||
@@ -243,6 +252,8 @@ export default{
             this.points = 0
             console.log(`You have moved: ${this.moves} times`)
             this.flatTiles = this.tiles.flat()
+            }
+            
         },
     },
     created(){
