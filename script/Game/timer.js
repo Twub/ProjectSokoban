@@ -1,10 +1,10 @@
-import storage from './utility/StorageUtility.js';
+import storage from '../utility/StorageUtility.js';
 
 export default{
     mixins: [storage],
     template: `
         <div id="timer-content">
-            <p id="timer-display">Time Remaining: {{ time }}</p>
+            <p id="timer-display" >Time Remaining: {{ time }}</p>
         </div>
     `,
     data: function() {

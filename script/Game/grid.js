@@ -15,13 +15,15 @@ export default{
         :key="'tile'+ id + tile.x + tile.y"
         id="grids"
         @movePlayerOnClick="onMovePlayerOnClick"></Tile>
-        <Player class="Player"></Player>
+       <!-- <Player class="Player"></Player> -->
+        <span class="powerUps">{{powerUps}}</span>
     </div>
     `,
     data(){
         return{
             tiles:[],
             grid: [],
+            powerUps: 'Powerup',
             flatTiles:[],
             wall: "/images/img23.png",
             player: "/images/playerDown.png",
@@ -30,6 +32,7 @@ export default{
             boxGoal: "/images/img20.png",
             blockOnGoal: "/images/img4.png",
             blackBox: "images/blackBox.png",
+            powerUp: "images/powerCoin.png",
             goals: 0, /* Om ni skall ändra antalet goals/boxGoal så glöm inte ändra denna data i created */
             points: 0,
             actualTile: '',
@@ -40,7 +43,7 @@ export default{
                 ['S','S', 'W', 'G', 'G','G', 'G', 'W', 'F','W'],
                 ['S','S', 'W', 'G', 'G','G', 'G', 'G', 'G','W'],
                 ['S','S', 'W', 'W', 'B','G', 'G', 'W', 'G','W'],
-                ['S','S', 'W', 'G', 'G','G', 'G', 'G', 'G','W'],
+                ['S','S', 'W', 'U', 'G','G', 'G', 'G', 'G','W'],
                 ['S','S', 'W', 'P', 'G','G', 'G', 'G', 'G','W'],
                 ['S','S', 'W', 'W', 'B','G', 'G', 'W', 'G','W'],
                 ['S','S', 'W', 'G', 'G','G', 'G', 'G', 'G','W'],
@@ -289,7 +292,13 @@ export default{
                                     this.tiles[col][row].img = this.blackBox
                                     this.tiles[col][row].class = "cell"
                                     break
-                                }     
+                                }
+                                case 'U':{
+                                    this.tiles[col][row].img = this.powerUp
+                                    this.tiles[col][row].class = "cell"
+                                    break
+                                }
+
                     }         
     }
     
@@ -341,6 +350,11 @@ export default{
                                     this.tiles[col][row].class = "cell"
                                     break
                                 }  
+                                case 'U':{
+                                    this.tiles[col][row].img = this.powerUp
+                                    this.tiles[col][row].class = "cell"
+                                    break
+                                }
                             
                     }
                     
@@ -394,7 +408,12 @@ export default{
                                     this.tiles[col][row].img = this.blackBox
                                     this.tiles[col][row].class = "cell"
                                     break
-                                }   
+                                }  
+                                case 'U':{
+                                    this.tiles[col][row].img = this.powerUp
+                                    this.tiles[col][row].class = "cell"
+                                    break
+                                } 
                     }            
     }
     
@@ -408,7 +427,7 @@ export default{
                     ['S','S', 'W', 'G', 'G','G', 'G', 'W', 'F','W'],
                     ['S','S', 'W', 'G', 'G','G', 'G', 'G', 'G','W'],
                     ['S','S', 'W', 'W', 'B','G', 'G', 'W', 'G','W'],
-                    ['S','S', 'W', 'G', 'G','G', 'G', 'G', 'G','W'],
+                    ['S','S', 'W', 'U', 'G','G', 'G', 'G', 'G','W'],
                     ['S','S', 'W', 'P', 'G','G', 'G', 'G', 'G','W'],
                     ['S','S', 'W', 'W', 'B','G', 'G', 'W', 'G','W'],
                     ['S','S', 'W', 'G', 'G','G', 'G', 'G', 'G','W'],
