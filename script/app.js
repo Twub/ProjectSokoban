@@ -6,14 +6,11 @@ export default{
     components:{
         mainHead,
         sokobanGame,
-        
     },
     template: `
     <div id="content">
         <mainHead></mainHead>
         <sokobanGame></sokobanGame>
-        
-        
     </div>
     `
 }

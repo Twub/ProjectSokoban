@@ -1,11 +1,16 @@
 import settingsTab from './tabs/settings.js';
 import timer from './timer.js';
+import sound from './utility/SoundUtility.js';
+
+
 
 export default{
+    mixins: [sound, timer],
     components: {
         settingsTab,
         timer,
     },
+    
     template: `
         <div id="header">
             <div id="menu-bar">
@@ -24,14 +29,16 @@ export default{
     `,
     methods: {
         startGame: function(){
-            
+            this.run(60);
+            this.buttonClick();
         },
 
         stopGame: function(){
-            
+            this.buttonClick();
         },
 
         showSettings: function(){
+            this.buttonClick();
             document.getElementById("settings-tab").style.display = 'block';
             document.getElementById("sokobanGrid").style.display = 'none';
             document.getElementById("arrows").style.display = 'none';
