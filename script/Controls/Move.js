@@ -1,4 +1,7 @@
 export default {
+    template:`
+    
+    `,
     data(){
         return{
         arrowCords:{
@@ -13,8 +16,10 @@ export default {
             this.arrowCords.x=(this.arrowCords.x)+1;
             console.log(this.arrowCords.x)
             console.log(this.arrowCords.y)
-            this.$emit('moveleft',this.arrowCords)
-            console.log("hejdå")
+            this.$emit('moveLeft',this.arrowCords)
+            this.arrowCords.x=0
+
+            
  
         },
         moveRight: function(){
@@ -22,13 +27,15 @@ export default {
             this.arrowCords.x=(this.arrowCords.x)-1;
             console.log(this.arrowCords.x)
             console.log(this.arrowCords.y)
-            this.$emit('moveRight',this.arrowCords)
+           // this.$emit('moveRight',this.arrowCords)
+           this.arrowCords.x=0
         },
         moveUp: function(){
             console.log("Up");
             this.arrowCords.y=(this.arrowCords.y)-1;
             console.log(this.arrowCords.x)
             console.log(this.arrowCords.y)
+            this.arrowCords.y=0
             
         },
         moveDown: function(){
@@ -36,6 +43,7 @@ export default {
             this.arrowCords.y=(this.arrowCords.y)+1;
             console.log(this.arrowCords.x)
             console.log(this.arrowCords.y)
+            this.arrowCords.y=0
             
         }
     }

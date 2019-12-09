@@ -23,8 +23,8 @@ export default{
        <!-- <Player class="Player"></Player> -->
         <span class="powerUps">{{powerUps}}</span>
         <Move
+        v-on:moveLeft= "onMovePlayerOnArrows"
         v-bind:arrowCords="arrowCords"
-        @moveleft = "onMovePlayerOnArrows"
         ></Move>
     </div>
     `,
@@ -129,6 +129,7 @@ export default{
                     }
                     else if(this.tiles[y][x].img == this.block && (this.tiles[y+1][x].img == this.wall)){
                         console.log('Wall hit')
+                        this.playerPosition.y=(playerPosition.y)+1
                     }
                     else{
                         this.pastTile = this.tiles[y-1][x].img
@@ -155,6 +156,7 @@ export default{
                 }
                 else if(this.tiles[y][x].img == this.block && this.tiles[y-1][x].img == this.wall){
                     console.log('Wall hit')
+                    this.playerPosition.y=(playerPosition.y)+1
                 }
                 else{
                     this.pastTile = this.tiles[y-1][x].img
@@ -183,6 +185,7 @@ export default{
                     }
                     else if(this.tiles[y][x].img == this.block && this.tiles[y][x+1].img == this.wall ){
                         console.log('Wall hit')
+                        this.playerPosition.x=(playerPosition.x)-1
                     }
                     
                     else{
@@ -214,6 +217,7 @@ export default{
                     }
                     else if(this.tiles[y][x].img == this.block && this.tiles[y][x-1].img == this.wall ){
                         console.log('Wall hit')
+                        this.playerPosition.x=(playerPosition.x)+1
                     }
                     else{
                         this.pastTile = this.tiles[y-1][x].img
@@ -275,9 +279,10 @@ export default{
             }
             
         },
-        onMovePlayerOnArrows(){
-            let test= this.arrowCords
+        onMovePlayerOnArrows(arrowCords){
+            let test = this.arrowCords
             console.log("hej")
+            console.log(test)
         }
     },
     created(){
