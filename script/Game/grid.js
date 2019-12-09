@@ -98,7 +98,7 @@ export default{
             if(this.player == this.tiles[y-1][x].img ||
                 this.player == this.tiles[y+1][x].img ||
                 this.player == this.tiles[y][x-1].img ||
-                this.player == this.tiles[y][x+1].img){
+                this.player == this.tiles[y][x+1].img){ /* Finns en liten bug när man trycker sig mot en o samma låda flera gånger så försvinner gubben typ från grid */
 
            if(this.actualTile != this.wall){ /* Logic start here */
                         
