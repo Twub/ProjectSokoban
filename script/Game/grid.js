@@ -281,7 +281,8 @@ export default{
         }
     },
     created(){
-        if(this.displayGrid = true){
+        let revealGrid = this.displayGrid
+        if(this.revealGrid = true){
             if(this.difficulty == "Easy"){
                 let size = 10
                 for(let col = 0; col < size; col++){
@@ -296,31 +297,26 @@ export default{
                                 case 'W':{
                                     this.tiles[col][row].img = this.wall
                                     this.tiles[col][row].class = "small"
-                                    console.log('W')
                                     break
                                 }
                                 case 'P':{
                                     this.tiles[col][row].img = this.player
-                                    this.tiles[col][row].class = "small"
-                                    console.log('P')
+                                    this.tiles[col][row].class = "small"                                 
                                     break
                                 }
                                 case 'B':{
                                     this.tiles[col][row].img = this.block
-                                    this.tiles[col][row].class = "small"
-                                    console.log('B')
+                                    this.tiles[col][row].class = "small"                                  
                                     break
                                 }
                                 case 'G':{
                                     this.tiles[col][row].img = this.ground
-                                    this.tiles[col][row].class = "small"
-                                    console.log('G')
+                                    this.tiles[col][row].class = "small"                                 
                                     break
                                 }
                                 case 'F':{
                                     this.tiles[col][row].img = this.boxGoal
-                                    this.tiles[col][row].class = "small"
-                                    console.log('F')
+                                    this.tiles[col][row].class = "small"               
                                     break
                                 }
                                 case 'S':{
@@ -353,38 +349,33 @@ export default{
                                 case 'W':{
                                     this.tiles[col][row].img = this.wall
                                     this.tiles[col][row].class = "small"
-                                    console.log('W')
                                     break
                                 }
                                 case 'P':{
                                     this.tiles[col][row].img = this.player
-                                    this.tiles[col][row].class = "small"
-                                    console.log('P')
+                                    this.tiles[col][row].class = "small"                                 
                                     break
                                 }
                                 case 'B':{
                                     this.tiles[col][row].img = this.block
-                                    this.tiles[col][row].class = "small"
-                                    console.log('B')
+                                    this.tiles[col][row].class = "small"                                  
                                     break
                                 }
                                 case 'G':{
                                     this.tiles[col][row].img = this.ground
-                                    this.tiles[col][row].class = "small"
-                                    console.log('G')
+                                    this.tiles[col][row].class = "small"                                 
                                     break
                                 }
                                 case 'F':{
                                     this.tiles[col][row].img = this.boxGoal
-                                    this.tiles[col][row].class = "small"
-                                    console.log('F')
+                                    this.tiles[col][row].class = "small"               
                                     break
                                 }
                                 case 'S':{
                                     this.tiles[col][row].img = this.blackBox
                                     this.tiles[col][row].class = "small"
                                     break
-                                }  
+                                }
                                 case 'U':{
                                     this.tiles[col][row].img = this.powerUp
                                     this.tiles[col][row].class = "small"
@@ -412,31 +403,26 @@ export default{
                                 case 'W':{
                                     this.tiles[col][row].img = this.wall
                                     this.tiles[col][row].class = "medium"
-                                    console.log('W')
                                     break
                                 }
                                 case 'P':{
                                     this.tiles[col][row].img = this.player
                                     this.tiles[col][row].class = "medium"
-                                    console.log('P')
                                     break
                                 }
                                 case 'B':{
                                     this.tiles[col][row].img = this.block
                                     this.tiles[col][row].class = "medium"
-                                    console.log('B')
                                     break
                                 }
                                 case 'G':{
                                     this.tiles[col][row].img = this.ground
                                     this.tiles[col][row].class = "medium"
-                                    console.log('G')
                                     break
                                 }
                                 case 'F':{
                                     this.tiles[col][row].img = this.boxGoal
                                     this.tiles[col][row].class = "medium"
-                                    console.log('F')
                                     break
                                 }
                                 case 'S':{
@@ -506,9 +492,4 @@ export default{
             }
             this.flatTiles = this.tiles.flat()
 },
-    computed:{
-        flatTiles(){
-            return this.tiles.flat()
-        }
-    },
 }
