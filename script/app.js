@@ -20,7 +20,6 @@ export default{
     `,
     mounted(){
         let ableToMove = this.getItem("isAbleToMove");
-        console.log(ableToMove);
         if(ableToMove == null || ableToMove == 'true'){
             this.addItem("isAbleToMove", false);
         }

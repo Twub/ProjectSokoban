@@ -1,8 +1,7 @@
-import cookie from './utility/CookieUtility.js';
 import storage from './utility/StorageUtility.js';
 
 export default{
-    mixins: [cookie, storage],
+    mixins: [storage],
     template: `
         <div id="timer-content">
             <p id="timer-display">Time Remaining: {{ time }}</p>
@@ -17,13 +16,14 @@ export default{
         }
     },
     methods: {
-        run: function(time){
+        run(time){
             this.time = time;
             let mainScope = this;
-            let isTimerEnable = this.getItem("timerEnableCookie");
+            let isTimerEnable = this.getItem("isTimerEnable");
             if (isTimerEnable == 'true'){
                 window.setInterval(function(){
                     mainScope.time -= 1;
+                    console.log(mainScope.time);
                     if(this.time <= 0){
                         clearInterval();
                         return;
