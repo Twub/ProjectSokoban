@@ -1,7 +1,9 @@
 import Tile from './Tile.js'
 import Player from './player.js'
+import sound from './utility/SoundUtility.js';
 
 export default{
+    mixins: [sound],
     props:['difficulty','displayGrid'],
     components:{
         Tile,
@@ -83,6 +85,7 @@ export default{
     },
     methods:{ /* Detta är logiken i spelet */
         onMovePlayerOnClick(x,y){
+            this.buttonClick();
             this.actualTile = this.tiles[y][x].img
             this.cloudTile = this.tiles[y][x].img
             if(this.actualTile != this.wall){
