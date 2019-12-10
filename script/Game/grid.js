@@ -140,9 +140,6 @@ export default{
             else if(e.keyCode == '32'){
                 window.location.reload()
             }
-            else{
-                console.log('Bajs')
-            }
         }
     },
     created(){
