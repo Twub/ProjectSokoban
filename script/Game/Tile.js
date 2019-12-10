@@ -4,7 +4,7 @@ export default{
 
 props:['position'],
 template: `
-    <img :src="position.img" ref="tile":class="position.class" @click="movePlayerOnClick">
+    <img :src="position.img" :class="position.class" @click="movePlayerOnClick">
 `,
 methods:{
     movePlayerOnClick(){
@@ -14,15 +14,4 @@ methods:{
         this.$emit('movePlayerOnClick',x,y)
     }
 },
-mounted(){
-    this.$refs.tile.style.setProperty('background-image',`url(${this.position.img})`)
-},
-watch:{
-    position:{
-        deep: true,
-        handler(){
-            this.$refs.tile.style.setProperty('background-image',`url(${this.position.img})`)
-        }
-    }
-}
 }
