@@ -71,20 +71,6 @@ function moveDown(x,y,grid){
     }
         }
     }
-    checkWinCondition()
-    // console.log(grid.points)
-    // console.log(`You have moved: ${grid.moves} times`)
-    // grid.flatTiles = grid.tiles.flat()
-    // if(grid.points == grid.goals){
-    //     let condition = confirm(`You have completed ${grid.difficulty} in ${grid.moves} moves`)
-    //     if(condition == true){
-    //         window.location.reload()
-    //     }
-    //     else{
-    //         alert('Continuing game')
-    //     }
-    //     }
-    //     grid.points = 0
 }
 }
 function moveUp(x,y,grid){
@@ -159,20 +145,6 @@ function moveUp(x,y,grid){
                 }
             }
         }
-        checkWinCondition()
-        // if(grid.points == grid.goals){
-        //     let condition = confirm(`You have completed ${grid.difficulty} in ${grid.moves} moves`)
-        //     if(condition == true){
-        //         window.location.reload()
-        //     }
-        //     else{
-        //         alert('Continuing game')
-        //     }
-        // }
-        // console.log(grid.points)
-        // grid.points = 0
-        // console.log(`You have moved: ${grid.moves} times`)
-        // grid.flatTiles = grid.tiles.flat()
 }
         }
     }
@@ -250,20 +222,6 @@ function moveRight(x,y,grid){
             }
         }
     }
-    checkWinCondition()
-    // if(grid.points == grid.goals){
-    //     let condition = confirm(`You have completed ${grid.difficulty} in ${grid.moves} moves`)
-    //     if(condition == true){
-    //         window.location.reload()
-    //     }
-    //     else{
-    //         alert('Continuing game')
-    //     }
-    // }
-    // console.log(grid.points)
-    // grid.points = 0
-    // console.log(`You have moved: ${grid.moves} times`)
-    // grid.flatTiles = grid.tiles.flat()
 }
         }
     }
@@ -341,36 +299,8 @@ function moveLeft(x,y,grid){
             }
         }
     }
-    if(grid.points == grid.goals){
-        let condition = confirm(`You have completed ${grid.difficulty} in ${grid.moves} moves`)
-        if(condition == true){
-            window.location.reload()
-        }
-        else{
-            alert('Continuing game')
-        }
-    }
-    console.log(grid.points)
-    grid.points = 0
-    console.log(`You have moved: ${grid.moves} times`)
-    grid.flatTiles = grid.tiles.flat()
 }
         }
         
 }
-}
-function checkWinCondition(){
-    console.log(grid.points)
-    console.log(`You have moved: ${grid.moves} times`)
-    grid.flatTiles = grid.tiles.flat()
-    if(grid.points == grid.goals){
-        let condition = confirm(`You have completed ${grid.difficulty} in ${grid.moves} moves`)
-        if(condition == true){
-            window.location.reload()
-        }
-        else{
-            alert('Continuing game')
-        }
-        }
-        grid.points = 0
 }

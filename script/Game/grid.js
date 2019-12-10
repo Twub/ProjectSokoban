@@ -110,6 +110,20 @@ export default{
             else if(this.tiles[y][x+1].img == this.player){
                 moveLeft(x,y,this)
             }
+            console.log(this.points)
+            console.log(`You have moved: ${this.moves} times`)
+            this.flatTiles = this.tiles.flat()
+            if(this.points == this.goals){
+                let condition = confirm(`You have completed ${this.difficulty} in ${this.moves} moves`)
+                if(condition == true){
+                    window.location.reload()
+                }
+                else{
+                    alert('Continuing game')
+                }
+                }
+                this.points = 0
+            
         },
         checkKey(e){
             e = e || window.event
@@ -140,6 +154,19 @@ export default{
             else if(e.keyCode == '32'){
                 window.location.reload()
             }
+            console.log(this.points)
+            console.log(`You have moved: ${this.moves} times`)
+            this.flatTiles = this.tiles.flat()
+            if(this.points == this.goals){
+                let condition = confirm(`You have completed ${this.difficulty} in ${this.moves} moves`)
+                if(condition == true){
+                    window.location.reload()
+                }
+                else{
+                    alert('Continuing game')
+                }
+                }
+                this.points = 0
         }
     },
     created(){
