@@ -75,7 +75,7 @@ function moveDown(x,y,grid){
     if(grid.points == grid.goals){
         let condition = confirm(`You have completed ${grid.difficulty} in ${grid.moves} moves`)
         if(condition == true){
-            location.reload()
+            window.location.reload()
         }
         else{
             alert('Continuing game')
@@ -164,7 +164,7 @@ function moveUp(x,y,grid){
         if(grid.points == grid.goals){
             let condition = confirm(`You have completed ${grid.difficulty} in ${grid.moves} moves`)
             if(condition == true){
-                location.reload()
+                window.location.reload()
             }
             else{
                 alert('Continuing game')
@@ -254,7 +254,7 @@ function moveRight(x,y,grid){
     if(grid.points == grid.goals){
         let condition = confirm(`You have completed ${grid.difficulty} in ${grid.moves} moves`)
         if(condition == true){
-            location.reload()
+            window.location.reload()
         }
         else{
             alert('Continuing game')
@@ -344,7 +344,7 @@ function moveLeft(x,y,grid){
     if(grid.points == grid.goals){
         let condition = confirm(`You have completed ${grid.difficulty} in ${grid.moves} moves`)
         if(condition == true){
-            location.reload()
+            window.location.reload()
         }
         else{
             alert('Continuing game')
