@@ -74,15 +74,6 @@ function moveDown(x,y,grid){
     }
     if(grid.points == grid.goals){
         alert(`You have completed ${grid.difficulty} in ${grid.moves} moves`)
-        let choice = confirm("Continue to next difficulty?")
-        if(choice == true){
-            if(grid.difficulty == "Easy"){
-                grid.difficulty = "Normal"
-            }
-            else if(grid.difficulty == "Normal"){
-                grid.difficulty = "Hard"
-            }
-        }
     }
         }
     }
@@ -166,15 +157,6 @@ function moveUp(x,y,grid){
         }
         if(grid.points == grid.goals){
             alert(`You have completed ${grid.difficulty} in ${grid.moves} moves`)
-            let choice = confirm("Continue to next difficulty?")
-            if(choice == true){
-                if(grid.difficulty == "Easy"){
-                    grid.difficulty = "Normal"
-                }
-                else if(grid.difficulty == "Normal"){
-                    grid.difficulty = "Hard"
-                }
-            }
         }
         console.log(grid.points)
         grid.points = 0
@@ -259,15 +241,6 @@ function moveRight(x,y,grid){
     }
     if(grid.points == grid.goals){
         alert(`You have completed ${grid.difficulty} in ${grid.moves} moves`)
-        let choice = confirm("Continue to next difficulty?")
-        if(choice == true){
-            if(grid.difficulty == "Easy"){
-                grid.difficulty = "Normal"
-            }
-            else if(grid.difficulty == "Normal"){
-                grid.difficulty = "Hard"
-            }
-        }
     }
     console.log(grid.points)
     grid.points = 0
@@ -352,15 +325,6 @@ function moveLeft(x,y,grid){
     }
     if(grid.points == grid.goals){
         alert(`You have completed ${grid.difficulty} in ${grid.moves} moves`)
-        let choice = confirm("Continue to next difficulty?")
-        if(choice == true){
-            if(grid.difficulty == "Easy"){
-                grid.difficulty = "Normal"
-            }
-            else if(grid.difficulty == "Normal"){
-                grid.difficulty = "Hard"
-            }
-        }
     }
     console.log(grid.points)
     grid.points = 0
