@@ -84,212 +84,59 @@ export default{
                 ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W','W','W','W'],
             ], /* Tänker att vi gör map4(Extreme) tillsammans då den skall  vi maxa på, blir avslutnings område */
             playerPosition:{
-                x: 1,
-                y: 2
+                x: '',
+                y: ''
             }
         }
     },
     methods:{ /* Detta är logiken i spelet */
         onMovePlayerOnClick(x,y){
-            let ableToMove = this.getItem("isAbleToMove");
-            if (ableToMove == 'true'){
-                this.buttonClick();
-            this.actualTile = this.tiles[y][x].img
-            if(this.player == this.tiles[y-1][x].img ||
-                this.player == this.tiles[y+1][x].img ||
-                this.player == this.tiles[y][x-1].img ||
-                this.player == this.tiles[y][x+1].img){ /* Finns en liten bug när man trycker sig mot en o samma låda flera gånger så försvinner gubben typ från grid */
-
-           if(this.actualTile != this.wall){ /* Logic start here */
-                        
-            if(this.actualTile == this.powerUp){
-                this.amountOfPowerUps++
-                this.powerUps = `You have ${this.amountOfPowerUps} powerups`
-                console.log('You have a powerup')
+            if(this.tiles[y-1][x].img == this.player){
+                moveDown(x,y,this)
             }
-            if(this.tiles[y][x].img == this.breakableWall && this.amountOfPowerUps > 0){
-                this.tiles[y][x].img = this.ground
-                this.amountOfPowerUps--
-                this.powerUps = `You have ${this.amountOfPowerUps} powerups`
+            else if(this.tiles[y+1][x].img == this.player){
+                moveUp(x,y,this)
             }
-            else if(this.tiles[y][x].img == this.breakableWall && this.hasPowerUp == false){
-                console.log('You have no powerup')
+            else if(this.tiles[y][x-1].img == this.player){
+                moveRight(x,y,this)
             }
-                if(this.tiles[y-1][x].img == this.player) { /* Denna if är till för sätta tile rätt och undvika dupe player */
-                    this.player = "/images/playerDown.png"
-                    if( this.tiles[y][x].img == this.block && this.tiles[y+1][x].img == this.wall ||
-                        this.tiles[y][x].img == this.block && this.tiles[y+1][x].img == this.block || 
-                        this.tiles[y][x].img == this.block && this.tiles[y+1][x].img == this.breakableWall ||
-                        this.tiles[y][x].img == this.blockOnGoal && this.tiles[y+1][x].img == this.wall || 
-                        this.tiles[y][x].img == this.blockOnGoal && this.tiles[y+1][x].img == this.blockOnGoal || 
-                        this.tiles[y][x].img == this.blockOnGoal && this.tiles[y+1][x].img == this.block ||
-                        this.tiles[y][x].img == this.block && this.tiles[y+1][x].img == this.blockOnGoal){
-                            console.log('None')
-                            this.tiles[y-1][x].img = this.player
+            else if(this.tiles[y][x+1].img == this.player){
+                moveLeft(x,y,this)
+            }
+        },
+        checkKey(e){
+            e = e || window.event
+            for(let i = 0; i < this.tiles.length; i++){
+                for(let j = 0; j < this.tiles[i].length; j++){
+                    if(this.tiles[i][j].img == this.player){
+                        this.playerPosition.x = j
+                        this.playerPosition.y = i
                     }
-                    else if(this.tiles[y][x].img == this.block && (this.tiles[y+1][x].img != this.wall) ||this.tiles[y][x].img == this.blockOnGoal){ /* Denna kollar när gubben går neråt */
-                        this.pastTile = this.tiles[y-1][x].img
-                        this.tiles[y-1][x].img = this.ground
-                        this.tiles[y+1][x].img = this.block
-                        this.tiles[y][x].img = this.player
-                        this.moves++
-                    }
-                    else if(this.tiles[y][x].img == this.breakableWall){
-                        console.log('This is a thin wall')
-                    }
-                    else{
-                        this.pastTile = this.tiles[y-1][x].img
-                        this.tiles[y-1][x].img = this.ground
-                        this.tiles[y][x].img = this.player
-                        this.moves++
-                    }
-                }
-            
-               else if(this.tiles[y+1][x].img == this.player) { /* Denna kollar när gubben går uppåt */
-                this.player = "/images/playerUp.png"
-                if( this.tiles[y][x].img == this.block && this.tiles[y-1][x].img == this.block ||
-                    this.tiles[y][x].img == this.block && this.tiles[y-1][x].img == this.breakableWall ||
-                    this.tiles[y][x].img == this.blockOnGoal && this.tiles[y-1][x].img == this.wall || 
-                    this.tiles[y][x].img == this.blockOnGoal && this.tiles[y-1][x].img == this.blockOnGoal || 
-                    this.tiles[y][x].img == this.blockOnGoal &&  this.tiles[y-1][x].img == this.block ||
-                    this.tiles[y][x].img == this.block && this.tiles[y-1][x].img == this.blockOnGoal){
-                        this.tiles[y+1][x].img = this.player
-                }
-                else if(this.tiles[y][x].img == this.block && this.tiles[y-1][x].img != this.wall  ||this.tiles[y][x].img == this.blockOnGoal){
-                    this.pastTile = this.tiles[y+1][x].img
-                    this.tiles[y+1][x].img = this.ground
-                    this.tiles[y-1][x].img = this.block
-                    this.tiles[y][x].img = this.player
-                    this.moves++
-                }
-                else if(this.tiles[y][x].img == this.block && this.tiles[y-1][x].img == this.wall){
-                }
-                else if(this.tiles[y][x].img == this.breakableWall){
-                    console.log('This is a thin wall')
-                }
-                else{
-                    this.pastTile = this.tiles[y-1][x].img
-                    this.tiles[y+1][x].img = this.ground
-                    this.tiles[y][x].img = this.player
-                    this.moves++
-                }
-                }
-            
-                else if(this.tiles[y][x-1].img == this.player) { /* Kollar n'r gubben går åt vänster */
-                this.player = "/images/playerRight.png"
-                if( this.tiles[y][x].img == this.block && this.tiles[y][x+1].img == this.block ||
-                    this.tiles[y][x].img == this.block && this.tiles[y][x+1].img == this.breakableWall ||
-                    this.tiles[y][x].img == this.blockOnGoal && this.tiles[y][x+1].img == this.wall || 
-                    this.tiles[y][x].img == this.blockOnGoal && this.tiles[y][x+1].img == this.blockOnGoal || 
-                    this.tiles[y][x].img == this.blockOnGoal && this.tiles[y][x+1].img == this.block ||
-                    this.tiles[y][x].img == this.block && this.tiles[y][x+1].img == this.blockOnGoal){
-                        this.tiles[y][x-1].img = this.player
-                }
-                   else if(this.tiles[y][x].img == this.block && this.tiles[y][x+1].img != this.wall  ||this.tiles[y][x].img == this.blockOnGoal){
-                        this.pastTile = this.tiles[y][x-1].img
-                        this.tiles[y][x-1].img = this.ground
-                        this.tiles[y][x+1].img = this.block
-                        this.tiles[y][x].img = this.player
-                        this.moves++
-                    }
-                    else if(this.tiles[y][x].img == this.block && this.tiles[y][x+1].img == this.wall){
-                    }
-                    else if(this.tiles[y][x].img == this.breakableWall){
-                        console.log('This is a thin wall')
-                    }
-                    else{
-                        this.pastTile = this.tiles[y-1][x].img
-                        this.tiles[y][x-1].img = this.ground
-                        this.tiles[y][x].img = this.player
-                        this.moves++
-                    }
-                    console.log(this.pastTile)
-                }
-            
-                else if(this.tiles[y][x+1].img == this.player) { /* Gubben går åt höger */
-                    this.player = "/images/playerLeft.png"
-                    if( this.tiles[y][x].img == this.block && this.tiles[y][x-1].img == this.block ||
-                        this.tiles[y][x].img == this.block && this.tiles[y][x-1].img == this.breakableWall ||
-                        this.tiles[y][x].img == this.blockOnGoal && this.tiles[y][x-1].img == this.wall || 
-                        this.tiles[y][x].img == this.blockOnGoal && this.tiles[y][x-1].img == this.blockOnGoal || 
-                        this.tiles[y][x].img == this.blockOnGoal && this.tiles[y][x-1].img == this.block ||
-                        this.tiles[y][x].img == this.block && this.tiles[y][x-1].img == this.blockOnGoal ){
-                            this.tiles[y][x+1].img = this.player
-                    }
-                    else if(this.tiles[y][x].img == this.block && this.tiles[y][x-1].img != this.wall  || this.tiles[y][x].img == this.blockOnGoal){
-                        this.pastTile = this.tiles[y][x+1].img
-                        this.tiles[y][x+1].img = this.ground
-                        this.tiles[y][x-1].img = this.block
-                        this.tiles[y][x].img = this.player
-                        this.moves++
-                    }
-                    else if(this.tiles[y][x].img == this.block && this.tiles[y][x-1].img == this.wall){
-                    }
-                    else if(this.tiles[y][x].img == this.breakableWall){
-                        console.log('This is a thin wall')
-                    }
-                    else{
-                        this.pastTile = this.tiles[y-1][x].img
-                        this.tiles[y][x+1].img = this.ground
-                        this.tiles[y][x].img = this.player
-                        this.moves++
-                    }
-                    console.log(this.pastTile)
                 }
             }
-            else if(this.tiles[y][x].img == this.player){
-                console.log('This is you')
+            if(e.keyCode == '87'){
+                console.log('Up')
+                moveUp(this.playerPosition.x,this.playerPosition.y-1,this)
+            }
+            else if(e.keyCode == '83'){
+                console.log('Down')
+                moveDown(this.playerPosition.x,this.playerPosition.y+1,this)
+            }
+            else if(e.keyCode == '65'){
+                console.log('Left')
+                moveLeft(this.playerPosition.x-1,this.playerPosition.y,this)
+            }
+            else if(e.keyCode == '68'){
+                console.log('Right')
+                moveRight(this.playerPosition.x+1,this.playerPosition.y,this)
             }
             else{
-                console.log('This is a wall')
+                console.log('Bajs')
             }
         }
-            else{
-                console.log('Too far away')
-            }
-            console.log(this.actualTile)
-            for(let i = 0; i < this.tiles.length; i++){ /* This loop checks and keeps the boxGoal in its place */
-                for(let j = 0; j < this.tiles[i].length; j++){
-                    if(this.grid[j][i] == 'F' && this.tiles[j][i].img == this.block || this.tiles[j][i].img == this.player || this.tiles[j][i].img == this.blockOnGoal){
-                        if(this.grid[j][i] == 'F' && this.tiles[j][i].img == this.block || this.tiles[j][i].img == this.blockOnGoal){
-                            this.tiles[j][i].img = this.blockOnGoal
-                        }
-                        else{
-                            
-                        }
-                    }
-                    else if(this.grid[j][i] == 'F' && this.tiles[j][i].img != this.boxGoal){
-                        this.tiles[j][i].img = this.boxGoal
-                    }
-                    if(this.tiles[j][i].img == this.blockOnGoal){
-                        this.points++
-                    }
-                }
-            }
-            if(this.points == this.goals){
-                alert(`You have completed ${this.difficulty} in ${this.moves} moves`)
-                let choice = confirm("Continue to next difficulty?")
-                if(choice == true){
-                    if(this.difficulty == "Easy"){
-                        this.difficulty = "Normal"
-                    }
-                    else if(this.difficulty == "Normal"){
-                        this.difficulty = "Hard"
-                    }
-                }
-            }
-            console.log(this.points)
-            this.points = 0
-            console.log(`You have moved: ${this.moves} times`)
-            this.flatTiles = this.tiles.flat()
-            }
-            else{
-                alert('Press start to enable movement')
-            }
-            
-        },
     },
     created(){
+        window.onkeydown = this.checkKey
         let revealGrid = this.displayGrid
         if(this.revealGrid = true){
             if(this.difficulty == "Easy"){
