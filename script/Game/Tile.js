@@ -4,7 +4,7 @@ export default{
 
 props:['position'],
 template: `
-    <img :src="position.img" ref="tile" width="30" height="30" :class="position.class" @click="movePlayerOnClick">
+    <img :src="position.img" ref="tile":class="position.class" @click="movePlayerOnClick">
 `,
 methods:{
     movePlayerOnClick(){
