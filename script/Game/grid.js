@@ -130,6 +130,9 @@ export default{
                 console.log('Right')
                 moveRight(this.playerPosition.x+1,this.playerPosition.y,this)
             }
+            else if(e.keyCode == '32'){
+                window.location.reload()
+            }
             else{
                 console.log('Bajs')
             }
