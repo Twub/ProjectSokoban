@@ -24,8 +24,9 @@ export default{
                 window.setInterval(function(){
                     mainScope.time -= 1;
                     document.getElementById("timer-display").innerText = "Time Remaining: " + mainScope.time;
-                    if(this.time <= 0){
+                    if(mainScope.time <= 0){
                         clearInterval();
+                        window.location.reload()
                         return;
                     }
                 }, 1000);
