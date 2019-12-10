@@ -73,7 +73,13 @@ function moveDown(x,y,grid){
         }
     }
     if(grid.points == grid.goals){
-        alert(`You have completed ${grid.difficulty} in ${grid.moves} moves`)
+        let condition = confirm(`You have completed ${grid.difficulty} in ${grid.moves} moves`)
+        if(condition == true){
+            location.reload()
+        }
+        else{
+            alert('Continuing game')
+        }
     }
         }
     }
@@ -156,7 +162,13 @@ function moveUp(x,y,grid){
             }
         }
         if(grid.points == grid.goals){
-            alert(`You have completed ${grid.difficulty} in ${grid.moves} moves`)
+            let condition = confirm(`You have completed ${grid.difficulty} in ${grid.moves} moves`)
+            if(condition == true){
+                location.reload()
+            }
+            else{
+                alert('Continuing game')
+            }
         }
         console.log(grid.points)
         grid.points = 0
@@ -240,7 +252,13 @@ function moveRight(x,y,grid){
         }
     }
     if(grid.points == grid.goals){
-        alert(`You have completed ${grid.difficulty} in ${grid.moves} moves`)
+        let condition = confirm(`You have completed ${grid.difficulty} in ${grid.moves} moves`)
+        if(condition == true){
+            location.reload()
+        }
+        else{
+            alert('Continuing game')
+        }
     }
     console.log(grid.points)
     grid.points = 0
@@ -324,7 +342,13 @@ function moveLeft(x,y,grid){
         }
     }
     if(grid.points == grid.goals){
-        alert(`You have completed ${grid.difficulty} in ${grid.moves} moves`)
+        let condition = confirm(`You have completed ${grid.difficulty} in ${grid.moves} moves`)
+        if(condition == true){
+            location.reload()
+        }
+        else{
+            alert('Continuing game')
+        }
     }
     console.log(grid.points)
     grid.points = 0
