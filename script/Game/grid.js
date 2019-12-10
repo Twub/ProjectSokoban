@@ -2,13 +2,15 @@ import Tile from './Tile.js'
 import Player from './player.js'
 import sound from '../utility/SoundUtility.js';
 import storage from '../utility/StorageUtility.js';
+import Move from '../Controls/Move.js'
 
 export default{
     mixins: [sound, storage],
     props:['difficulty','displayGrid'],
     components:{
         Tile,
-        Player
+        Player,
+        Move
     },
     template: `
     <div id="grid">
@@ -20,10 +22,15 @@ export default{
         @movePlayerOnClick="onMovePlayerOnClick"></Tile>
        <!-- <Player class="Player"></Player> -->
         <span class="powerUps">{{powerUps}}</span>
+        <Move
+        v-on:moveLeft= onMovePlayerOnArrows
+        v-bind:arrowCords="arrowCords"
+        ></Move>
     </div>
     `,
     data(){
         return{
+            arrowCords:"",
             tiles:[],
             grid: [],
             powerUps:`You have 0 powerups`,
@@ -70,17 +77,17 @@ export default{
             ],
             map3: [
                 ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W','W','W','W'],
-                ['W','G', 'W', 'G', 'G','G', 'G', 'G', 'G','G','G','G','W'],
-                ['W','G', 'B', 'G', 'G','G', 'G', 'G', 'G','G','G','G','W'],
-                ['W','G', 'W', 'G', 'G','G', 'G', 'G', 'G','G','G','G','W'],
-                ['W','G', 'W', 'G', 'G','G', 'G', 'G', 'G','G','G','F','W'],
-                ['W','G', 'W', 'G', 'G','G', 'G', 'G', 'G','G','G','F','W'],
-                ['W','G', 'B', 'G', 'G','G', 'G', 'G', 'G','G','G','G','W'],
-                ['W','G', 'W', 'G', 'G','G', 'G', 'G', 'G','G','G','G','W'],
-                ['W','G', 'W', 'G', 'G','G', 'G', 'G', 'G','G','G','G','W'],
+                ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'G','G','W','F','W'],
+                ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'G','G','G','F','W'],
                 ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'G','G','G','G','W'],
+                ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'G','G','G','W','W'],
                 ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'G','G','G','G','W'],
-                ['W','P', 'G', 'G', 'G','G', 'G', 'G', 'G','G','G','G','W'],
+                ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'G','G','W','B','W'],
+                ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'G','G','G','G','W'],
+                ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'G','G','G','W','W'],
+                ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'G','G','G','G','W'],
+                ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'G','G','G','F','W'],
+                ['W','P', 'G', 'G', 'G','G', 'G', 'G', 'G','G','W','F','W'],
                 ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W','W','W','W'],
             ], /* Tänker att vi gör map4(Extreme) tillsammans då den skall  vi maxa på, blir avslutnings område */
             playerPosition:{
@@ -129,6 +136,9 @@ export default{
             else if(e.keyCode == '68'){
                 console.log('Right')
                 moveRight(this.playerPosition.x+1,this.playerPosition.y,this)
+            }
+            else if(e.keyCode == '32'){
+                window.location.reload()
             }
             else{
                 console.log('Bajs')
@@ -346,17 +356,17 @@ export default{
                 this.goals = 2
                 this.grid = [
                     ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W','W','W','W'],
-                    ['W','G', 'W', 'G', 'G','G', 'G', 'G', 'G','G','G','G','W'],
-                    ['W','G', 'B', 'G', 'G','G', 'G', 'G', 'G','G','G','G','W'],
-                    ['W','G', 'W', 'G', 'G','G', 'G', 'G', 'G','G','G','G','W'],
-                    ['W','G', 'W', 'G', 'G','G', 'G', 'G', 'G','G','G','F','W'],
-                    ['W','G', 'W', 'G', 'G','G', 'G', 'G', 'G','G','G','F','W'],
-                    ['W','G', 'B', 'G', 'G','G', 'G', 'G', 'G','G','G','G','W'],
-                    ['W','G', 'W', 'G', 'G','G', 'G', 'G', 'G','G','G','G','W'],
-                    ['W','G', 'W', 'G', 'G','G', 'G', 'G', 'G','G','G','G','W'],
+                    ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'G','G','W','F','W'],
+                    ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'G','G','G','F','W'],
                     ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'G','G','G','G','W'],
+                    ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'G','G','G','W','W'],
                     ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'G','G','G','G','W'],
-                    ['W','P', 'G', 'G', 'G','G', 'G', 'G', 'G','G','G','G','W'],
+                    ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'G','G','W','B','W'],
+                    ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'G','G','G','G','W'],
+                    ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'G','G','G','W','W'],
+                    ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'G','G','G','G','W'],
+                    ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'G','G','G','F','W'],
+                    ['W','P', 'G', 'G', 'G','G', 'G', 'G', 'G','G','W','F','W'],
                     ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W','W','W','W'],
                 ]
             }

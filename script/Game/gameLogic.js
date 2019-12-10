@@ -73,15 +73,12 @@ function moveDown(x,y,grid){
         }
     }
     if(grid.points == grid.goals){
-        alert(`You have completed ${grid.difficulty} in ${grid.moves} moves`)
-        let choice = confirm("Continue to next difficulty?")
-        if(choice == true){
-            if(grid.difficulty == "Easy"){
-                grid.difficulty = "Normal"
-            }
-            else if(grid.difficulty == "Normal"){
-                grid.difficulty = "Hard"
-            }
+        let condition = confirm(`You have completed ${grid.difficulty} in ${grid.moves} moves`)
+        if(condition == true){
+            window.location.reload()
+        }
+        else{
+            alert('Continuing game')
         }
     }
         }
@@ -165,15 +162,12 @@ function moveUp(x,y,grid){
             }
         }
         if(grid.points == grid.goals){
-            alert(`You have completed ${grid.difficulty} in ${grid.moves} moves`)
-            let choice = confirm("Continue to next difficulty?")
-            if(choice == true){
-                if(grid.difficulty == "Easy"){
-                    grid.difficulty = "Normal"
-                }
-                else if(grid.difficulty == "Normal"){
-                    grid.difficulty = "Hard"
-                }
+            let condition = confirm(`You have completed ${grid.difficulty} in ${grid.moves} moves`)
+            if(condition == true){
+                window.location.reload()
+            }
+            else{
+                alert('Continuing game')
             }
         }
         console.log(grid.points)
@@ -258,15 +252,12 @@ function moveRight(x,y,grid){
         }
     }
     if(grid.points == grid.goals){
-        alert(`You have completed ${grid.difficulty} in ${grid.moves} moves`)
-        let choice = confirm("Continue to next difficulty?")
-        if(choice == true){
-            if(grid.difficulty == "Easy"){
-                grid.difficulty = "Normal"
-            }
-            else if(grid.difficulty == "Normal"){
-                grid.difficulty = "Hard"
-            }
+        let condition = confirm(`You have completed ${grid.difficulty} in ${grid.moves} moves`)
+        if(condition == true){
+            window.location.reload()
+        }
+        else{
+            alert('Continuing game')
         }
     }
     console.log(grid.points)
@@ -351,15 +342,12 @@ function moveLeft(x,y,grid){
         }
     }
     if(grid.points == grid.goals){
-        alert(`You have completed ${grid.difficulty} in ${grid.moves} moves`)
-        let choice = confirm("Continue to next difficulty?")
-        if(choice == true){
-            if(grid.difficulty == "Easy"){
-                grid.difficulty = "Normal"
-            }
-            else if(grid.difficulty == "Normal"){
-                grid.difficulty = "Hard"
-            }
+        let condition = confirm(`You have completed ${grid.difficulty} in ${grid.moves} moves`)
+        if(condition == true){
+            window.location.reload()
+        }
+        else{
+            alert('Continuing game')
         }
     }
     console.log(grid.points)
