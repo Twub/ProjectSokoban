@@ -117,13 +117,15 @@ export default{
             }
                 if(this.tiles[y-1][x].img == this.player) { /* Denna if är till för sätta tile rätt och undvika dupe player */
                     this.player = "/images/playerDown.png"
-                    if( this.tiles[y][x].img == this.block && this.tiles[y+1][x].img == this.block || 
+                    if( this.tiles[y][x].img == this.block && this.tiles[y+1][x].img == this.wall ||
+                        this.tiles[y][x].img == this.block && this.tiles[y+1][x].img == this.block || 
                         this.tiles[y][x].img == this.block && this.tiles[y+1][x].img == this.breakableWall ||
                         this.tiles[y][x].img == this.blockOnGoal && this.tiles[y+1][x].img == this.wall || 
                         this.tiles[y][x].img == this.blockOnGoal && this.tiles[y+1][x].img == this.blockOnGoal || 
                         this.tiles[y][x].img == this.blockOnGoal && this.tiles[y+1][x].img == this.block ||
                         this.tiles[y][x].img == this.block && this.tiles[y+1][x].img == this.blockOnGoal){
                             console.log('None')
+                            this.tiles[y-1][x].img = this.player
                     }
                     else if(this.tiles[y][x].img == this.block && (this.tiles[y+1][x].img != this.wall) ||this.tiles[y][x].img == this.blockOnGoal){ /* Denna kollar när gubben går neråt */
                         this.pastTile = this.tiles[y-1][x].img
@@ -131,9 +133,6 @@ export default{
                         this.tiles[y+1][x].img = this.block
                         this.tiles[y][x].img = this.player
                         this.moves++
-                    }
-                    else if(this.tiles[y][x].img == this.block && this.tiles[y+1][x].img == this.wall){
-                        console.log('Wall hit')
                     }
                     else if(this.tiles[y][x].img == this.breakableWall){
                         console.log('This is a thin wall')
@@ -154,7 +153,7 @@ export default{
                     this.tiles[y][x].img == this.blockOnGoal && this.tiles[y-1][x].img == this.blockOnGoal || 
                     this.tiles[y][x].img == this.blockOnGoal &&  this.tiles[y-1][x].img == this.block ||
                     this.tiles[y][x].img == this.block && this.tiles[y-1][x].img == this.blockOnGoal){
-                        console.log('None')
+                        this.tiles[y+1][x].img = this.player
                 }
                 else if(this.tiles[y][x].img == this.block && this.tiles[y-1][x].img != this.wall  ||this.tiles[y][x].img == this.blockOnGoal){
                     this.pastTile = this.tiles[y+1][x].img
@@ -164,7 +163,6 @@ export default{
                     this.moves++
                 }
                 else if(this.tiles[y][x].img == this.block && this.tiles[y-1][x].img == this.wall){
-                    console.log('Wall hit')
                 }
                 else if(this.tiles[y][x].img == this.breakableWall){
                     console.log('This is a thin wall')
@@ -185,7 +183,7 @@ export default{
                     this.tiles[y][x].img == this.blockOnGoal && this.tiles[y][x+1].img == this.blockOnGoal || 
                     this.tiles[y][x].img == this.blockOnGoal && this.tiles[y][x+1].img == this.block ||
                     this.tiles[y][x].img == this.block && this.tiles[y][x+1].img == this.blockOnGoal){
-                        console.log('None')
+                        this.tiles[y][x-1].img = this.player
                 }
                    else if(this.tiles[y][x].img == this.block && this.tiles[y][x+1].img != this.wall  ||this.tiles[y][x].img == this.blockOnGoal){
                         this.pastTile = this.tiles[y][x-1].img
@@ -195,7 +193,6 @@ export default{
                         this.moves++
                     }
                     else if(this.tiles[y][x].img == this.block && this.tiles[y][x+1].img == this.wall){
-                        console.log('Wall hit')
                     }
                     else if(this.tiles[y][x].img == this.breakableWall){
                         console.log('This is a thin wall')
@@ -217,7 +214,7 @@ export default{
                         this.tiles[y][x].img == this.blockOnGoal && this.tiles[y][x-1].img == this.blockOnGoal || 
                         this.tiles[y][x].img == this.blockOnGoal && this.tiles[y][x-1].img == this.block ||
                         this.tiles[y][x].img == this.block && this.tiles[y][x-1].img == this.blockOnGoal ){
-                        console.log('None')
+                            this.tiles[y][x+1].img = this.player
                     }
                     else if(this.tiles[y][x].img == this.block && this.tiles[y][x-1].img != this.wall  || this.tiles[y][x].img == this.blockOnGoal){
                         this.pastTile = this.tiles[y][x+1].img
@@ -227,7 +224,6 @@ export default{
                         this.moves++
                     }
                     else if(this.tiles[y][x].img == this.block && this.tiles[y][x-1].img == this.wall){
-                        console.log('Wall hit')
                     }
                     else if(this.tiles[y][x].img == this.breakableWall){
                         console.log('This is a thin wall')
