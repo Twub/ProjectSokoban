@@ -26,7 +26,7 @@ export default{
         <Grid v-if="displayGrid" :difficulty="difficulty"></Grid>
        
     </div>
-    <arrowKeys />
+    <arrowKeys v-if="displayGrid" />
     </div>    
     
     `,
