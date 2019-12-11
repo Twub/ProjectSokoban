@@ -23,10 +23,10 @@ export default{
     </section>
     <div id="game">
         <h1 id="start-screen">{{startScreen}}</h1>
-        <Grid v-if="displayGrid" :difficulty="difficulty"></Grid>
+        <Grid v-if="displayGrid" :difficulty="difficulty" :arrowClickDir="arrowClickDir"></Grid>
        
     </div>
-    <arrowKeys v-if="displayGrid" />
+    <arrowKeys v-if="displayGrid" @arrowClick="onArrowClick" />
     </div>    
     
     `,
@@ -35,10 +35,17 @@ export default{
             choice:' ',
             displayGrid: false,
             difficulty: 'Easy',
-            startScreen: 'sokoban'
+            startScreen: 'sokoban',
+            arrowClickDir: ""
         }
     },
     methods:{
+        onArrowClick(dir) {
+            this.arrowClickDir=""
+            setTimeout(() => {
+                this.arrowClickDir=dir
+            }, 5);
+        },
         diffTest(){
                 this.displayGrid= true 
                 this.startScreen=''      

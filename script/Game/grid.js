@@ -2,17 +2,14 @@ import Tile from './Tile.js'
 import Player from './player.js'
 import sound from '../utility/SoundUtility.js';
 import storage from '../utility/StorageUtility.js';
-import Move from '../Controls/Move.js'
 import { moveLeft, moveRight, moveDown, moveUp } from './gameLogic.js'
-import arrowKeys from '../Controls/arrowKeys.js';
 
 export default{
-    mixins: [sound, storage, arrowKeys,],
-    props:['difficulty','displayGrid'],
+    mixins: [sound, storage],
+    props:['difficulty','displayGrid', 'arrowClickDir'],
     components:{
         Tile,
         Player,
-        Move
     },
     template: `
     <div id="grid">
@@ -24,11 +21,7 @@ export default{
         @movePlayerOnClick="onMovePlayerOnClick"></Tile>
        <!-- <Player class="Player"></Player> -->
         <span class="powerUps">{{powerUps}}</span>
-        <Move
-        v-on:moveLeftByArrow=OnmoveLeftByArrow
-        v-bind:ArrowCords="arrowCords"
-       
-        ></Move>
+        
     </div>
     `,
     data(){
@@ -99,6 +92,32 @@ export default{
         }
     },
     methods: { /* Detta är logiken i spelet */
+        setPlayerPosition() {
+            for(let i = 0; i < this.tiles.length; i++){
+                for(let j = 0; j < this.tiles[i].length; j++){
+                    if(this.tiles[i][j].img == this.player){
+                        this.playerPosition.x = j
+                        this.playerPosition.y = i
+                    }
+                }
+            }
+        },
+        goLeft() { 
+            this.setPlayerPosition()
+            moveLeft(this.playerPosition.x-1,this.playerPosition.y,this) 
+        },
+        goUp() { 
+            this.setPlayerPosition()
+            moveUp(this.playerPosition.x,this.playerPosition.y-1,this) 
+        },
+        goDown() { 
+            this.setPlayerPosition()
+            moveDown(this.playerPosition.x,this.playerPosition.y+1,this) 
+        },
+        goRight() {
+            this.setPlayerPosition()
+             moveRight(this.playerPosition.x+1,this.playerPosition.y,this) 
+        },
         onMovePlayerOnClick(x,y){
             if(this.tiles[y-1][x].img == this.player){
                 moveDown(x,y,this)
@@ -122,29 +141,22 @@ export default{
         },
         checkKey(e){
             e = e || window.event
-            for(let i = 0; i < this.tiles.length; i++){
-                for(let j = 0; j < this.tiles[i].length; j++){
-                    if(this.tiles[i][j].img == this.player){
-                        this.playerPosition.x = j
-                        this.playerPosition.y = i
-                    }
-                }
-            }
+
             if(e.keyCode == '87'){
                 console.log('Up')
-                moveUp(this.playerPosition.x,this.playerPosition.y-1,this)
+                this.goUp()
             }
             else if(e.keyCode == '83'){
                 console.log('Down')
-                moveDown(this.playerPosition.x,this.playerPosition.y+1,this)
+                this.goDown()
             }
             else if(e.keyCode == '65'){
                 console.log('Left')
-                moveLeft(this.playerPosition.x-1,this.playerPosition.y,this)
+                this.goLeft()
             }
             else if(e.keyCode == '68'){
                 console.log('Right')
-                moveRight(this.playerPosition.x+1,this.playerPosition.y,this)
+               this.goRight()
             }
             else if(e.keyCode == '32'){
                 window.location.reload()
@@ -219,13 +231,15 @@ export default{
             }
         }
     }
-    
-    },
-    moveByArrowKeys: function(){
-        console.log("hej")
-    }
+}
 },
     created(){
+        this.moveUp = moveUp;
+        this.moveDown = moveDown;
+        this.moveRight = moveRight;
+        this.moveLeft = moveLeft;
+
+
         window.onkeydown = this.checkKey
         let revealGrid = this.displayGrid
         if(this.revealGrid = true){
@@ -290,5 +304,20 @@ export default{
             }
             this.flatTiles = this.tiles.flat()
 },
+watch: {
+    arrowClickDir(dir){
+        switch(dir){
+            case "right":this.goRight()
+            break;
+            case "left":this.goLeft()
+            break;
+            case "up":this.goUp()
+            break;
+            case "down":this.goDown()
+            break;
+        }
+
+    }
+}
 }
 

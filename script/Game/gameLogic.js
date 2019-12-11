@@ -1,4 +1,4 @@
-let delayTime=600;
+let delayTime=0;
 export function moveDown(x,y,grid){
     let ableToMove = grid.getItem("isAbleToMove");
     if (ableToMove == 'true'){
