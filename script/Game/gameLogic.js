@@ -302,3 +302,4 @@ export function moveLeft(x,y,grid){
         
 }
 }
+/* Försöker omformatera metoderna till en metod för att spara kod */

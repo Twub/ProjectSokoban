@@ -3,7 +3,7 @@ import Player from './player.js'
 import sound from '../utility/SoundUtility.js';
 import storage from '../utility/StorageUtility.js';
 import Move from '../Controls/Move.js'
-import { moveLeft, moveRight, moveDown, moveUp } from './gameLogic.js'
+import { moveLeft, moveRight, moveDown, moveUp} from './gameLogic.js'
 /* import { levels } from './levels.js' */
 
 export default{
@@ -126,7 +126,7 @@ export default{
             }
             if(e.keyCode == '87'){
                 console.log('Up')
-                moveUp(this.playerPosition.x,this.playerPosition.y-1,this)
+                 moveUp(this.playerPosition.x,this.playerPosition.y-1,this)
             }
             else if(e.keyCode == '83'){
                 console.log('Down')
@@ -143,7 +143,6 @@ export default{
             else if(e.keyCode == '32'){
                 window.location.reload()
             }
-            // this.checkWinCondition()
         },
         checkWinCondition(){
             this.flatTiles = this.tiles.flat()
@@ -219,7 +218,7 @@ export default{
     created(){
         window.onkeydown = this.checkKey
         let revealGrid = this.displayGrid
-        if(this.revealGrid = true){
+        if(revealGrid = true){
             if(this.difficulty == "Easy"){
                 this.generateMap(10,this.map1,"small")
             }
