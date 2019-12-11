@@ -134,11 +134,7 @@ export default{
             this.checkWinCondition()
             
         },
-        OnmoveLeftByArrow(){
-        console.log("hej")
-        playerPosition=playerPosition + arrowcords;
-
-        },
+        
         checkKey(e){
             e = e || window.event
 

@@ -11,10 +11,9 @@ export default{
    <i @click="goDown" class="fa fa-arrow-circle-down"></i>
    </div>
    <i @click="goRight" class="fa fa-arrow-circle-right" id="sideArrows"></i>
-   
    </div>
-  
    `, 
+
      data(){
         return{
         arrowCords:{
@@ -23,6 +22,7 @@ export default{
         }
     }
 },
+
 created() {
 
 },
