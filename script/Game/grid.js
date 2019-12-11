@@ -3,6 +3,7 @@ import Player from './player.js'
 import sound from '../utility/SoundUtility.js';
 import storage from '../utility/StorageUtility.js';
 import Move from '../Controls/Move.js'
+/* import { levels } from './levels.js' */
 
 export default{
     mixins: [sound, storage],
@@ -52,16 +53,6 @@ export default{
             pastTile: '',
             moves: 0,
             map1: [ /* Skall ni ändra map layout så ändra också grid:en i created */
-                // ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W'],
-                // ['W','G', 'G', 'G', 'B','G', 'G', 'W', 'F','W'],
-                // ['W','U', 'B', 'G', 'G','G', 'G', 'G', 'G','W'],
-                // ['W','W', 'W', 'W', 'B','G', 'G', 'W', 'G','W'],
-                // ['W','G', 'G', 'G', 'G','G', 'G', 'D', 'G','W'],
-                // ['W','P', 'G', 'G', 'G','G', 'G', 'D', 'G','W'],
-                // ['W','W', 'W', 'W', 'B','G', 'G', 'W', 'G','W'],
-                // ['W','G', 'B', 'G', 'G','G', 'G', 'G', 'G','W'],
-                // ['W','G', 'G', 'G', 'B','G', 'G', 'W', 'F','W'],
-                // ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W']
                 ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W'],
                 ['W',' ', ' ', ' ', 'B',' ', ' ', 'W', 'F','W'],
                 ['W','U', 'B', ' ', ' ',' ', ' ', ' ', ' ','W'],
