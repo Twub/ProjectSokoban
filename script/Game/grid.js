@@ -110,19 +110,7 @@ export default{
             else if(this.tiles[y][x+1].img == this.player){
                 moveLeft(x,y,this)
             }
-            console.log(this.points)
-            console.log(`You have moved: ${this.moves} times`)
-            this.flatTiles = this.tiles.flat()
-            if(this.points == this.goals){
-                let condition = confirm(`You have completed ${this.difficulty} in ${this.moves} moves`)
-                if(condition == true){
-                    window.location.reload()
-                }
-                else{
-                    alert('Continuing game')
-                }
-                }
-                this.points = 0
+            this.checkWinCondition()
             
         },
         checkKey(e){
@@ -154,6 +142,9 @@ export default{
             else if(e.keyCode == '32'){
                 window.location.reload()
             }
+            this.checkWinCondition()
+        },
+        checkWinCondition(){
             console.log(this.points)
             console.log(`You have moved: ${this.moves} times`)
             this.flatTiles = this.tiles.flat()
@@ -167,183 +158,75 @@ export default{
                 }
                 }
                 this.points = 0
+        },
+        generateMap(size,map, cssClass){
+            for(let col = 0; col < size; col++){
+                this.tiles[col] = []
+                for(let row = 0; row < size; row++){
+                    let position = {
+                        x: row,
+                        y: col,
+                    }
+                    this.tiles[col].push(position)
+            switch(map[col][row]){
+                case 'W':{
+                    this.tiles[col][row].img = this.wall
+                    this.tiles[col][row].class = cssClass
+                    break
+                }
+                case 'P':{
+                    this.tiles[col][row].img = this.player
+                    this.tiles[col][row].class = cssClass                               
+                    break
+                }
+                case 'B':{
+                    this.tiles[col][row].img = this.block
+                    this.tiles[col][row].class = cssClass                                 
+                    break
+                }
+                case 'G':{
+                    this.tiles[col][row].img = this.ground
+                    this.tiles[col][row].class = cssClass                                 
+                    break
+                }
+                case 'F':{
+                    this.tiles[col][row].img = this.boxGoal
+                    this.tiles[col][row].class = cssClass              
+                    break
+                }
+                case 'S':{
+                    this.tiles[col][row].img = this.blackBox
+                    this.tiles[col][row].class = cssClass
+                    break
+                }
+                case 'U':{
+                    this.tiles[col][row].img = this.powerUp
+                    this.tiles[col][row].class = cssClass
+                    break
+                }
+                case 'D':{
+                    this.tiles[col][row].img = this.breakableWall
+                    this.tiles[col][row].class = cssClass
+                    break
+                }
+
+    } 
         }
+    }
+}
     },
     created(){
         window.onkeydown = this.checkKey
         let revealGrid = this.displayGrid
         if(this.revealGrid = true){
             if(this.difficulty == "Easy"){
-                let size = 10
-                for(let col = 0; col < size; col++){
-                    this.tiles[col] = []
-                    for(let row = 0; row < size; row++){
-                        let position = {
-                            x: row,
-                            y: col,
-                        }
-                        this.tiles[col].push(position)
-                            switch(this.map1[col][row]){
-                                case 'W':{
-                                    this.tiles[col][row].img = this.wall
-                                    this.tiles[col][row].class = "small"
-                                    break
-                                }
-                                case 'P':{
-                                    this.tiles[col][row].img = this.player
-                                    this.tiles[col][row].class = "small"                                 
-                                    break
-                                }
-                                case 'B':{
-                                    this.tiles[col][row].img = this.block
-                                    this.tiles[col][row].class = "small"                                  
-                                    break
-                                }
-                                case 'G':{
-                                    this.tiles[col][row].img = this.ground
-                                    this.tiles[col][row].class = "small"                                 
-                                    break
-                                }
-                                case 'F':{
-                                    this.tiles[col][row].img = this.boxGoal
-                                    this.tiles[col][row].class = "small"               
-                                    break
-                                }
-                                case 'S':{
-                                    this.tiles[col][row].img = this.blackBox
-                                    this.tiles[col][row].class = "small"
-                                    break
-                                }
-                                case 'U':{
-                                    this.tiles[col][row].img = this.powerUp
-                                    this.tiles[col][row].class = "small"
-                                    break
-                                }
-                                case 'D':{
-                                    this.tiles[col][row].img = this.breakableWall
-                                    this.tiles[col][row].class = "small"
-                                    break
-                                }
-
-                    }         
-    }
-    
-}
+                this.generateMap(10,this.map1,"small")
             }
             else if(this.difficulty == "Normal"){
-                let size = 10
-                for(let col = 0; col < size; col++){
-                    this.tiles[col] = []
-                    for(let row = 0; row < size; row++){
-                        let position = {
-                            x: row,
-                            y: col,
-                        }
-                        this.tiles[col].push(position)
-                            switch(this.map2[col][row]){
-                                case 'W':{
-                                    this.tiles[col][row].img = this.wall
-                                    this.tiles[col][row].class = "small"
-                                    break
-                                }
-                                case 'P':{
-                                    this.tiles[col][row].img = this.player
-                                    this.tiles[col][row].class = "small"                                 
-                                    break
-                                }
-                                case 'B':{
-                                    this.tiles[col][row].img = this.block
-                                    this.tiles[col][row].class = "small"                                  
-                                    break
-                                }
-                                case 'G':{
-                                    this.tiles[col][row].img = this.ground
-                                    this.tiles[col][row].class = "small"                                 
-                                    break
-                                }
-                                case 'F':{
-                                    this.tiles[col][row].img = this.boxGoal
-                                    this.tiles[col][row].class = "small"               
-                                    break
-                                }
-                                case 'S':{
-                                    this.tiles[col][row].img = this.blackBox
-                                    this.tiles[col][row].class = "small"
-                                    break
-                                }
-                                case 'U':{
-                                    this.tiles[col][row].img = this.powerUp
-                                    this.tiles[col][row].class = "small"
-                                    break
-                                }
-                                case 'D':{
-                                    this.tiles[col][row].img = this.breakableWall
-                                    this.tiles[col][row].class = "small"
-                                    break
-                                }
-                            
-                    }
-                    
-                    
-    }
-    
-}
+                this.generateMap(10,this.map2,"small")
             }
             else if(this.difficulty == "Hard"){
-                let size = 13
-                for(let col = 0; col < size; col++){
-                    this.tiles[col] = []
-                    for(let row = 0; row < size; row++){
-                        let position = {
-                            x: row,
-                            y: col,
-                        }
-                        this.tiles[col].push(position)
-                            switch(this.map3[col][row]){
-                                case 'W':{
-                                    this.tiles[col][row].img = this.wall
-                                    this.tiles[col][row].class = "medium"
-                                    break
-                                }
-                                case 'P':{
-                                    this.tiles[col][row].img = this.player
-                                    this.tiles[col][row].class = "medium"
-                                    break
-                                }
-                                case 'B':{
-                                    this.tiles[col][row].img = this.block
-                                    this.tiles[col][row].class = "medium"
-                                    break
-                                }
-                                case 'G':{
-                                    this.tiles[col][row].img = this.ground
-                                    this.tiles[col][row].class = "medium"
-                                    break
-                                }
-                                case 'F':{
-                                    this.tiles[col][row].img = this.boxGoal
-                                    this.tiles[col][row].class = "medium"
-                                    break
-                                }
-                                case 'S':{
-                                    this.tiles[col][row].img = this.blackBox
-                                    this.tiles[col][row].class = "medium"
-                                    break
-                                }  
-                                case 'U':{
-                                    this.tiles[col][row].img = this.powerUp
-                                    this.tiles[col][row].class = "medium"
-                                    break
-                                } 
-                                case 'D':{
-                                    this.tiles[col][row].img = this.breakableWall
-                                    this.tiles[col][row].class = "medium"
-                                    break
-                                }
-                    }            
-    }
-    
-}
+                this.generateMap(13,this.map3,"medium")
             }
             if(this.difficulty == "Easy"){ /* This section makes checking for boxGoal easier and dynamic */
                 /* Ändra goals baserat på hur många 'F' det finns och grid:en skall vara samma för respektive map och svårighetsgrad */
