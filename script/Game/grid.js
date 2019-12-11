@@ -111,9 +111,8 @@ export default{
             }
             else if(this.tiles[y][x+1].img == this.player){
                 moveLeft(x,y,this)
-            }
-            this.checkWinCondition()
-            
+            } 
+            // this.checkWinCondition()           
         },
         checkKey(e){
             e = e || window.event
@@ -144,13 +143,13 @@ export default{
             else if(e.keyCode == '32'){
                 window.location.reload()
             }
-            this.checkWinCondition()
+            // this.checkWinCondition()
         },
         checkWinCondition(){
+            this.flatTiles = this.tiles.flat()
             console.log(this.points)
             console.log(`You have moved: ${this.moves} times`)
             if(this.points == this.goals){
-                this.flatTiles = this.tiles.flat()
                 let condition = confirm(`You have completed ${this.difficulty} in ${this.moves} moves`)
                 if(condition == true){
                     window.location.reload()
@@ -282,4 +281,12 @@ export default{
             }
             this.flatTiles = this.tiles.flat()
 },
+watch:{
+    points(){
+        setTimeout(() => {
+            
+            this.checkWinCondition()
+        }, 100);
+}
+}
 }

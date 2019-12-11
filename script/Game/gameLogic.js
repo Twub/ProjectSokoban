@@ -286,8 +286,6 @@ export function moveLeft(x,y,grid){
             if(grid.grid[j][i] == 'F' && grid.tiles[j][i].img == grid.block || grid.tiles[j][i].img == grid.player || grid.tiles[j][i].img == grid.blockOnGoal){
                 if(grid.grid[j][i] == 'F' && grid.tiles[j][i].img == grid.block || grid.tiles[j][i].img == grid.blockOnGoal){
                     grid.tiles[j][i].img = grid.blockOnGoal
-                }
-                else{
                     
                 }
             }
