@@ -210,15 +210,9 @@ export default{
                     this.tiles[col][row].class = cssClass
                     break
                 }
-
-    } 
-        },
-        moveByArrows: function(arrowCords2){
-            console.log(arrowCords2)
+            }
         }
     }
-}
-    },
     
      },
     created(){
@@ -287,4 +281,4 @@ export default{
             this.flatTiles = this.tiles.flat()
 },
 }
-
+}
