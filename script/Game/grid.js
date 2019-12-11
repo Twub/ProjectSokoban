@@ -130,9 +130,8 @@ export default{
             }
             else if(this.tiles[y][x+1].img == this.player){
                 moveLeft(x,y,this)
-            }
-            this.checkWinCondition()
-            
+            } 
+            // this.checkWinCondition()           
         },
         
         checkKey(e){
@@ -157,13 +156,12 @@ export default{
             else if(e.keyCode == '32'){
                 window.location.reload()
             }
-            this.checkWinCondition()
         },
         checkWinCondition(){
+            this.flatTiles = this.tiles.flat()
             console.log(this.points)
             console.log(`You have moved: ${this.moves} times`)
             if(this.points == this.goals){
-                this.flatTiles = this.tiles.flat()
                 let condition = confirm(`You have completed ${this.difficulty} in ${this.moves} moves`)
                 if(condition == true){
                     window.location.reload()
@@ -238,7 +236,7 @@ export default{
 
         window.onkeydown = this.checkKey
         let revealGrid = this.displayGrid
-        if(this.revealGrid = true){
+        if(revealGrid = true){
             if(this.difficulty == "Easy"){
                 this.generateMap(10,this.map1,"small")
             }
@@ -314,6 +312,11 @@ watch: {
         }
 
     }
+    points(){
+        setTimeout(() => {
+            this.checkWinCondition()
+        }, 10);
+            
 }
 }
-
+}
