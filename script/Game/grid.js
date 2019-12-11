@@ -286,7 +286,7 @@ watch:{
         setTimeout(() => {
             
             this.checkWinCondition()
-        }, 100);
+        }, 10);
 }
 }
 }
