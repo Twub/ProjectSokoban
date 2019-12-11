@@ -1,4 +1,5 @@
-let delayTime=0;
+
+let delayTime=100;
 export function moveDown(x,y,grid){
     let ableToMove = grid.getItem("isAbleToMove");
     if (ableToMove == 'true'){
@@ -16,14 +17,22 @@ export function moveDown(x,y,grid){
         grid.powerUps = `You have ${grid.amountOfPowerUps} powerups`
         console.log('You have a powerup')
     }
+    
     if(grid.tiles[y][x].img == grid.breakableWall && grid.amountOfPowerUps > 0){
         grid.tiles[y][x].img = grid.ground
         grid.amountOfPowerUps--
         grid.powerUps = `You have ${grid.amountOfPowerUps} powerups`
     }
+   
     else if(grid.tiles[y][x].img == grid.breakableWall && grid.hasPowerUp == false){
         console.log('You have no powerup')
     } 
+    if( grid.actualTile == grid.turboPowerUp)
+    {
+        grid.amountOfPowerUps++
+        grid.powerUps = `You have ${grid.amountOfPowerUps} powerups`
+        console.log('You have a powerup')
+    }
     if(grid.tiles[y-1][x].img == grid.player) { /* Denna if är till för sätta tile rätt och undvika dupe player */
         grid.player = "/images/playerDown.png"
         if( grid.tiles[y][x].img == grid.block && grid.tiles[y+1][x].img == grid.wall ||

@@ -34,5 +34,9 @@ export default{
                 return;
             }
         },
+    },
+    stop(time){
+        console.log("hej")
     }
+
 }
