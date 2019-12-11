@@ -15,25 +15,36 @@ export default{
    </div>
   
    `, 
+     data(){
+        return{
+        arrowCords:{
+            x: 0,
+            y: 0
+        }
+    }
+},
+created() {
+
+},
    methods:{
        goUp(){
            this.playSound('/sound/moveSound.wav');
-           this.moveUp();
-           
+            this.$emit("arrowClick","up")
+        
        },
        goDown(){
             this.playSound('/sound/moveSound.wav');
-            this.moveDown();
+            this.$emit("arrowClick","down")
            
        },
        goRight(){
            this.playSound('/sound/moveSound.wav');
-           this.moveRight();
+           this.$emit("arrowClick","right")
            
        },
        goLeft(){
            this.playSound('/sound/moveSound.wav');
-           this.moveLeft();
+           this.$emit("arrowClick","left")
        }
    }
 }
