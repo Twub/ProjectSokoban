@@ -1,5 +1,5 @@
 
-function moveDown(x,y,grid){
+export function moveDown(x,y,grid){
     let ableToMove = grid.getItem("isAbleToMove");
     if (ableToMove == 'true'){
         grid.buttonClick();
@@ -73,7 +73,7 @@ function moveDown(x,y,grid){
     }
 }
 }
-function moveUp(x,y,grid){
+export function moveUp(x,y,grid){
     let ableToMove = grid.getItem("isAbleToMove");
     if (ableToMove == 'true'){
         grid.buttonClick();
@@ -149,7 +149,7 @@ function moveUp(x,y,grid){
         }
     }
 }
-function moveRight(x,y,grid){
+export function moveRight(x,y,grid){
     let ableToMove = grid.getItem("isAbleToMove");
     if (ableToMove == 'true'){
         grid.buttonClick();
@@ -226,7 +226,7 @@ function moveRight(x,y,grid){
         }
     }
 }
-function moveLeft(x,y,grid){
+export function moveLeft(x,y,grid){
     let ableToMove = grid.getItem("isAbleToMove");
     if (ableToMove == 'true'){
         grid.buttonClick();

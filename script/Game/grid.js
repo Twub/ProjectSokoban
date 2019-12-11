@@ -3,6 +3,7 @@ import Player from './player.js'
 import sound from '../utility/SoundUtility.js';
 import storage from '../utility/StorageUtility.js';
 import Move from '../Controls/Move.js'
+import { moveLeft, moveRight, moveDown, moveUp } from './gameLogic.js'
 import arrowKeys from '../Controls/arrowKeys.js';
 
 export default{
@@ -53,41 +54,41 @@ export default{
             moves: 0,
             map1: [ /* Skall ni ändra map layout så ändra också grid:en i created */
                 ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W'],
-                ['W','G', 'G', 'G', 'B','G', 'G', 'W', 'F','W'],
-                ['W','U', 'B', 'G', 'G','G', 'G', 'G', 'G','W'],
-                ['W','W', 'W', 'W', 'B','G', 'G', 'W', 'G','W'],
-                ['W','G', 'G', 'G', 'G','G', 'G', 'D', 'G','W'],
-                ['W','P', 'G', 'G', 'G','G', 'G', 'D', 'G','W'],
-                ['W','W', 'W', 'W', 'B','G', 'G', 'W', 'G','W'],
-                ['W','G', 'B', 'G', 'G','G', 'G', 'G', 'G','W'],
-                ['W','G', 'G', 'G', 'B','G', 'G', 'W', 'F','W'],
+                ['W',' ', ' ', ' ', 'B',' ', ' ', 'W', 'F','W'],
+                ['W','U', 'B', ' ', ' ',' ', ' ', ' ', ' ','W'],
+                ['W','W', 'W', 'W', 'B',' ', ' ', 'W', ' ','W'],
+                ['W',' ', ' ', ' ', ' ',' ', ' ', 'D', ' ','W'],
+                ['W','P', ' ', ' ', ' ',' ', ' ', 'D', ' ','W'],
+                ['W','W', 'W', 'W', 'B',' ', ' ', 'W', ' ','W'],
+                ['W',' ', 'B', ' ', ' ',' ', ' ', ' ', ' ','W'],
+                ['W',' ', ' ', ' ', 'B',' ', ' ', 'W', 'F','W'],
                 ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W']
             ],
             map2: [
                 ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W'],
-                ['W','F', 'G', 'G', 'G','G', 'G', 'G', 'F','W'],
-                ['W','G', 'W', 'G', 'W','W', 'W', 'W', 'W','W'],
-                ['W','G', 'W', 'B', 'G','G', 'U', 'W', 'S','S'],
-                ['W','G', 'W', 'G', 'G','W', 'W', 'W', 'W','S'],
-                ['W','G', 'D', 'B', 'G','P', 'G', 'G', 'W','W'],
-                ['W','G', 'W', 'G', 'G','B', 'G', 'B', 'G','W'],
-                ['W','G', 'W', 'W', 'D','W', 'W', 'G', 'G','W'],
-                ['W','F', 'G', 'G', 'G','G', 'G', 'F', 'G','W'],
+                ['W','F', ' ', ' ', ' ',' ', ' ', ' ', 'F','W'],
+                ['W',' ', 'W', ' ', 'W','W', 'W', 'W', 'W','W'],
+                ['W',' ', 'W', 'B', ' ',' ', 'U', 'W', 'S','S'],
+                ['W',' ', 'W', ' ', ' ','W', 'W', 'W', 'W','S'],
+                ['W',' ', 'D', 'B', ' ','P', ' ', ' ', 'W','W'],
+                ['W',' ', 'W', ' ', ' ','B', ' ', 'B', ' ','W'],
+                ['W',' ', 'W', 'W', 'D','W', 'W', ' ', ' ','W'],
+                ['W','F', ' ', ' ', ' ',' ', ' ', 'F', ' ','W'],
                 ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W']
             ],
             map3: [
                 ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W','W','W','W'],
-                ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'G','G','W','F','W'],
-                ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'G','G','G','F','W'],
-                ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'G','G','G','G','W'],
-                ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'G','G','G','W','W'],
-                ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'G','G','G','G','W'],
-                ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'G','G','W','B','W'],
-                ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'G','G','G','G','W'],
-                ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'G','G','G','W','W'],
-                ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'G','G','G','G','W'],
-                ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'G','G','G','F','W'],
-                ['W','P', 'G', 'G', 'G','G', 'G', 'G', 'G','G','W','F','W'],
+                ['W',' ', ' ', ' ', ' ',' ', ' ', ' ', ' ',' ','W','F','W'],
+                ['W',' ', ' ', ' ', ' ',' ', ' ', ' ', ' ',' ',' ','F','W'],
+                ['W',' ', ' ', ' ', ' ',' ', ' ', ' ', ' ',' ',' ',' ','W'],
+                ['W',' ', ' ', ' ', ' ',' ', ' ', ' ', ' ',' ',' ','W','W'],
+                ['W',' ', ' ', ' ', ' ',' ', ' ', ' ', ' ',' ',' ',' ','W'],
+                ['W',' ', ' ', ' ', ' ',' ', ' ', ' ', ' ',' ','W','B','W'],
+                ['W',' ', ' ', ' ', ' ',' ', ' ', ' ', ' ',' ',' ',' ','W'],
+                ['W',' ', ' ', ' ', ' ',' ', ' ', ' ', ' ',' ',' ','W','W'],
+                ['W',' ', ' ', ' ', ' ',' ', ' ', ' ', ' ',' ',' ',' ','W'],
+                ['W',' ', ' ', ' ', ' ',' ', ' ', ' ', ' ',' ',' ','F','W'],
+                ['W','P', ' ', ' ', ' ',' ', ' ', ' ', ' ',' ','W','F','W'],
                 ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W','W','W','W'],
             ], /* Tänker att vi gör map4(Extreme) tillsammans då den skall  vi maxa på, blir avslutnings område */
             playerPosition:{
@@ -110,19 +111,7 @@ export default{
             else if(this.tiles[y][x+1].img == this.player){
                 moveLeft(x,y,this)
             }
-            console.log(this.points)
-            console.log(`You have moved: ${this.moves} times`)
-            this.flatTiles = this.tiles.flat()
-            if(this.points == this.goals){
-                let condition = confirm(`You have completed ${this.difficulty} in ${this.moves} moves`)
-                if(condition == true){
-                    window.location.reload()
-                }
-                else{
-                    alert('Continuing game')
-                }
-                }
-                this.points = 0
+            this.checkWinCondition()
             
         },
         checkKey(e){
@@ -154,10 +143,13 @@ export default{
             else if(e.keyCode == '32'){
                 window.location.reload()
             }
+            this.checkWinCondition()
+        },
+        checkWinCondition(){
             console.log(this.points)
             console.log(`You have moved: ${this.moves} times`)
-            this.flatTiles = this.tiles.flat()
             if(this.points == this.goals){
+                this.flatTiles = this.tiles.flat()
                 let condition = confirm(`You have completed ${this.difficulty} in ${this.moves} moves`)
                 if(condition == true){
                     window.location.reload()
@@ -168,9 +160,65 @@ export default{
                 }
                 this.points = 0
         },
+        generateMap(size,map, cssClass){
+            for(let col = 0; col < size; col++){
+                this.tiles[col] = []
+                for(let row = 0; row < size; row++){
+                    let position = {
+                        x: row,
+                        y: col,
+                    }
+                    this.tiles[col].push(position)
+            switch(map[col][row]){
+                case 'W':{
+                    this.tiles[col][row].img = this.wall
+                    this.tiles[col][row].class = cssClass
+                    break
+                }
+                case 'P':{
+                    this.tiles[col][row].img = this.player
+                    this.tiles[col][row].class = cssClass                               
+                    break
+                }
+                case 'B':{
+                    this.tiles[col][row].img = this.block
+                    this.tiles[col][row].class = cssClass                                 
+                    break
+                }
+                case ' ':{
+                    this.tiles[col][row].img = this.ground
+                    this.tiles[col][row].class = cssClass                                 
+                    break
+                }
+                case 'F':{
+                    this.tiles[col][row].img = this.boxGoal
+                    this.tiles[col][row].class = cssClass              
+                    break
+                }
+                case 'S':{
+                    this.tiles[col][row].img = this.blackBox
+                    this.tiles[col][row].class = cssClass
+                    break
+                }
+                case 'U':{
+                    this.tiles[col][row].img = this.powerUp
+                    this.tiles[col][row].class = cssClass
+                    break
+                }
+                case 'D':{
+                    this.tiles[col][row].img = this.breakableWall
+                    this.tiles[col][row].class = cssClass
+                    break
+                }
+
+    } 
+        },
         moveByArrows: function(arrowCords2){
             console.log(arrowCords2)
         }
+    }
+}
+    },
     
      },
     created(){
@@ -178,190 +226,27 @@ export default{
         let revealGrid = this.displayGrid
         if(this.revealGrid = true){
             if(this.difficulty == "Easy"){
-                let size = 10
-                for(let col = 0; col < size; col++){
-                    this.tiles[col] = []
-                    for(let row = 0; row < size; row++){
-                        let position = {
-                            x: row,
-                            y: col,
-                        }
-                        this.tiles[col].push(position)
-                            switch(this.map1[col][row]){
-                                case 'W':{
-                                    this.tiles[col][row].img = this.wall
-                                    this.tiles[col][row].class = "small"
-                                    break
-                                }
-                                case 'P':{
-                                    this.tiles[col][row].img = this.player
-                                    this.tiles[col][row].class = "small"                                 
-                                    break
-                                }
-                                case 'B':{
-                                    this.tiles[col][row].img = this.block
-                                    this.tiles[col][row].class = "small"                                  
-                                    break
-                                }
-                                case 'G':{
-                                    this.tiles[col][row].img = this.ground
-                                    this.tiles[col][row].class = "small"                                 
-                                    break
-                                }
-                                case 'F':{
-                                    this.tiles[col][row].img = this.boxGoal
-                                    this.tiles[col][row].class = "small"               
-                                    break
-                                }
-                                case 'S':{
-                                    this.tiles[col][row].img = this.blackBox
-                                    this.tiles[col][row].class = "small"
-                                    break
-                                }
-                                case 'U':{
-                                    this.tiles[col][row].img = this.powerUp
-                                    this.tiles[col][row].class = "small"
-                                    break
-                                }
-                                case 'D':{
-                                    this.tiles[col][row].img = this.breakableWall
-                                    this.tiles[col][row].class = "small"
-                                    break
-                                }
-
-                    }         
-    }
-    
-}
+                this.generateMap(10,this.map1,"small")
             }
             else if(this.difficulty == "Normal"){
-                let size = 10
-                for(let col = 0; col < size; col++){
-                    this.tiles[col] = []
-                    for(let row = 0; row < size; row++){
-                        let position = {
-                            x: row,
-                            y: col,
-                        }
-                        this.tiles[col].push(position)
-                            switch(this.map2[col][row]){
-                                case 'W':{
-                                    this.tiles[col][row].img = this.wall
-                                    this.tiles[col][row].class = "small"
-                                    break
-                                }
-                                case 'P':{
-                                    this.tiles[col][row].img = this.player
-                                    this.tiles[col][row].class = "small"                                 
-                                    break
-                                }
-                                case 'B':{
-                                    this.tiles[col][row].img = this.block
-                                    this.tiles[col][row].class = "small"                                  
-                                    break
-                                }
-                                case 'G':{
-                                    this.tiles[col][row].img = this.ground
-                                    this.tiles[col][row].class = "small"                                 
-                                    break
-                                }
-                                case 'F':{
-                                    this.tiles[col][row].img = this.boxGoal
-                                    this.tiles[col][row].class = "small"               
-                                    break
-                                }
-                                case 'S':{
-                                    this.tiles[col][row].img = this.blackBox
-                                    this.tiles[col][row].class = "small"
-                                    break
-                                }
-                                case 'U':{
-                                    this.tiles[col][row].img = this.powerUp
-                                    this.tiles[col][row].class = "small"
-                                    break
-                                }
-                                case 'D':{
-                                    this.tiles[col][row].img = this.breakableWall
-                                    this.tiles[col][row].class = "small"
-                                    break
-                                }
-                            
-                    }
-                    
-                    
-    }
-    
-}
+                this.generateMap(10,this.map2,"small")
             }
             else if(this.difficulty == "Hard"){
-                let size = 13
-                for(let col = 0; col < size; col++){
-                    this.tiles[col] = []
-                    for(let row = 0; row < size; row++){
-                        let position = {
-                            x: row,
-                            y: col,
-                        }
-                        this.tiles[col].push(position)
-                            switch(this.map3[col][row]){
-                                case 'W':{
-                                    this.tiles[col][row].img = this.wall
-                                    this.tiles[col][row].class = "medium"
-                                    break
-                                }
-                                case 'P':{
-                                    this.tiles[col][row].img = this.player
-                                    this.tiles[col][row].class = "medium"
-                                    break
-                                }
-                                case 'B':{
-                                    this.tiles[col][row].img = this.block
-                                    this.tiles[col][row].class = "medium"
-                                    break
-                                }
-                                case 'G':{
-                                    this.tiles[col][row].img = this.ground
-                                    this.tiles[col][row].class = "medium"
-                                    break
-                                }
-                                case 'F':{
-                                    this.tiles[col][row].img = this.boxGoal
-                                    this.tiles[col][row].class = "medium"
-                                    break
-                                }
-                                case 'S':{
-                                    this.tiles[col][row].img = this.blackBox
-                                    this.tiles[col][row].class = "medium"
-                                    break
-                                }  
-                                case 'U':{
-                                    this.tiles[col][row].img = this.powerUp
-                                    this.tiles[col][row].class = "medium"
-                                    break
-                                } 
-                                case 'D':{
-                                    this.tiles[col][row].img = this.breakableWall
-                                    this.tiles[col][row].class = "medium"
-                                    break
-                                }
-                    }            
-    }
-    
-}
+                this.generateMap(13,this.map3,"medium")
             }
             if(this.difficulty == "Easy"){ /* This section makes checking for boxGoal easier and dynamic */
                 /* Ändra goals baserat på hur många 'F' det finns och grid:en skall vara samma för respektive map och svårighetsgrad */
                 this.goals = 2
                 this.grid = [ /* Skall ni ändra map layout så ändra också grid:en i data */
                     ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W'],
-                    ['W','G', 'G', 'G', 'B','G', 'G', 'W', 'F','W'],
-                    ['W','U', 'B', 'G', 'G','G', 'G', 'G', 'G','W'],
-                    ['W','W', 'W', 'W', 'B','G', 'G', 'W', 'G','W'],
-                    ['W','G', 'G', 'G', 'G','G', 'G', 'D', 'G','W'],
-                    ['W','P', 'G', 'G', 'G','G', 'G', 'D', 'G','W'],
-                    ['W','W', 'W', 'W', 'B','G', 'G', 'W', 'G','W'],
-                    ['W','G', 'B', 'G', 'G','G', 'G', 'G', 'G','W'],
-                    ['W','G', 'G', 'G', 'B','G', 'G', 'W', 'F','W'],
+                    ['W',' ', ' ', ' ', 'B',' ', ' ', 'W', 'F','W'],
+                    ['W','U', 'B', ' ', ' ',' ', ' ', ' ', ' ','W'],
+                    ['W','W', 'W', 'W', 'B',' ', ' ', 'W', ' ','W'],
+                    ['W',' ', ' ', ' ', ' ',' ', ' ', 'D', ' ','W'],
+                    ['W','P', ' ', ' ', ' ',' ', ' ', 'D', ' ','W'],
+                    ['W','W', 'W', 'W', 'B',' ', ' ', 'W', ' ','W'],
+                    ['W',' ', 'B', ' ', ' ',' ', ' ', ' ', ' ','W'],
+                    ['W',' ', ' ', ' ', 'B',' ', ' ', 'W', 'F','W'],
                     ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W']
                 ]
             }
@@ -369,14 +254,14 @@ export default{
                 this.goals = 4
                 this.grid = [
                     ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W'],
-                    ['W','F', 'G', 'G', 'G','G', 'G', 'G', 'F','W'],
-                    ['W','G', 'W', 'G', 'W','W', 'W', 'W', 'W','W'],
-                    ['W','G', 'W', 'B', 'G','G', 'U', 'W', 'S','S'],
-                    ['W','G', 'W', 'G', 'G','W', 'W', 'W', 'W','S'],
-                    ['W','G', 'D', 'B', 'G','P', 'G', 'G', 'W','W'],
-                    ['W','G', 'W', 'G', 'G','B', 'G', 'B', 'G','W'],
-                    ['W','G', 'W', 'W', 'D','W', 'W', 'G', 'G','W'],
-                    ['W','F', 'G', 'G', 'G','G', 'G', 'F', 'G','W'],
+                    ['W','F', ' ', ' ', ' ',' ', ' ', ' ', 'F','W'],
+                    ['W',' ', 'W', ' ', 'W','W', 'W', 'W', 'W','W'],
+                    ['W',' ', 'W', 'B', ' ',' ', 'U', 'W', 'S','S'],
+                    ['W',' ', 'W', ' ', ' ','W', 'W', 'W', 'W','S'],
+                    ['W',' ', 'D', 'B', ' ','P', ' ', ' ', 'W','W'],
+                    ['W',' ', 'W', ' ', ' ','B', ' ', 'B', ' ','W'],
+                    ['W',' ', 'W', 'W', 'D','W', 'W', ' ', ' ','W'],
+                    ['W','F', ' ', ' ', ' ',' ', ' ', 'F', ' ','W'],
                     ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W']
                 ]
             }
@@ -384,17 +269,17 @@ export default{
                 this.goals = 2
                 this.grid = [
                     ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W','W','W','W'],
-                    ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'G','G','W','F','W'],
-                    ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'G','G','G','F','W'],
-                    ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'G','G','G','G','W'],
-                    ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'G','G','G','W','W'],
-                    ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'G','G','G','G','W'],
-                    ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'G','G','W','B','W'],
-                    ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'G','G','G','G','W'],
-                    ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'G','G','G','W','W'],
-                    ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'G','G','G','G','W'],
-                    ['W','G', 'G', 'G', 'G','G', 'G', 'G', 'G','G','G','F','W'],
-                    ['W','P', 'G', 'G', 'G','G', 'G', 'G', 'G','G','W','F','W'],
+                    ['W',' ', ' ', ' ', ' ',' ', ' ', ' ', ' ',' ','W','F','W'],
+                    ['W',' ', ' ', ' ', ' ',' ', ' ', ' ', ' ',' ',' ','F','W'],
+                    ['W',' ', ' ', ' ', ' ',' ', ' ', ' ', ' ',' ',' ',' ','W'],
+                    ['W',' ', ' ', ' ', ' ',' ', ' ', ' ', ' ',' ',' ','W','W'],
+                    ['W',' ', ' ', ' ', ' ',' ', ' ', ' ', ' ',' ',' ',' ','W'],
+                    ['W',' ', ' ', ' ', ' ',' ', ' ', ' ', ' ',' ','W','B','W'],
+                    ['W',' ', ' ', ' ', ' ',' ', ' ', ' ', ' ',' ',' ',' ','W'],
+                    ['W',' ', ' ', ' ', ' ',' ', ' ', ' ', ' ',' ',' ','W','W'],
+                    ['W',' ', ' ', ' ', ' ',' ', ' ', ' ', ' ',' ',' ',' ','W'],
+                    ['W',' ', ' ', ' ', ' ',' ', ' ', ' ', ' ',' ',' ','F','W'],
+                    ['W','P', ' ', ' ', ' ',' ', ' ', ' ', ' ',' ','W','F','W'],
                     ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W','W','W','W'],
                 ]
             }
