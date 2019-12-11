@@ -3,9 +3,10 @@ import Player from './player.js'
 import sound from '../utility/SoundUtility.js';
 import storage from '../utility/StorageUtility.js';
 import Move from '../Controls/Move.js'
+import arrowKeys from '../Controls/arrowKeys.js';
 
 export default{
-    mixins: [sound, storage],
+    mixins: [sound, storage, arrowKeys],
     props:['difficulty','displayGrid'],
     components:{
         Tile,
@@ -23,14 +24,13 @@ export default{
        <!-- <Player class="Player"></Player> -->
         <span class="powerUps">{{powerUps}}</span>
         <Move
-        v-on:moveLeft= onMovePlayerOnArrows
-        v-bind:arrowCords="arrowCords"
+       
         ></Move>
     </div>
     `,
     data(){
         return{
-            arrowCords:"",
+            arrowCords2:"",
             tiles:[],
             grid: [],
             powerUps:`You have 0 powerups`,
@@ -167,8 +167,12 @@ export default{
                 }
                 }
                 this.points = 0
+        },
+        moveByArrows: function(arrowCords2){
+            console.log(arrowCords2)
         }
-    },
+    
+     },
     created(){
         window.onkeydown = this.checkKey
         let revealGrid = this.displayGrid
@@ -398,3 +402,4 @@ export default{
             this.flatTiles = this.tiles.flat()
 },
 }
+

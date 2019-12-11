@@ -15,11 +15,24 @@ export default{
    </div>
   
    `, 
+     data(){
+        return{
+        arrowCords:{
+            x: 0,
+            y: 0
+        }
+    }
+},
    methods:{
        goUp(){
            this.playSound('/sound/moveSound.wav');
-           this.moveUp();
-           
+           console.log("Up");
+            this.arrowCords.y=(this.arrowCords.y)-1;
+            console.log(this.arrowCords.x)
+            console.log(this.arrowCords.y)
+            this.moveByArrowKeys(this.arrowCords);
+            this.arrowCords.y=0
+        
        },
        goDown(){
             this.playSound('/sound/moveSound.wav');
