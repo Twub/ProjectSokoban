@@ -3,6 +3,7 @@ import Player from './player.js'
 import sound from '../utility/SoundUtility.js';
 import storage from '../utility/StorageUtility.js';
 import Move from '../Controls/Move.js'
+import { moveLeft, moveRight, moveDown, moveUp } from './gameLogic.js'
 /* import { levels } from './levels.js' */
 
 export default{
@@ -148,8 +149,8 @@ export default{
         checkWinCondition(){
             console.log(this.points)
             console.log(`You have moved: ${this.moves} times`)
-            this.flatTiles = this.tiles.flat()
             if(this.points == this.goals){
+                this.flatTiles = this.tiles.flat()
                 let condition = confirm(`You have completed ${this.difficulty} in ${this.moves} moves`)
                 if(condition == true){
                     window.location.reload()
