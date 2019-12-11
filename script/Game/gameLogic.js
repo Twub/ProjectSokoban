@@ -1,4 +1,4 @@
-
+let delayTime=600;
 export function moveDown(x,y,grid){
     let ableToMove = grid.getItem("isAbleToMove");
     if (ableToMove == 'true'){
@@ -37,21 +37,26 @@ export function moveDown(x,y,grid){
                 grid.tiles[y-1][x].img = grid.player
         }
         else if(grid.tiles[y][x].img == grid.block && (grid.tiles[y+1][x].img != grid.wall) ||grid.tiles[y][x].img == grid.blockOnGoal){ /* Denna kollar när gubben går neråt */
+           setTimeout(function() {
             grid.pastTile = grid.tiles[y-1][x].img
             grid.tiles[y-1][x].img = grid.ground
             grid.tiles[y+1][x].img = grid.block
             grid.tiles[y][x].img = grid.player
             grid.moves++
+           },delayTime);
+            
         }
         else if(grid.tiles[y][x].img == grid.breakableWall && grid.hasPowerUp == false ){
             console.log('grid is a thin wall')
             grid.tiles[y-1][x].img = grid.player
         }
         else{
+            setTimeout(function() {
             grid.pastTile = grid.tiles[y-1][x].img
             grid.tiles[y-1][x].img = grid.ground
             grid.tiles[y][x].img = grid.player
             grid.moves++
+        },delayTime);
         }
     }
     for(let i = 0; i < grid.tiles.length; i++){ /* grid loop checks and keeps the boxGoal in its place */
@@ -109,22 +114,27 @@ export function moveUp(x,y,grid){
             grid.tiles[y][x].img == grid.block && grid.tiles[y-1][x].img == grid.wall){
                 grid.tiles[y+1][x].img = grid.player
         }
+        
         else if(grid.tiles[y][x].img == grid.block && grid.tiles[y-1][x].img != grid.wall  ||grid.tiles[y][x].img == grid.blockOnGoal){
+            setTimeout(function() {
             grid.pastTile = grid.tiles[y+1][x].img
             grid.tiles[y+1][x].img = grid.ground
             grid.tiles[y-1][x].img = grid.block
             grid.tiles[y][x].img = grid.player
             grid.moves++
+        },delayTime);
         }
         else if(grid.tiles[y][x].img == grid.breakableWall && grid.hasPowerUp == false ){
             console.log('grid is a thin wall')
             grid.tiles[y+1][x].img = grid.player
         }
         else{
+            setTimeout(function() {
             grid.pastTile = grid.tiles[y-1][x].img
             grid.tiles[y+1][x].img = grid.ground
             grid.tiles[y][x].img = grid.player
             grid.moves++
+        },delayTime);
         }
         }
         for(let i = 0; i < grid.tiles.length; i++){ /* grid loop checks and keeps the boxGoal in its place */
@@ -186,21 +196,25 @@ export function moveRight(x,y,grid){
             grid.tiles[y][x-1].img = grid.player
     }
        else if(grid.tiles[y][x].img == grid.block && grid.tiles[y][x+1].img != grid.wall  ||grid.tiles[y][x].img == grid.blockOnGoal){
+        setTimeout(function() {
             grid.pastTile = grid.tiles[y][x-1].img
             grid.tiles[y][x-1].img = grid.ground
             grid.tiles[y][x+1].img = grid.block
             grid.tiles[y][x].img = grid.player
             grid.moves++
+        },delayTime);
         }
         else if(grid.tiles[y][x].img == grid.breakableWall && grid.hasPowerUp == false ){
             console.log('grid is a thin wall')
             grid.tiles[y][x-1].img = grid.player
         }
         else{
+            setTimeout(function() {
             grid.pastTile = grid.tiles[y-1][x].img
             grid.tiles[y][x-1].img = grid.ground
             grid.tiles[y][x].img = grid.player
             grid.moves++
+        },delayTime);
         }
         console.log(grid.pastTile)
     }
@@ -263,21 +277,26 @@ export function moveLeft(x,y,grid){
                 grid.tiles[y][x+1].img = grid.player
         }
         else if(grid.tiles[y][x].img == grid.block && grid.tiles[y][x-1].img != grid.wall  || grid.tiles[y][x].img == grid.blockOnGoal){
+            setTimeout(function() {
             grid.pastTile = grid.tiles[y][x+1].img
             grid.tiles[y][x+1].img = grid.ground
             grid.tiles[y][x-1].img = grid.block
             grid.tiles[y][x].img = grid.player
             grid.moves++
+            },delayTime);
+            
         }
         else if(grid.tiles[y][x].img == grid.breakableWall && grid.hasPowerUp == false ){
             console.log('grid is a thin wall')
             grid.tiles[y][x+1].img = grid.player
         }
         else{
+            setTimeout(function() {
             grid.pastTile = grid.tiles[y-1][x].img
             grid.tiles[y][x+1].img = grid.ground
             grid.tiles[y][x].img = grid.player
             grid.moves++
+            },delayTime);
         }
         console.log(grid.pastTile)
     }

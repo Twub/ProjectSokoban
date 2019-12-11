@@ -26,12 +26,7 @@ export default{
    methods:{
        goUp(){
            this.playSound('/sound/moveSound.wav');
-           console.log("Up");
-            this.arrowCords.y=(this.arrowCords.y)-1;
-            console.log(this.arrowCords.x)
-            console.log(this.arrowCords.y)
-            this.moveByArrowKeys(this.arrowCords);
-            this.arrowCords.y=0
+           this.moveUp();
         
        },
        goDown(){

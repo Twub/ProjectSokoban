@@ -7,7 +7,7 @@ import { moveLeft, moveRight, moveDown, moveUp } from './gameLogic.js'
 import arrowKeys from '../Controls/arrowKeys.js';
 
 export default{
-    mixins: [sound, storage, arrowKeys],
+    mixins: [sound, storage, arrowKeys,],
     props:['difficulty','displayGrid'],
     components:{
         Tile,
@@ -25,13 +25,14 @@ export default{
        <!-- <Player class="Player"></Player> -->
         <span class="powerUps">{{powerUps}}</span>
         <Move
+        v-on:moveLeftByArrow=OnmoveLeftByArrow
+        v-bind:ArrowCords="arrowCords"
        
         ></Move>
     </div>
     `,
     data(){
         return{
-            arrowCords2:"",
             tiles:[],
             grid: [],
             powerUps:`You have 0 powerups`,
@@ -61,7 +62,7 @@ export default{
                 ['W','P', ' ', ' ', ' ',' ', ' ', 'D', ' ','W'],
                 ['W','W', 'W', 'W', 'B',' ', ' ', 'W', ' ','W'],
                 ['W',' ', 'B', ' ', ' ',' ', ' ', ' ', ' ','W'],
-                ['W',' ', ' ', ' ', 'B',' ', ' ', 'W', 'F','W'],
+                ['W','U', ' ', ' ', 'B',' ', ' ', 'W', 'F','W'],
                 ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W']
             ],
             map2: [
@@ -97,7 +98,7 @@ export default{
             }
         }
     },
-    methods:{ /* Detta är logiken i spelet */
+    methods: { /* Detta är logiken i spelet */
         onMovePlayerOnClick(x,y){
             if(this.tiles[y-1][x].img == this.player){
                 moveDown(x,y,this)
@@ -113,6 +114,11 @@ export default{
             }
             this.checkWinCondition()
             
+        },
+        OnmoveLeftByArrow(){
+        console.log("hej")
+        playerPosition=playerPosition + arrowcords;
+
         },
         checkKey(e){
             e = e || window.event
@@ -214,7 +220,11 @@ export default{
         }
     }
     
-     },
+    },
+    moveByArrowKeys: function(){
+        console.log("hej")
+    }
+},
     created(){
         window.onkeydown = this.checkKey
         let revealGrid = this.displayGrid
@@ -281,4 +291,4 @@ export default{
             this.flatTiles = this.tiles.flat()
 },
 }
-}
+
