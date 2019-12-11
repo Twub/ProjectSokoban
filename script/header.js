@@ -36,6 +36,8 @@ export default{
 
         stopGame: function(){
             this.buttonClick();
+            this.addItem("isAbleToMove", false);
+            this.stopGame();
         },
 
         showSettings: function(){

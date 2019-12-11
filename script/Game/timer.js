@@ -23,10 +23,10 @@ export default{
             if (isTimerEnable == 'true'){
                 window.setInterval(function(){
                     mainScope.time -= 1;
-                    console.log(mainScope.time);
                     document.getElementById("timer-display").innerText = "Time Remaining: " + mainScope.time;
-                    if(this.time <= 0){
+                    if(mainScope.time <= 0){
                         clearInterval();
+                        window.location.reload()
                         return;
                     }
                 }, 1000);
