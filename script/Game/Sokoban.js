@@ -1,12 +1,14 @@
 import Grid from "./grid.js"
 import arrowKeys from '../Controls/arrowKeys.js'
 import storage from '../utility/StorageUtility.js';
+import startScreen from './startScreen.js'
 
 export default{
     mixins: [storage],
     components:{
         Grid,
-        arrowKeys
+        arrowKeys,
+        startScreen,
     },
     template:`
     <div class="sokoban" id="sokobanGrid">
@@ -21,11 +23,9 @@ export default{
     <button type="button" id="difficultySubmit" @click="diffTest">Load difficulty</button>
     <button type="button" id="reLoadButton" @click="reLoad">Restart game</button>
     </section>
+    
     <div id="game">
-    <div id="start-screen">
-    <h1 id="start-title">{{startScreen}}</h1> 
-    <h3></h3> 
-    </div>
+    <startScreen v-if= "displayStartScreen"></startScreen>
     <Grid v-if="displayGrid" :difficulty="difficulty" :arrowClickDir="arrowClickDir"></Grid>
        
     </div>
@@ -38,8 +38,9 @@ export default{
             choice:' ',
             displayGrid: false,
             difficulty: 'Easy',
-            startScreen: 'sokoban',
-            arrowClickDir: ""
+            startTitle: 'sokoban',
+            arrowClickDir: "",
+            displayStartScreen: true,
         }
     },
     methods:{
@@ -51,7 +52,8 @@ export default{
         },
         diffTest(){
                 this.displayGrid= true 
-                this.startScreen=''      
+                this.startScreen='' 
+                this.displayStartScreen=false     
         },
         reLoad(){
             window.location.reload()    

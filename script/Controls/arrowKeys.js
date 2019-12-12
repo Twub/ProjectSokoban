@@ -13,15 +13,6 @@ export default{
    </div>
    `, 
 
-     data(){
-        return{
-        arrowCords:{
-            x: 0,
-            y: 0
-        }
-    }
-},
-
 created() {
 
 },

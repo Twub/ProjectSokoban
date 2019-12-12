@@ -27,6 +27,12 @@ export default {
                 audio.play();
             }
         },
+        playMusic: function(){
+            if (this.isSoundEnable() == true){
+                var audio = new Audio('/sound/menyMusic.mp3');
+                audio.play();
+            }
+        },
         isSoundEnable: function(){
             let volumeEnable = this.getItem('isSoundEnable');
             if (volumeEnable == 'true'){
