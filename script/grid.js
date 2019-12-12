@@ -248,9 +248,7 @@ export default{
             console.log(`You have moved: ${this.moves} times`)
             this.flatTiles = this.tiles.flat()
         },
-        onMovePlayerOnArrows(){
-            console.log("hej")
-        }
+       
     },
     created(){
         if(this.displayGrid == true){

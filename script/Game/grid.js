@@ -2,17 +2,14 @@ import Tile from './Tile.js'
 import Player from './player.js'
 import sound from '../utility/SoundUtility.js';
 import storage from '../utility/StorageUtility.js';
-import Move from '../Controls/Move.js'
-import { moveLeft, moveRight, moveDown, moveUp} from './gameLogic.js'
-/* import { levels } from './levels.js' */
+import { moveLeft, moveRight, moveDown, moveUp } from './gameLogic.js'
 
 export default{
     mixins: [sound, storage],
-    props:['difficulty','displayGrid'],
+    props:['difficulty','displayGrid', 'arrowClickDir'],
     components:{
         Tile,
         Player,
-        Move
     },
     template: `
     <div id="grid">
@@ -24,15 +21,11 @@ export default{
         @movePlayerOnClick="onMovePlayerOnClick"></Tile>
        <!-- <Player class="Player"></Player> -->
         <span class="powerUps">{{powerUps}}</span>
-        <Move
-        v-on:moveLeft= onMovePlayerOnArrows
-        v-bind:arrowCords="arrowCords"
-        ></Move>
+        
     </div>
     `,
     data(){
         return{
-            arrowCords:"",
             tiles:[],
             grid: [],
             powerUps:`You have 0 powerups`,
@@ -48,6 +41,7 @@ export default{
             blockOnGoal: "/images/img4.png",
             blackBox: "images/blackBox.png",
             powerUp: "images/powerCoin.png",
+            turboPowerUp: "images/speedCoin.jpg",
             goals: 0, /* Om ni skall ändra antalet goals/boxGoal så glöm inte ändra denna data i created */
             points: 0,
             actualTile: '',
@@ -62,7 +56,7 @@ export default{
                 ['W','P', ' ', ' ', ' ',' ', ' ', 'D', ' ','W'],
                 ['W','W', 'W', 'W', 'B',' ', ' ', 'W', ' ','W'],
                 ['W',' ', 'B', ' ', ' ',' ', ' ', ' ', ' ','W'],
-                ['W',' ', ' ', ' ', 'B',' ', ' ', 'W', 'F','W'],
+                ['W',' ', ' ', 'T', 'B',' ', ' ', 'W', 'F','W'],
                 ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W']
             ],
             map2: [
@@ -88,7 +82,7 @@ export default{
                 ['W',' ', ' ', ' ', ' ',' ', ' ', ' ', ' ',' ',' ',' ','W'],
                 ['W',' ', ' ', ' ', ' ',' ', ' ', ' ', ' ',' ',' ','W','W'],
                 ['W',' ', ' ', ' ', ' ',' ', ' ', ' ', ' ',' ',' ',' ','W'],
-                ['W',' ', ' ', ' ', ' ',' ', ' ', ' ', ' ',' ',' ','F','W'],
+                ['W',' ', 'T', ' ', ' ',' ', ' ', ' ', ' ',' ',' ','F','W'],
                 ['W','P', ' ', ' ', ' ',' ', ' ', ' ', ' ',' ','W','F','W'],
                 ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W','W','W','W'],
             ], /* Tänker att vi gör map4(Extreme) tillsammans då den skall  vi maxa på, blir avslutnings område */
@@ -98,7 +92,33 @@ export default{
             }
         }
     },
-    methods:{ /* Detta är logiken i spelet */
+    methods: { /* Detta är logiken i spelet */
+        setPlayerPosition() {
+            for(let i = 0; i < this.tiles.length; i++){
+                for(let j = 0; j < this.tiles[i].length; j++){
+                    if(this.tiles[i][j].img == this.player){
+                        this.playerPosition.x = j
+                        this.playerPosition.y = i
+                    }
+                }
+            }
+        },
+        goLeft() { 
+            this.setPlayerPosition()
+            moveLeft(this.playerPosition.x-1,this.playerPosition.y,this) 
+        },
+        goUp() { 
+            this.setPlayerPosition()
+            moveUp(this.playerPosition.x,this.playerPosition.y-1,this) 
+        },
+        goDown() { 
+            this.setPlayerPosition()
+            moveDown(this.playerPosition.x,this.playerPosition.y+1,this) 
+        },
+        goRight() {
+            this.setPlayerPosition()
+             moveRight(this.playerPosition.x+1,this.playerPosition.y,this) 
+        },
         onMovePlayerOnClick(x,y){
             if(this.tiles[y-1][x].img == this.player){
                 moveDown(x,y,this)
@@ -114,31 +134,25 @@ export default{
             } 
             // this.checkWinCondition()           
         },
+        
         checkKey(e){
             e = e || window.event
-            for(let i = 0; i < this.tiles.length; i++){
-                for(let j = 0; j < this.tiles[i].length; j++){
-                    if(this.tiles[i][j].img == this.player){
-                        this.playerPosition.x = j
-                        this.playerPosition.y = i
-                    }
-                }
-            }
+
             if(e.keyCode == '87'){
                 console.log('Up')
-                 moveUp(this.playerPosition.x,this.playerPosition.y-1,this)
+                this.goUp()
             }
             else if(e.keyCode == '83'){
                 console.log('Down')
-                moveDown(this.playerPosition.x,this.playerPosition.y+1,this)
+                this.goDown()
             }
             else if(e.keyCode == '65'){
                 console.log('Left')
-                moveLeft(this.playerPosition.x-1,this.playerPosition.y,this)
+                this.goLeft()
             }
             else if(e.keyCode == '68'){
                 console.log('Right')
-                moveRight(this.playerPosition.x+1,this.playerPosition.y,this)
+               this.goRight()
             }
             else if(e.keyCode == '32'){
                 window.location.reload()
@@ -209,13 +223,23 @@ export default{
                     this.tiles[col][row].class = cssClass
                     break
                 }
-
-    } 
+                case 'T':{
+                    this.tiles[col][row].img = this.turboPowerUp
+                    this.tiles[col][row].class = cssClass
+                    break
+                }
+            }
         }
     }
 }
-    },
+},
     created(){
+        this.moveUp = moveUp;
+        this.moveDown = moveDown;
+        this.moveRight = moveRight;
+        this.moveLeft = moveLeft;
+
+
         window.onkeydown = this.checkKey
         let revealGrid = this.displayGrid
         if(revealGrid = true){
@@ -240,7 +264,7 @@ export default{
                     ['W','P', ' ', ' ', ' ',' ', ' ', 'D', ' ','W'],
                     ['W','W', 'W', 'W', 'B',' ', ' ', 'W', ' ','W'],
                     ['W',' ', 'B', ' ', ' ',' ', ' ', ' ', ' ','W'],
-                    ['W',' ', ' ', ' ', 'B',' ', ' ', 'W', 'F','W'],
+                    ['W',' ', ' ', 'T', 'B',' ', ' ', 'W', 'F','W'],
                     ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W']
                 ]
             }
@@ -280,12 +304,25 @@ export default{
             }
             this.flatTiles = this.tiles.flat()
 },
-watch:{
+watch: {
+    arrowClickDir(dir){
+        switch(dir){
+            case "right":this.goRight()
+            break;
+            case "left":this.goLeft()
+            break;
+            case "up":this.goUp()
+            break;
+            case "down":this.goDown()
+            break;
+        }
+
+    },
     points(){
         setTimeout(() => {
-            
             this.checkWinCondition()
         }, 10);
+            
 }
 }
 }
