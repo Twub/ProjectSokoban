@@ -175,25 +175,6 @@ export default{
                 }
                 this.points = 0
         },
-        checkGoalTile(){
-            for(let i = 0; i < this.tiles.length; i++){ /* grid loop checks and keeps the boxGoal in its place */
-                for(let j = 0; j < this.tiles[i].length; j++){
-                    if(this.grid[j][i] == 'F' && this.tiles[j][i].img == this.block || this.tiles[j][i].img == grid.player || this.tiles[j][i].img == this.blockOnGoal){
-                        if(this.grid[j][i] == 'F' && this.tiles[j][i].img == this.block || this.tiles[j][i].img == this.blockOnGoal){
-                            this.tiles[j][i].img = this.blockOnGoal
-                        }
-                    }
-                    else if(this.grid[j][i] == 'F' && this.tiles[j][i].img != this.boxGoal){
-                        this.tiles[j][i].img = this.boxGoal
-                    }
-
-                    if(this.tiles[j][i].img == this.blockOnGoal){
-                        this.points++
-                    }
-                }
-            }
-            this.checkWinCondition()
-        },
         generateMap(size,map, cssClass){
             for(let col = 0; col < size; col++){
                 this.tiles[col] = []
@@ -348,11 +329,5 @@ watch:{
         }
 
     },
-    points(){
-        setTimeout(() => {
-            this.checkWinCondition()
-        }, 10);
-            
-}
 }
 }
