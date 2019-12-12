@@ -5,12 +5,11 @@ import startScreen from './startScreen.js'
 import music from '../utility/SoundUtility.js';
 
 export default{
-    mixins: [storage],
+    mixins: [storage,music],
     components:{
         Grid,
         arrowKeys,
         startScreen,
-        music,
     },
     template:`
     <div class="sokoban" id="sokobanGrid">
@@ -55,7 +54,7 @@ export default{
         diffTest(){
                 this.displayGrid= true 
                 this.startScreen='' 
-                this.displayStartScreen=false     
+                this.displayStartScreen=false                
         },
         reLoad(){
             window.location.reload()    
