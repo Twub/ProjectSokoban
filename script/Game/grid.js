@@ -167,7 +167,6 @@ export default{
             this.checkGoalTile()
         },
         checkWinCondition(){
-            this.flatTiles = this.tiles.flat()
             console.log(this.points)
             console.log(`You have moved: ${this.moves} times`)
             if(this.points == this.goals){
@@ -194,10 +193,11 @@ export default{
                     }
 
                     if(this.tiles[j][i].img == this.blockOnGoal){
-                        grid.points++
+                        this.points++
                     }
                 }
             }
+            this.checkWinCondition()
         },
         generateMap(size,map, cssClass){
             for(let col = 0; col < size; col++){
@@ -332,7 +332,6 @@ export default{
 watch:{
     points(){
         setTimeout(() => {
-            
             this.checkWinCondition()
         }, 10);
     },

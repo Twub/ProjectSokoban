@@ -183,7 +183,6 @@ export function moveRight(x,y,grid){
             grid.moves++
         },delayTime);
         }
-        console.log(grid.pastTile)
     }
 }
         }
@@ -247,7 +246,6 @@ export function moveLeft(x,y,grid){
             grid.moves++
             },delayTime);
         }
-        console.log(grid.pastTile)
     }
 }
         }
