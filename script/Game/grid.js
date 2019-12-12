@@ -2,7 +2,7 @@ import Tile from './Tile.js'
 import Player from './player.js'
 import sound from '../utility/SoundUtility.js';
 import storage from '../utility/StorageUtility.js';
-import { moveLeft, moveRight, moveDown, moveUp } from './gameLogic.js'
+import { moveLeft, moveRight, moveDown, moveUp, } from './gameLogic.js'
 
 export default{
     mixins: [sound, storage],
@@ -21,6 +21,7 @@ export default{
         @movePlayerOnClick="onMovePlayerOnClick"></Tile>
        <!-- <Player class="Player"></Player> -->
         <span class="powerUps">{{powerUps}}</span>
+        <span class="trapptText">{{trapptText}}</span>
         
     </div>
     `,
@@ -28,7 +29,8 @@ export default{
         return{
             tiles:[],
             grid: [],
-            powerUps:`You have 0 powerups`,
+            powerUps:`You have 0 power`,
+            trapptText:`dadd`,
             flatTiles:[],
             amountOfPowerUps: 0,
             hasPowerUp: false,

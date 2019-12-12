@@ -29,6 +29,7 @@ export function moveDown(x,y,grid){
     } 
 
     if(grid.actualTile == grid.trap){
+        grid.trapptText = `you are trapped`;
         trappt()
     }
     
@@ -322,8 +323,10 @@ for(let i = 0; i < grid.tiles.length; i++){ /* grid loop checks and keeps the bo
 }
 }
 }
+
 function trappt(){
     isTrappt=true;
+    grid.trapptText = `You are trappt`
     console.log("you are trappt")
     setTimeout(() => {
         isTrappt=false;
