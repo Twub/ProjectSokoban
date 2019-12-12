@@ -41,7 +41,7 @@ export default{
             blockOnGoal: "/images/img4.png",
             blackBox: "images/blackBox.png",
             powerUp: "images/powerCoin.png",
-            turboPowerUp: "images/speedCoin.jpg",
+            trap: "images/speedCoin.jpg",
             goals: 0, /* Om ni skall ändra antalet goals/boxGoal så glöm inte ändra denna data i created */
             points: 0,
             actualTile: '',
@@ -224,7 +224,7 @@ export default{
                     break
                 }
                 case 'T':{
-                    this.tiles[col][row].img = this.turboPowerUp
+                    this.tiles[col][row].img = this.trap
                     this.tiles[col][row].class = cssClass
                     break
                 }
