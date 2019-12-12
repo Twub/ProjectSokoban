@@ -2,6 +2,7 @@ import Grid from "./grid.js"
 import arrowKeys from '../Controls/arrowKeys.js'
 import storage from '../utility/StorageUtility.js';
 import startScreen from './startScreen.js'
+import music from '../utility/SoundUtility.js';
 
 export default{
     mixins: [storage],
@@ -9,6 +10,7 @@ export default{
         Grid,
         arrowKeys,
         startScreen,
+        music,
     },
     template:`
     <div class="sokoban" id="sokobanGrid">
