@@ -62,6 +62,7 @@ export function moveDown(x,y,grid){
         }
     }
 }
+grid.checkGoalTile()
 }
 export function moveUp(x,y,grid){
     let ableToMove = grid.getItem("isAbleToMove");
@@ -125,6 +126,7 @@ export function moveUp(x,y,grid){
 }
         }
     }
+    grid.checkGoalTile()
 }
 export function moveRight(x,y,grid){
     let ableToMove = grid.getItem("isAbleToMove");
@@ -187,6 +189,7 @@ export function moveRight(x,y,grid){
 }
         }
     }
+    grid.checkGoalTile()
 }
 export function moveLeft(x,y,grid){
     let ableToMove = grid.getItem("isAbleToMove");
@@ -251,5 +254,6 @@ export function moveLeft(x,y,grid){
         }
         
 }
+grid.checkGoalTile()
 }
 /* Försöker omformatera metoderna till en metod för att spara kod */

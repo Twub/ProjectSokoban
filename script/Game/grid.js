@@ -105,22 +105,18 @@ export default{
         goLeft() { 
             this.setPlayerPosition()
             moveLeft(this.playerPosition.x-1,this.playerPosition.y,this) 
-            this.checkGoalTile()
         },
         goUp() { 
             this.setPlayerPosition()
             moveUp(this.playerPosition.x,this.playerPosition.y-1,this) 
-            this.checkGoalTile()
         },
         goDown() { 
             this.setPlayerPosition()
             moveDown(this.playerPosition.x,this.playerPosition.y+1,this)
-            this.checkGoalTile() 
         },
         goRight() {
             this.setPlayerPosition()
              moveRight(this.playerPosition.x+1,this.playerPosition.y,this) 
-             this.checkGoalTile()
         },
         onMovePlayerOnClick(x,y){
             if(this.tiles[y-1][x].img == this.player){
@@ -135,7 +131,6 @@ export default{
             else if(this.tiles[y][x+1].img == this.player){
                 moveLeft(x,y,this)
             } 
-            // this.checkWinCondition() 
             this.checkGoalTile()       
         },
         OnmoveLeftByArrow(){
@@ -164,7 +159,6 @@ export default{
             else if(e.keyCode == '32'){
                 window.location.reload()
             }
-            this.checkGoalTile()
         },
         checkWinCondition(){
             console.log(this.points)
