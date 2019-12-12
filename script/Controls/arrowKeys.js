@@ -1,7 +1,7 @@
 import sound from '/script/utility/SoundUtility.js';
 
 export default{
-   mixins: [sound,],
+   mixins: [sound],
    template:`
    <div id="arrows">
    <i @click="goLeft" class="fa fa-arrow-circle-left" id="sideArrows"></i>

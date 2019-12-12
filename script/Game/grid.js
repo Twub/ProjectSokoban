@@ -73,17 +73,17 @@ export default{
             ],
             map3: [
                 ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W','W','W','W'],
-                ['W',' ', ' ', ' ', ' ',' ', ' ', ' ', ' ',' ','W','F','W'],
-                ['W',' ', ' ', ' ', ' ',' ', ' ', ' ', ' ',' ',' ','F','W'],
-                ['W',' ', ' ', ' ', ' ',' ', ' ', ' ', ' ',' ',' ',' ','W'],
-                ['W',' ', ' ', ' ', ' ',' ', ' ', ' ', ' ',' ',' ','W','W'],
-                ['W',' ', ' ', ' ', ' ',' ', ' ', ' ', ' ',' ',' ',' ','W'],
-                ['W',' ', ' ', ' ', ' ',' ', ' ', ' ', ' ',' ','W','B','W'],
-                ['W',' ', ' ', ' ', ' ',' ', ' ', ' ', ' ',' ',' ',' ','W'],
-                ['W',' ', ' ', ' ', ' ',' ', ' ', ' ', ' ',' ',' ','W','W'],
-                ['W',' ', ' ', ' ', ' ',' ', ' ', ' ', ' ',' ',' ',' ','W'],
-                ['W',' ', 'T', ' ', ' ',' ', ' ', ' ', ' ',' ',' ','F','W'],
-                ['W','P', ' ', ' ', ' ',' ', ' ', ' ', ' ',' ','W','F','W'],
+                ['W',' ', ' ', 'W', ' ',' ', ' ', ' ', ' ',' ','D','F','W'],
+                ['W',' ', 'B', ' ', ' ','W', ' ', ' ', ' ',' ',' ','F','W'],
+                ['W',' ', ' ', ' ', 'W','W', 'W', ' ', 'W','W','W',' ','W'],
+                ['W','W', ' ', 'B', 'W',' ', ' ', ' ', ' ',' ','W',' ','W'],
+                ['W',' ', ' ', 'W', 'W',' ', 'B', ' ', 'B',' ','W',' ','W'],
+                ['W',' ', 'U', ' ', ' ',' ', ' ', ' ', ' ',' ','D','P','W'],
+                ['W',' ', ' ', 'W', 'W',' ', 'W', ' ', 'W',' ','W',' ','W'],
+                ['W','W', ' ', 'B', 'W',' ', ' ', ' ', ' ',' ','W',' ','W'],
+                ['W',' ', ' ', ' ', 'W','W', 'W', ' ', 'W','W','W',' ','W'],
+                ['W',' ', 'B', ' ', ' ','W', ' ', ' ', ' ',' ',' ','F','W'],
+                ['W',' ', ' ', 'W', ' ',' ', ' ', ' ', ' ',' ','D','F','W'],
                 ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W','W','W','W'],
             ], /* Tänker att vi gör map4(Extreme) tillsammans då den skall  vi maxa på, blir avslutnings område */
             playerPosition:{
@@ -113,7 +113,7 @@ export default{
         },
         goDown() { 
             this.setPlayerPosition()
-            moveDown(this.playerPosition.x,this.playerPosition.y+1,this) 
+            moveDown(this.playerPosition.x,this.playerPosition.y+1,this)
         },
         goRight() {
             this.setPlayerPosition()
@@ -132,9 +132,12 @@ export default{
             else if(this.tiles[y][x+1].img == this.player){
                 moveLeft(x,y,this)
             } 
-            // this.checkWinCondition()           
+            this.checkGoalTile()       
         },
-        
+        OnmoveLeftByArrow(){
+        playerPosition=playerPosition + arrowcords;
+
+        },
         checkKey(e){
             e = e || window.event
 
@@ -159,7 +162,6 @@ export default{
             }
         },
         checkWinCondition(){
-            this.flatTiles = this.tiles.flat()
             console.log(this.points)
             console.log(`You have moved: ${this.moves} times`)
             if(this.points == this.goals){
@@ -172,6 +174,25 @@ export default{
                 }
                 }
                 this.points = 0
+        },
+        checkGoalTile(){
+            for(let i = 0; i < this.tiles.length; i++){ /* grid loop checks and keeps the boxGoal in its place */
+                for(let j = 0; j < this.tiles[i].length; j++){
+                    if(this.grid[j][i] == 'F' && this.tiles[j][i].img == this.block || this.tiles[j][i].img == grid.player || this.tiles[j][i].img == this.blockOnGoal){
+                        if(this.grid[j][i] == 'F' && this.tiles[j][i].img == this.block || this.tiles[j][i].img == this.blockOnGoal){
+                            this.tiles[j][i].img = this.blockOnGoal
+                        }
+                    }
+                    else if(this.grid[j][i] == 'F' && this.tiles[j][i].img != this.boxGoal){
+                        this.tiles[j][i].img = this.boxGoal
+                    }
+
+                    if(this.tiles[j][i].img == this.blockOnGoal){
+                        this.points++
+                    }
+                }
+            }
+            this.checkWinCondition()
         },
         generateMap(size,map, cssClass){
             for(let col = 0; col < size; col++){
@@ -255,6 +276,8 @@ export default{
             if(this.difficulty == "Easy"){ /* This section makes checking for boxGoal easier and dynamic */
                 /* Ändra goals baserat på hur många 'F' det finns och grid:en skall vara samma för respektive map och svårighetsgrad */
                 this.goals = 2
+                this.playerPosition.x = 1
+                this.playerPosition.y = 5
                 this.grid = [ /* Skall ni ändra map layout så ändra också grid:en i data */
                     ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W'],
                     ['W',' ', ' ', ' ', 'B',' ', ' ', 'W', 'F','W'],
@@ -270,6 +293,8 @@ export default{
             }
             else if(this.difficulty == "Normal"){
                 this.goals = 4
+                this.playerPosition.x = 5
+                this.playerPosition.y = 5
                 this.grid = [
                     ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W'],
                     ['W','F', ' ', ' ', ' ',' ', ' ', ' ', 'F','W'],
@@ -287,24 +312,29 @@ export default{
                 this.goals = 2
                 this.grid = [
                     ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W','W','W','W'],
-                    ['W',' ', ' ', ' ', ' ',' ', ' ', ' ', ' ',' ','W','F','W'],
-                    ['W',' ', ' ', ' ', ' ',' ', ' ', ' ', ' ',' ',' ','F','W'],
-                    ['W',' ', ' ', ' ', ' ',' ', ' ', ' ', ' ',' ',' ',' ','W'],
-                    ['W',' ', ' ', ' ', ' ',' ', ' ', ' ', ' ',' ',' ','W','W'],
-                    ['W',' ', ' ', ' ', ' ',' ', ' ', ' ', ' ',' ',' ',' ','W'],
-                    ['W',' ', ' ', ' ', ' ',' ', ' ', ' ', ' ',' ','W','B','W'],
-                    ['W',' ', ' ', ' ', ' ',' ', ' ', ' ', ' ',' ',' ',' ','W'],
-                    ['W',' ', ' ', ' ', ' ',' ', ' ', ' ', ' ',' ',' ','W','W'],
-                    ['W',' ', ' ', ' ', ' ',' ', ' ', ' ', ' ',' ',' ',' ','W'],
-                    ['W',' ', ' ', ' ', ' ',' ', ' ', ' ', ' ',' ',' ','F','W'],
-                    ['W','P', ' ', ' ', ' ',' ', ' ', ' ', ' ',' ','W','F','W'],
+                    ['W',' ', ' ', 'W', ' ',' ', ' ', ' ', ' ',' ','D','F','W'],
+                    ['W',' ', 'B', ' ', ' ','W', ' ', ' ', ' ',' ',' ','F','W'],
+                    ['W',' ', ' ', ' ', 'W','W', 'W', ' ', 'W','W','W',' ','W'],
+                    ['W','W', ' ', 'B', 'W',' ', ' ', ' ', ' ',' ','W',' ','W'],
+                    ['W',' ', ' ', 'W', 'W',' ', 'B', ' ', 'B',' ','W',' ','W'],
+                    ['W',' ', 'U', ' ', ' ',' ', ' ', ' ', ' ',' ','D','P','W'],
+                    ['W',' ', ' ', 'W', 'W',' ', 'W', ' ', 'W',' ','W',' ','W'],
+                    ['W','W', ' ', 'B', 'W',' ', ' ', ' ', ' ',' ','W',' ','W'],
+                    ['W',' ', ' ', ' ', 'W','W', 'W', ' ', 'W','W','W',' ','W'],
+                    ['W',' ', 'B', ' ', ' ','W', ' ', ' ', ' ',' ',' ','F','W'],
+                    ['W',' ', ' ', 'W', ' ',' ', ' ', ' ', ' ',' ','D','F','W'],
                     ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W','W','W','W'],
                 ]
             }
             }
             this.flatTiles = this.tiles.flat()
 },
-watch: {
+watch:{
+    points(){
+        setTimeout(() => {
+            this.checkWinCondition()
+        }, 10);
+    },
     arrowClickDir(dir){
         switch(dir){
             case "right":this.goRight()
@@ -323,6 +353,5 @@ watch: {
             this.checkWinCondition()
         }, 10);
             
-}
 }
 }

@@ -76,24 +76,10 @@ export function moveDown(x,y,grid){
         },delayTime);
         }
     }
-    for(let i = 0; i < grid.tiles.length; i++){ /* grid loop checks and keeps the boxGoal in its place */
-        for(let j = 0; j < grid.tiles[i].length; j++){
-            if(grid.grid[j][i] == 'F' && grid.tiles[j][i].img == grid.block || grid.tiles[j][i].img == grid.player || grid.tiles[j][i].img == grid.blockOnGoal){
-                if(grid.grid[j][i] == 'F' && grid.tiles[j][i].img == grid.block || grid.tiles[j][i].img == grid.blockOnGoal){
-                    grid.tiles[j][i].img = grid.blockOnGoal
-                }
-            }
-            else if(grid.grid[j][i] == 'F' && grid.tiles[j][i].img != grid.boxGoal){
-                grid.tiles[j][i].img = grid.boxGoal
-            }
-            if(grid.tiles[j][i].img == grid.blockOnGoal){
-                grid.points++
-            }
-        }
-    }
         }
     }
 }
+grid.checkGoalTile()
 }
 export function moveUp(x,y,grid){
     let ableToMove = grid.getItem("isAbleToMove");
@@ -154,27 +140,10 @@ export function moveUp(x,y,grid){
         },delayTime);
         }
         }
-        for(let i = 0; i < grid.tiles.length; i++){ /* grid loop checks and keeps the boxGoal in its place */
-            for(let j = 0; j < grid.tiles[i].length; j++){
-                if(grid.grid[j][i] == 'F' && grid.tiles[j][i].img == grid.block || grid.tiles[j][i].img == grid.player || grid.tiles[j][i].img == grid.blockOnGoal){
-                    if(grid.grid[j][i] == 'F' && grid.tiles[j][i].img == grid.block || grid.tiles[j][i].img == grid.blockOnGoal){
-                        grid.tiles[j][i].img = grid.blockOnGoal
-                    }
-                    else{
-                        
-                    }
-                }
-                else if(grid.grid[j][i] == 'F' && grid.tiles[j][i].img != grid.boxGoal){
-                    grid.tiles[j][i].img = grid.boxGoal
-                }
-                if(grid.tiles[j][i].img == grid.blockOnGoal){
-                    grid.points++
-                }
-            }
-        }
 }
         }
     }
+    grid.checkGoalTile()
 }
 export function moveRight(x,y,grid){
     let ableToMove = grid.getItem("isAbleToMove");
@@ -233,29 +202,11 @@ export function moveRight(x,y,grid){
             grid.moves++
         },delayTime);
         }
-        console.log(grid.pastTile)
-    }
-    for(let i = 0; i < grid.tiles.length; i++){ /* grid loop checks and keeps the boxGoal in its place */
-        for(let j = 0; j < grid.tiles[i].length; j++){
-            if(grid.grid[j][i] == 'F' && grid.tiles[j][i].img == grid.block || grid.tiles[j][i].img == grid.player || grid.tiles[j][i].img == grid.blockOnGoal){
-                if(grid.grid[j][i] == 'F' && grid.tiles[j][i].img == grid.block || grid.tiles[j][i].img == grid.blockOnGoal){
-                    grid.tiles[j][i].img = grid.blockOnGoal
-                }
-                else{
-                    
-                }
-            }
-            else if(grid.grid[j][i] == 'F' && grid.tiles[j][i].img != grid.boxGoal){
-                grid.tiles[j][i].img = grid.boxGoal
-            }
-            if(grid.tiles[j][i].img == grid.blockOnGoal){
-                grid.points++
-            }
-        }
     }
 }
         }
     }
+    grid.checkGoalTile()
 }
 export function moveLeft(x,y,grid){
     let ableToMove = grid.getItem("isAbleToMove");
@@ -315,27 +266,11 @@ export function moveLeft(x,y,grid){
             grid.moves++
             },delayTime);
         }
-        console.log(grid.pastTile)
-    }
-    for(let i = 0; i < grid.tiles.length; i++){ /* grid loop checks and keeps the boxGoal in its place */
-        for(let j = 0; j < grid.tiles[i].length; j++){
-            if(grid.grid[j][i] == 'F' && grid.tiles[j][i].img == grid.block || grid.tiles[j][i].img == grid.player || grid.tiles[j][i].img == grid.blockOnGoal){
-                if(grid.grid[j][i] == 'F' && grid.tiles[j][i].img == grid.block || grid.tiles[j][i].img == grid.blockOnGoal){
-                    grid.tiles[j][i].img = grid.blockOnGoal
-                    
-                }
-            }
-            else if(grid.grid[j][i] == 'F' && grid.tiles[j][i].img != grid.boxGoal){
-                grid.tiles[j][i].img = grid.boxGoal
-            }
-            if(grid.tiles[j][i].img == grid.blockOnGoal){
-                grid.points++
-            }
-        }
     }
 }
         }
         
 }
+grid.checkGoalTile()
 }
 /* Försöker omformatera metoderna till en metod för att spara kod */
