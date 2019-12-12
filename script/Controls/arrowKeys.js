@@ -1,8 +1,7 @@
 import sound from '/script/utility/SoundUtility.js';
-import movement from './Move.js';
 
 export default{
-   mixins: [sound, movement],
+   mixins: [sound],
    template:`
    <div id="arrows">
    <i @click="goLeft" class="fa fa-arrow-circle-left" id="sideArrows"></i>
@@ -11,29 +10,31 @@ export default{
    <i @click="goDown" class="fa fa-arrow-circle-down"></i>
    </div>
    <i @click="goRight" class="fa fa-arrow-circle-right" id="sideArrows"></i>
-   
    </div>
-  
    `, 
+
+created() {
+
+},
    methods:{
        goUp(){
            this.playSound('/sound/moveSound.wav');
-           this.moveUp();
-           
+            this.$emit("arrowClick","up")
+        
        },
        goDown(){
             this.playSound('/sound/moveSound.wav');
-            this.moveDown();
+            this.$emit("arrowClick","down")
            
        },
        goRight(){
            this.playSound('/sound/moveSound.wav');
-           this.moveRight();
+           this.$emit("arrowClick","right")
            
        },
        goLeft(){
            this.playSound('/sound/moveSound.wav');
-           this.moveLeft();
+           this.$emit("arrowClick","left")
        }
    }
 }

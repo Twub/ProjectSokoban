@@ -135,5 +135,8 @@
  #start-screen{
     font-family: 'Press Start 2P', cursive; 
     color: red;
+    
+ }
+ #start-title{
     font-size:4vw;
  }
