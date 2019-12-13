@@ -34,18 +34,17 @@ export default {
         playMusic: function(){
             var audio = new Audio('/sound/menyMusic.mp3');
             audio.volume = this.getAudioVolume();
+            audio.loop = true;
+            audio.currentTime = 0;
             if (this.isMusicOn()){
-                audio.loop = true;
                 audio.play();
-            }
-            else{
+            }else{
+                audio.volume = 0;
                 audio.pause();
-                audio.currentTime = 0;
             }
         },
         isSoundEnable: function(){
             let volumeEnable = this.getItem('isSoundEnable');
-            audio.volume = this.getAudioVolume();
             if (volumeEnable == 'true'){
                 return true;
             }
