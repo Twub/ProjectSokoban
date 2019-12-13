@@ -1,5 +1,5 @@
 import mainHead from './header.js';
-import sokobanGame from './Sokoban.js';
+import sokobanGame from './Game/Sokoban.js'
 import storage from './utility/StorageUtility.js';
 
 

@@ -28,19 +28,44 @@
     justify-content: space-evenly;
  }
 
- #grid{ /* Tror @media  skall vara på detta ID */
+ #grid{ 
      flex-wrap: wrap;
      display: flex;
      width: 100%;
      height: 50%;
-     cursor:pointer
+     cursor:pointer;
  }
- #grids{
+ .powerUps{
+     position: absolute;
      justify-content: center;
+     width: 10%;
+     margin: 0;
+     padding: 0;  
  }
- .cell{ /* eller @media på denna, denna ändrar hur grid:en visas */
+ .trapptText{
+    font-family: 'Press Start 2P', cursive;
+    position: absolute;
+    left: 40%;
+    top: 50%;
+    justify-content: center;
+    width: 10%;
+    margin: 0;
+    padding: 0; 
+    color: red;
+    font-size: 5vh;
+ }
+ 
+ .small{  /* Olika map storlekar */
      width: 10%;
      height: 2.5vw;
+ }
+ .medium{
+    width: 7.5%;
+    height: 2vw;
+ }
+ .large{
+    width: 10%;
+    height: 2.5vw;
  }
  .Player{
      position: absolute;
@@ -122,5 +147,8 @@
  #start-screen{
     font-family: 'Press Start 2P', cursive; 
     color: red;
+    
+ }
+ #start-title{
     font-size:4vw;
  }

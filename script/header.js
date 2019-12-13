@@ -1,5 +1,5 @@
 import settingsTab from './tabs/settings.js';
-import timer from './timer.js';
+import timer from './Game/timer.js';
 import sound from './utility/SoundUtility.js';
 import storage from './utility/StorageUtility.js';
 
