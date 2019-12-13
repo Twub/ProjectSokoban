@@ -32,7 +32,6 @@ export default{
             this.addItem("isAbleToMove", true);
             this.run(60);
             this.buttonClick();
-            //this.playMusic();
         },
 
         stopGame: function(){

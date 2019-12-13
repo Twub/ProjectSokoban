@@ -138,10 +138,7 @@ export default{
             } 
             this.checkGoalTile()       
         },
-        OnmoveLeftByArrow(){
-        playerPosition=playerPosition + arrowcords;
-
-        },
+      
         checkKey(e){
             e = e || window.event
 

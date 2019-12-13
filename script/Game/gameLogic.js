@@ -340,6 +340,8 @@ for(let i = 0; i < grid.tiles.length; i++){ /* grid loop checks and keeps the bo
 }
 }
 
+
+
 function trapped(){
     isTrapped=true;
     console.log("you are trappt")
