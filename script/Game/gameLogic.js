@@ -1,8 +1,9 @@
-let isTrappt=false;
+let isTrapped=false;
+let trapTime= 3000;
 export function moveDown(x,y,grid){
     let ableToMove = grid.getItem("isAbleToMove");
     if (ableToMove == 'true'){
-    if (isTrappt==false){   
+    if (isTrapped==false){   
         grid.buttonClick();
     grid.actualTile = grid.tiles[y][x].img
     if(grid.player == grid.tiles[y-1][x].img ||
@@ -29,8 +30,11 @@ export function moveDown(x,y,grid){
     } 
 
     if(grid.actualTile == grid.trap){
-        grid.trapptText = `you are trapped`;
-        trappt()
+        grid.trapptText = `TRAPPED!`;
+        trapped()
+        setTimeout(() => {
+            grid.trapptText = ` `
+        }, trapTime);
     }
     
 
@@ -88,7 +92,7 @@ export function moveDown(x,y,grid){
 export function moveUp(x,y,grid){
     let ableToMove = grid.getItem("isAbleToMove");
     if (ableToMove == 'true'){
-    if (isTrappt==false){
+    if (isTrapped==false){
         grid.buttonClick();
     grid.actualTile = grid.tiles[y][x].img
     if(grid.player == grid.tiles[y-1][x].img ||
@@ -112,7 +116,11 @@ export function moveUp(x,y,grid){
         console.log('You have no powerup')
     } 
     if(grid.actualTile == grid.trap){
-        trappt()
+        trapped()
+        grid.trapptText = `TRAPPED!`;
+        setTimeout(() => {
+            grid.trapptText = ` `
+        }, trapTime);
     }
     if(grid.tiles[y+1][x].img == grid.player) { /* Denna kollar när gubben går uppåt */
         grid.player = "/images/playerUp.png"
@@ -168,7 +176,7 @@ for(let i = 0; i < grid.tiles.length; i++){ /* grid loop checks and keeps the bo
 export function moveRight(x,y,grid){
     let ableToMove = grid.getItem("isAbleToMove");
     if (ableToMove == 'true'){
-    if (isTrappt==false){
+    if (isTrapped==false){
         grid.buttonClick();
     grid.actualTile = grid.tiles[y][x].img
     if(grid.player == grid.tiles[y-1][x].img ||
@@ -192,7 +200,11 @@ export function moveRight(x,y,grid){
         console.log('You have no powerup')
     } 
     if(grid.actualTile == grid.trap){
-        trappt()
+        trapped()
+        grid.trapptText = `TRAPPED!`;
+        setTimeout(() => {
+            grid.trapptText = ` `
+        }, trapTime);
     }
     if(grid.tiles[y][x-1].img == grid.player) { /* Kollar n'r gubben går åt vänster */
     grid.player = "/images/playerRight.png"
@@ -247,7 +259,7 @@ for(let i = 0; i < grid.tiles.length; i++){ /* grid loop checks and keeps the bo
 export function moveLeft(x,y,grid){
     let ableToMove = grid.getItem("isAbleToMove");
     if (ableToMove == 'true'){
-    if (isTrappt==false){
+    if (isTrapped==false){
         grid.buttonClick();
     grid.actualTile = grid.tiles[y][x].img
     if(grid.player == grid.tiles[y-1][x].img ||
@@ -271,7 +283,11 @@ export function moveLeft(x,y,grid){
         console.log('You have no powerup')
     } 
     if(grid.actualTile == grid.trap){
-        trappt()
+        trapped()
+        grid.trapptText = `TRAPPED!`;
+        setTimeout(() => {
+            grid.trapptText = ` `
+        }, trapTime);
     }
     if(grid.tiles[y][x+1].img == grid.player) { /* Gubben går åt höger */
         grid.player = "/images/playerLeft.png"
@@ -324,13 +340,12 @@ for(let i = 0; i < grid.tiles.length; i++){ /* grid loop checks and keeps the bo
 }
 }
 
-function trappt(){
-    isTrappt=true;
-    grid.trapptText = `You are trappt`
+function trapped(){
+    isTrapped=true;
     console.log("you are trappt")
     setTimeout(() => {
-        isTrappt=false;
-    }, 3000);
+        isTrapped=false;
+    }, trapTime);
 }
 
 /* Försöker omformatera metoderna till en metod för att spara kod */

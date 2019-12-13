@@ -20,8 +20,10 @@ export default{
         class="grids"
         @movePlayerOnClick="onMovePlayerOnClick"></Tile>
        <!-- <Player class="Player"></Player> -->
+       
         <span class="powerUps">{{powerUps}}</span>
         <span class="trapptText">{{trapptText}}</span>
+      
         
     </div>
     `,
@@ -29,8 +31,8 @@ export default{
         return{
             tiles:[],
             grid: [],
-            powerUps:`You have 0 power`,
-            trapptText:`dadd`,
+            powerUps:`You have 0 powerups`,
+            trapptText:``,
             flatTiles:[],
             amountOfPowerUps: 0,
             hasPowerUp: false,
