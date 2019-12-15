@@ -12,33 +12,33 @@ export default {
     },
     methods: {
         buttonClick: function(){
-            if (this.isSoundEnable() == true){
+            if (this.isSoundOn() == true){
                 this.buttonSound.volume = this.getAudioVolume();
                 this.buttonSound.play();    
             }  
         },
         playSound: function(soundFile){
-            if (this.isSoundEnable() == true) {
+            if (this.isSoundOn() == true) {
                 var audio = new Audio(soundFile);
                 audio.volume = this.getAudioVolume();
                 audio.play();
             }  
         },
         playBoxSound: function(){
-            if (this.isSoundEnable() == true){
+            if (this.isSoundOn() == true){
                 this.boxSound.volume = this.getAudioVolume();
                 this.boxSound.play();
             }
         },
         playGoalSound: function(){
-            if (this.isSoundEnable() == true){
+            if (this.isSoundOn() == true){
                 this.goalSound.volume = this.getAudioVolume();
                 this.goalSound.play();
             }
         },
         playMusic: function(){
             this.musicSound.volume = this.getAudioVolume();
-            if (this.isSoundEnable == true){
+            if (this.isSoundOn() == true){
                 if (this.isMusicOn()){
                     this.musicSound.play();
                     this.musicSound.loop = true;
@@ -47,8 +47,9 @@ export default {
                     this.musicSound.currentTime = 0;
                 }
             }
+
         },
-        isSoundEnable: function(){
+        isSoundOn: function(){
             let volumeEnable = this.getItem('isSoundEnable');
             if (volumeEnable == 'true'){
                 return true;
