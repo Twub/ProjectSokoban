@@ -2,6 +2,11 @@ import storage from './StorageUtility.js';
 
 export default {
     mixins: [storage],
+    data(){
+        return {
+            musicSound: new Audio('/sound/menyMusic.mp3'),
+        }
+    },
     methods: {
         buttonClick: function(){
             if (this.isSoundEnable() == true){
@@ -32,15 +37,14 @@ export default {
             }
         },
         playMusic: function(){
-            var audio = new Audio('/sound/menyMusic.mp3');
-            audio.volume = this.getAudioVolume();
-            audio.loop = true;
-            audio.currentTime = 0;
+            this.musicSound.volume = this.getAudioVolume();
+            
             if (this.isMusicOn()){
-                audio.play();
+                this.musicSound.play();
+                this.musicSound.loop = true;
             }else{
-                audio.volume = 0;
-                audio.pause();
+                this.musicSound.pause();
+                this.musicSound.currentTime = 0;
             }
         },
         isSoundEnable: function(){
