@@ -128,7 +128,7 @@ export default{
         },
         checkWinCondition(){
             if(this.points == this.goals){
-                let condition = confirm(`You have completed ${this.difficulty} in ${this.moves} moves`)
+                let condition = confirm(`You have completed ${this.difficulty} in ${this.moves} moves `) /* Implementera timer räkning här */
                 if(condition == true){
                     window.location.reload()
                 }
@@ -220,6 +220,10 @@ export default{
                 this.map = maps[2]
                 this.generateMap(13,this.map,"medium")
             }
+            else if(this.difficulty == "Extreme"){
+                this.map = maps[3]
+                this.generateMap(20,this.map,"large")
+            }
             if(this.difficulty == "Easy"){ /* This section makes checking for boxGoal easier and dynamic */
                 /* Ändra goals baserat på hur många 'F' det finns och grid:en skall vara samma för respektive map och svårighetsgrad */
                 this.goals = 2
@@ -238,6 +242,12 @@ export default{
                 this.playerPosition.x = 11
                 this.playerPosition.y = 6
                 this.grid = maps[2]
+            }
+            else if(this.difficulty == "Extreme"){
+                this.goals = 6
+                this.playerPosition.x = 11
+                this.playerPosition.y = 6
+                this.grid = maps[3]
             }
             }
             this.flatTiles = this.tiles.flat()
