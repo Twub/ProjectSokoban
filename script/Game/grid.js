@@ -1,5 +1,4 @@
 import Tile from './Tile.js'
-import Player from './player.js'
 import sound from '../utility/SoundUtility.js';
 import storage from '../utility/StorageUtility.js';
 import { moveLeft, moveRight, moveDown, moveUp } from './gameLogic.js'
@@ -10,7 +9,6 @@ export default{
     props:['difficulty','displayGrid', 'arrowClickDir'],
     components:{
         Tile,
-        Player,
     },
     template: `
     <div id="grid">
@@ -19,13 +17,9 @@ export default{
         :position="tile"
         :key="'tile'+ id + tile.x + tile.y"
         class="grids"
-        @movePlayerOnClick="onMovePlayerOnClick"></Tile>
-       <!-- <Player class="Player"></Player> -->
-       
+        @movePlayerOnClick="onMovePlayerOnClick"></Tile>       
         <span class="powerUps">{{powerUps}}</span>
-        <span class="trapptText">{{trapptText}}</span>
-      
-        
+        <span class="trapptText">{{trapptText}}</span>  
     </div>
     `,
     data(){

@@ -350,5 +350,3 @@ function trapped(){
         isTrapped=false;
     }, trapTime);
 }
-
-/* Försöker omformatera metoderna till en metod för att spara kod */
