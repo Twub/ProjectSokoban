@@ -29,8 +29,11 @@ export default {
         },
         playMusic: function(){
             if (this.isSoundEnable() == true){
+            
                 var audio = new Audio('/sound/menyMusic.mp3');
+                audio.loop = true;
                 audio.play();
+           
             }
         },
         isSoundEnable: function(){

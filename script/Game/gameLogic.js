@@ -1,5 +1,4 @@
 
-let delayTime=50;
 export function moveDown(x,y,grid){
     let ableToMove = grid.getItem("isAbleToMove");
     if (ableToMove == 'true'){
@@ -27,20 +26,8 @@ export function moveDown(x,y,grid){
     else if(grid.tiles[y][x].img == grid.breakableWall && grid.hasPowerUp == false){
         console.log('You have no powerup')
     } 
-    if( grid.actualTile == grid.turboPowerUp)
-    {
-        grid.amountOfPowerUps++
-        grid.powerUps = `You have ${grid.amountOfPowerUps} powerups`
-        console.log('You have a powerup')
-        delayTime=0;
-        setTimeout(function() {
-            delayTime=100;
-            grid.amountOfPowerUps--
-            grid.powerUps = `You have ${grid.amountOfPowerUps} powerups`
+    
 
-        },10000);
-
-    }
     if(grid.tiles[y-1][x].img == grid.player) { /* Denna if är till för sätta tile rätt och undvika dupe player */
         grid.player = "/images/playerDown.png"
         if( grid.tiles[y][x].img == grid.block && grid.tiles[y+1][x].img == grid.wall ||
@@ -54,32 +41,42 @@ export function moveDown(x,y,grid){
                 grid.tiles[y-1][x].img = grid.player
         }
         else if(grid.tiles[y][x].img == grid.block && (grid.tiles[y+1][x].img != grid.wall) ||grid.tiles[y][x].img == grid.blockOnGoal){ /* Denna kollar när gubben går neråt */
-           setTimeout(function() {
             grid.pastTile = grid.tiles[y-1][x].img
             grid.tiles[y-1][x].img = grid.ground
             grid.tiles[y+1][x].img = grid.block
             grid.tiles[y][x].img = grid.player
-            grid.moves++
-           },delayTime);
-            
+            grid.moves++ 
         }
         else if(grid.tiles[y][x].img == grid.breakableWall && grid.hasPowerUp == false ){
             console.log('grid is a thin wall')
             grid.tiles[y-1][x].img = grid.player
         }
         else{
-            setTimeout(function() {
             grid.pastTile = grid.tiles[y-1][x].img
             grid.tiles[y-1][x].img = grid.ground
             grid.tiles[y][x].img = grid.player
             grid.moves++
-        },delayTime);
         }
     }
+        }
+        for(let i = 0; i < grid.tiles.length; i++){ /* grid loop checks and keeps the boxGoal in its place */
+            for(let j = 0; j < grid.tiles[i].length; j++){
+                if(grid.grid[j][i] == 'F' && grid.tiles[j][i].img == grid.block || grid.tiles[j][i].img == grid.player || grid.tiles[j][i].img == grid.blockOnGoal){
+                    if(grid.grid[j][i] == 'F' && grid.tiles[j][i].img == grid.block || grid.tiles[j][i].img == grid.blockOnGoal){
+                        grid.tiles[j][i].img = grid.blockOnGoal
+                    }
+                }
+                else if(grid.grid[j][i] == 'F' && grid.tiles[j][i].img != grid.boxGoal){
+                    grid.tiles[j][i].img = grid.boxGoal
+                }
+        
+                if(grid.tiles[j][i].img == grid.blockOnGoal){
+                    grid.points++
+                }
+            }
         }
     }
 }
-grid.checkGoalTile()
 }
 export function moveUp(x,y,grid){
     let ableToMove = grid.getItem("isAbleToMove");
@@ -119,31 +116,42 @@ export function moveUp(x,y,grid){
         }
         
         else if(grid.tiles[y][x].img == grid.block && grid.tiles[y-1][x].img != grid.wall  ||grid.tiles[y][x].img == grid.blockOnGoal){
-            setTimeout(function() {
             grid.pastTile = grid.tiles[y+1][x].img
             grid.tiles[y+1][x].img = grid.ground
             grid.tiles[y-1][x].img = grid.block
             grid.tiles[y][x].img = grid.player
             grid.moves++
-        },delayTime);
         }
         else if(grid.tiles[y][x].img == grid.breakableWall && grid.hasPowerUp == false ){
             console.log('grid is a thin wall')
             grid.tiles[y+1][x].img = grid.player
         }
         else{
-            setTimeout(function() {
             grid.pastTile = grid.tiles[y-1][x].img
             grid.tiles[y+1][x].img = grid.ground
             grid.tiles[y][x].img = grid.player
             grid.moves++
-        },delayTime);
         }
         }
 }
+for(let i = 0; i < grid.tiles.length; i++){ /* grid loop checks and keeps the boxGoal in its place */
+    for(let j = 0; j < grid.tiles[i].length; j++){
+        if(grid.grid[j][i] == 'F' && grid.tiles[j][i].img == grid.block || grid.tiles[j][i].img == grid.player || grid.tiles[j][i].img == grid.blockOnGoal){
+            if(grid.grid[j][i] == 'F' && grid.tiles[j][i].img == grid.block || grid.tiles[j][i].img == grid.blockOnGoal){
+                grid.tiles[j][i].img = grid.blockOnGoal
+            }
+        }
+        else if(grid.grid[j][i] == 'F' && grid.tiles[j][i].img != grid.boxGoal){
+            grid.tiles[j][i].img = grid.boxGoal
+        }
+
+        if(grid.tiles[j][i].img == grid.blockOnGoal){
+            grid.points++
         }
     }
-    grid.checkGoalTile()
+}
+        }
+    }
 }
 export function moveRight(x,y,grid){
     let ableToMove = grid.getItem("isAbleToMove");
@@ -182,31 +190,42 @@ export function moveRight(x,y,grid){
             grid.tiles[y][x-1].img = grid.player
     }
        else if(grid.tiles[y][x].img == grid.block && grid.tiles[y][x+1].img != grid.wall  ||grid.tiles[y][x].img == grid.blockOnGoal){
-        setTimeout(function() {
             grid.pastTile = grid.tiles[y][x-1].img
             grid.tiles[y][x-1].img = grid.ground
             grid.tiles[y][x+1].img = grid.block
             grid.tiles[y][x].img = grid.player
             grid.moves++
-        },delayTime);
         }
         else if(grid.tiles[y][x].img == grid.breakableWall && grid.hasPowerUp == false ){
             console.log('grid is a thin wall')
             grid.tiles[y][x-1].img = grid.player
         }
         else{
-            setTimeout(function() {
             grid.pastTile = grid.tiles[y-1][x].img
             grid.tiles[y][x-1].img = grid.ground
             grid.tiles[y][x].img = grid.player
             grid.moves++
-        },delayTime);
+        }
+    }
+}
+for(let i = 0; i < grid.tiles.length; i++){ /* grid loop checks and keeps the boxGoal in its place */
+    for(let j = 0; j < grid.tiles[i].length; j++){
+        if(grid.grid[j][i] == 'F' && grid.tiles[j][i].img == grid.block || grid.tiles[j][i].img == grid.player || grid.tiles[j][i].img == grid.blockOnGoal){
+            if(grid.grid[j][i] == 'F' && grid.tiles[j][i].img == grid.block || grid.tiles[j][i].img == grid.blockOnGoal){
+                grid.tiles[j][i].img = grid.blockOnGoal
+            }
+        }
+        else if(grid.grid[j][i] == 'F' && grid.tiles[j][i].img != grid.boxGoal){
+            grid.tiles[j][i].img = grid.boxGoal
+        }
+
+        if(grid.tiles[j][i].img == grid.blockOnGoal){
+            grid.points++
         }
     }
 }
         }
     }
-    grid.checkGoalTile()
 }
 export function moveLeft(x,y,grid){
     let ableToMove = grid.getItem("isAbleToMove");
@@ -245,32 +264,42 @@ export function moveLeft(x,y,grid){
                 grid.tiles[y][x+1].img = grid.player
         }
         else if(grid.tiles[y][x].img == grid.block && grid.tiles[y][x-1].img != grid.wall  || grid.tiles[y][x].img == grid.blockOnGoal){
-            setTimeout(function() {
             grid.pastTile = grid.tiles[y][x+1].img
             grid.tiles[y][x+1].img = grid.ground
             grid.tiles[y][x-1].img = grid.block
             grid.tiles[y][x].img = grid.player
-            grid.moves++
-            },delayTime);
-            
+            grid.moves++     
         }
         else if(grid.tiles[y][x].img == grid.breakableWall && grid.hasPowerUp == false ){
             console.log('grid is a thin wall')
             grid.tiles[y][x+1].img = grid.player
         }
         else{
-            setTimeout(function() {
             grid.pastTile = grid.tiles[y-1][x].img
             grid.tiles[y][x+1].img = grid.ground
             grid.tiles[y][x].img = grid.player
             grid.moves++
-            },delayTime);
+        }
+    }
+}
+for(let i = 0; i < grid.tiles.length; i++){ /* grid loop checks and keeps the boxGoal in its place */
+    for(let j = 0; j < grid.tiles[i].length; j++){
+        if(grid.grid[j][i] == 'F' && grid.tiles[j][i].img == grid.block || grid.tiles[j][i].img == grid.player || grid.tiles[j][i].img == grid.blockOnGoal){
+            if(grid.grid[j][i] == 'F' && grid.tiles[j][i].img == grid.block || grid.tiles[j][i].img == grid.blockOnGoal){
+                grid.tiles[j][i].img = grid.blockOnGoal
+            }
+        }
+        else if(grid.grid[j][i] == 'F' && grid.tiles[j][i].img != grid.boxGoal){
+            grid.tiles[j][i].img = grid.boxGoal
+        }
+
+        if(grid.tiles[j][i].img == grid.blockOnGoal){
+            grid.points++
         }
     }
 }
         }
         
 }
-grid.checkGoalTile()
 }
 /* Försöker omformatera metoderna till en metod för att spara kod */

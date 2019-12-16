@@ -2,9 +2,10 @@ import Grid from "./grid.js"
 import arrowKeys from '../Controls/arrowKeys.js'
 import storage from '../utility/StorageUtility.js';
 import startScreen from './startScreen.js'
+import music from '../utility/SoundUtility.js';
 
 export default{
-    mixins: [storage],
+    mixins: [storage,music],
     components:{
         Grid,
         arrowKeys,
@@ -53,7 +54,7 @@ export default{
         diffTest(){
                 this.displayGrid= true 
                 this.startScreen='' 
-                this.displayStartScreen=false     
+                this.displayStartScreen=false                
         },
         reLoad(){
             window.location.reload()    
