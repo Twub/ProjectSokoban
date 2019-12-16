@@ -101,7 +101,10 @@ export default{
                 moveLeft(x,y,this)
             }       
         },
-      
+      timerOn(){
+        let ableToMove = grid.getItem("isAbleToMove");
+        if (ableToMove == 'true'){}
+      },
         checkKey(e){
             e = e || window.event
 
