@@ -99,8 +99,7 @@ export default{
             }
             else if(this.tiles[y][x+1].img == this.player){
                 moveLeft(x,y,this)
-            } 
-            this.checkGoalTile()       
+            }       
         },
       
         checkKey(e){
@@ -125,10 +124,9 @@ export default{
             else if(e.keyCode == '32'){
                 window.location.reload()
             }
+            
         },
         checkWinCondition(){
-            console.log(this.points)
-            console.log(`You have moved: ${this.moves} times`)
             if(this.points == this.goals){
                 let condition = confirm(`You have completed ${this.difficulty} in ${this.moves} moves`)
                 if(condition == true){
@@ -149,7 +147,7 @@ export default{
                         y: col,
                     }
                     this.tiles[col].push(position)
-            switch(this.map[col][row]){
+            switch(map[col][row]){
                 case 'W':{
                     this.tiles[col][row].img = this.wall
                     this.tiles[col][row].class = cssClass
@@ -236,7 +234,9 @@ export default{
                 this.grid = maps[1]
             }
             else if(this.difficulty == "Hard"){
-                this.goals = 2
+                this.goals = 4
+                this.playerPosition.x = 11
+                this.playerPosition.y = 6
                 this.grid = maps[2]
             }
             }
