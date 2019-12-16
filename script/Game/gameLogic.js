@@ -1,5 +1,6 @@
 let isTrapped=false;
 let trapTime= 3000;
+
 export function moveDown(x,y,grid){
     let ableToMove = grid.getItem("isAbleToMove");
     if (ableToMove == 'true'){
