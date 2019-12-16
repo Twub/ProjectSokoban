@@ -28,17 +28,27 @@ export default {
             }
         },
         playMusic: function(){
-            if (this.isSoundEnable() == true){
+            if (this.isMusicOn() == true){
             
                 var audio = new Audio('/sound/menyMusic.mp3');
                 audio.loop = true;
                 audio.play();
-           
+            }
+            else{
+                this.audio.pause();
+                this.audio.currentTime = 0;
             }
         },
         isSoundEnable: function(){
             let volumeEnable = this.getItem('isSoundEnable');
             if (volumeEnable == 'true'){
+                return true;
+            }
+            return false;
+        },
+        isMusicOn: function(){
+            let musicEnable = this.getItem('isMusicEnable');
+            if (musicEnable == 'true'){
                 return true;
             }
             return false;

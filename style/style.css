@@ -40,9 +40,21 @@
      justify-content: center;
      width: 10%;
      margin: 0;
-     padding: 0;
-     
+     padding: 0;  
  }
+ .trapptText{
+    font-family: 'Press Start 2P', cursive;
+    position: absolute;
+    left: 40%;
+    top: 50%;
+    justify-content: center;
+    width: 10%;
+    margin: 0;
+    padding: 0; 
+    color: red;
+    font-size: 5vh;
+ }
+ 
  .small{  /* Olika map storlekar */
      width: 10%;
      height: 2.5vw;

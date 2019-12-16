@@ -1,7 +1,8 @@
 import storage from '/script/utility/StorageUtility.js';
+import Sound from '../utility/SoundUtility.js';
 
 export default {
-    mixins: [storage],
+    mixins: [storage,Sound],
     template: `
         <div id="settings-tab">
 
@@ -14,6 +15,10 @@ export default {
             <button id="enable-sound" class="settings-tab-buttons" v-on:click="isSoundEnable = true">Enable Sound</button>
             <button id="disable-sound" class="settings-tab-buttons" v-on:click="isSoundEnable = false">Disable Sound</button>
             
+            <br>
+            <br>
+            <button id="enable-music" class="settings-tab-buttons"  v-on:click="isMusicEnable = true">Play music</button>
+            <button id="disable-music" class="settings-tab-buttons" v-on:click="isMusicEnable = false">Stop music</button>
             <br>
             <br>
 
@@ -42,6 +47,7 @@ export default {
     `,
     data() {
         return {
+            isMusicEnable: false,
             isSoundEnable: true,
             isTimerEnable: false,
             volume: 50,
@@ -50,9 +56,11 @@ export default {
     methods: {
         saveSettings: function(){
             this.saveToStorage();
+            this.playMusic();
             if (this.isTimerEnable == true) document.getElementById("timer").style.display = 'block';
             if (this.isTimerEnable == false) document.getElementById("timer").style.display = 'none';
             this.showSodokoGrid();
+        
         },
         
         ignoreSettings: function(){
@@ -68,6 +76,7 @@ export default {
             this.addItem('isSoundEnable', this.isSoundEnable);
             this.addItem('isTimerEnable', this.isTimerEnable);
             this.addItem('volume', this.volume);
+            this.addItem('isMusicEnable', this.isMusicEnable);
         }
 
     }

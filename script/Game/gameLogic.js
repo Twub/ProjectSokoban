@@ -1,7 +1,9 @@
-
+let isTrapped=false;
+let trapTime= 3000;
 export function moveDown(x,y,grid){
     let ableToMove = grid.getItem("isAbleToMove");
     if (ableToMove == 'true'){
+    if (isTrapped==false){   
         grid.buttonClick();
     grid.actualTile = grid.tiles[y][x].img
     if(grid.player == grid.tiles[y-1][x].img ||
@@ -11,7 +13,7 @@ export function moveDown(x,y,grid){
 
    if(grid.actualTile != grid.wall){ /* Logic start here */
                 
-    if(grid.actualTile == grid.powerUp){
+    if(grid.actualTile == grid.powerUp){ /* powerUp Logic */ 
         grid.amountOfPowerUps++
         grid.powerUps = `You have ${grid.amountOfPowerUps} powerups`
         console.log('You have a powerup')
@@ -26,6 +28,14 @@ export function moveDown(x,y,grid){
     else if(grid.tiles[y][x].img == grid.breakableWall && grid.hasPowerUp == false){
         console.log('You have no powerup')
     } 
+
+    if(grid.actualTile == grid.trap){
+        grid.trapptText = `TRAPPED!`;
+        trapped()
+        setTimeout(() => {
+            grid.trapptText = ` `
+        }, trapTime);
+    }
     
 
     if(grid.tiles[y-1][x].img == grid.player) { /* Denna if är till för sätta tile rätt och undvika dupe player */
@@ -77,10 +87,12 @@ export function moveDown(x,y,grid){
         }
     }
 }
+} 
 }
 export function moveUp(x,y,grid){
     let ableToMove = grid.getItem("isAbleToMove");
     if (ableToMove == 'true'){
+    if (isTrapped==false){
         grid.buttonClick();
     grid.actualTile = grid.tiles[y][x].img
     if(grid.player == grid.tiles[y-1][x].img ||
@@ -103,6 +115,13 @@ export function moveUp(x,y,grid){
     else if(grid.tiles[y][x].img == grid.breakableWall && grid.hasPowerUp == false){
         console.log('You have no powerup')
     } 
+    if(grid.actualTile == grid.trap){
+        trapped()
+        grid.trapptText = `TRAPPED!`;
+        setTimeout(() => {
+            grid.trapptText = ` `
+        }, trapTime);
+    }
     if(grid.tiles[y+1][x].img == grid.player) { /* Denna kollar när gubben går uppåt */
         grid.player = "/images/playerUp.png"
         if( grid.tiles[y][x].img == grid.block && grid.tiles[y-1][x].img == grid.block ||
@@ -153,9 +172,11 @@ for(let i = 0; i < grid.tiles.length; i++){ /* grid loop checks and keeps the bo
         }
     }
 }
+}
 export function moveRight(x,y,grid){
     let ableToMove = grid.getItem("isAbleToMove");
     if (ableToMove == 'true'){
+    if (isTrapped==false){
         grid.buttonClick();
     grid.actualTile = grid.tiles[y][x].img
     if(grid.player == grid.tiles[y-1][x].img ||
@@ -178,6 +199,13 @@ export function moveRight(x,y,grid){
     else if(grid.tiles[y][x].img == grid.breakableWall && grid.hasPowerUp == false){
         console.log('You have no powerup')
     } 
+    if(grid.actualTile == grid.trap){
+        trapped()
+        grid.trapptText = `TRAPPED!`;
+        setTimeout(() => {
+            grid.trapptText = ` `
+        }, trapTime);
+    }
     if(grid.tiles[y][x-1].img == grid.player) { /* Kollar n'r gubben går åt vänster */
     grid.player = "/images/playerRight.png"
     if( grid.tiles[y][x].img == grid.block && grid.tiles[y][x+1].img == grid.block ||
@@ -227,9 +255,11 @@ for(let i = 0; i < grid.tiles.length; i++){ /* grid loop checks and keeps the bo
         }
     }
 }
+}
 export function moveLeft(x,y,grid){
     let ableToMove = grid.getItem("isAbleToMove");
     if (ableToMove == 'true'){
+    if (isTrapped==false){
         grid.buttonClick();
     grid.actualTile = grid.tiles[y][x].img
     if(grid.player == grid.tiles[y-1][x].img ||
@@ -252,6 +282,13 @@ export function moveLeft(x,y,grid){
     else if(grid.tiles[y][x].img == grid.breakableWall && grid.hasPowerUp == false){
         console.log('You have no powerup')
     } 
+    if(grid.actualTile == grid.trap){
+        trapped()
+        grid.trapptText = `TRAPPED!`;
+        setTimeout(() => {
+            grid.trapptText = ` `
+        }, trapTime);
+    }
     if(grid.tiles[y][x+1].img == grid.player) { /* Gubben går åt höger */
         grid.player = "/images/playerLeft.png"
         if( grid.tiles[y][x].img == grid.block && grid.tiles[y][x-1].img == grid.block ||
@@ -298,8 +335,19 @@ for(let i = 0; i < grid.tiles.length; i++){ /* grid loop checks and keeps the bo
         }
     }
 }
-        }
-        
+}       
 }
 }
+}
+
+
+
+function trapped(){
+    isTrapped=true;
+    console.log("you are trappt")
+    setTimeout(() => {
+        isTrapped=false;
+    }, trapTime);
+}
+
 /* Försöker omformatera metoderna till en metod för att spara kod */

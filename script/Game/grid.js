@@ -21,7 +21,10 @@ export default{
         class="grids"
         @movePlayerOnClick="onMovePlayerOnClick"></Tile>
        <!-- <Player class="Player"></Player> -->
+       
         <span class="powerUps">{{powerUps}}</span>
+        <span class="trapptText">{{trapptText}}</span>
+      
         
     </div>
     `,
@@ -30,6 +33,7 @@ export default{
             tiles:[],
             grid: [],
             powerUps:`You have 0 powerups`,
+            trapptText:``,
             flatTiles:[],
             amountOfPowerUps: 0,
             hasPowerUp: false,
@@ -43,7 +47,7 @@ export default{
             blockOnGoal: "/images/img4.png",
             blackBox: "images/blackBox.png",
             powerUp: "images/powerCoin.png",
-            trap: "images/speedCoin.jpg",
+            trap: "images/trap.png",
             goals: 0, /* Om ni skall ändra antalet goals/boxGoal så glöm inte ändra denna data i created */
             points: 0,
             actualTile: '',
@@ -97,10 +101,7 @@ export default{
                 moveLeft(x,y,this)
             }       
         },
-        OnmoveLeftByArrow(){
-        playerPosition=playerPosition + arrowcords;
-
-        },
+      
         checkKey(e){
             e = e || window.event
 
