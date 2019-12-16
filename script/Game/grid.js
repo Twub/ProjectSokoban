@@ -235,7 +235,9 @@ export default{
                 this.grid = maps[1]
             }
             else if(this.difficulty == "Hard"){
-                this.goals = 2
+                this.goals = 4
+                this.playerPosition.x = 11
+                this.playerPosition.y = 6
                 this.grid = maps[2]
             }
             }
