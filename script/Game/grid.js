@@ -2,8 +2,10 @@ import Tile from './Tile.js'
 import Player from './player.js'
 import sound from '../utility/SoundUtility.js';
 import storage from '../utility/StorageUtility.js';
+
 import { moveLeft, moveRight, moveDown, moveUp } from './gameLogic.js'
 import { maps } from './maps.js'
+
 
 export default{
     mixins: [sound, storage],
@@ -21,7 +23,10 @@ export default{
         class="grids"
         @movePlayerOnClick="onMovePlayerOnClick"></Tile>
        <!-- <Player class="Player"></Player> -->
+       
         <span class="powerUps">{{powerUps}}</span>
+        <span class="trapptText">{{trapptText}}</span>
+      
         
     </div>
     `,
@@ -30,6 +35,7 @@ export default{
             tiles:[],
             grid: [],
             powerUps:`You have 0 powerups`,
+            trapptText:``,
             flatTiles:[],
             amountOfPowerUps: 0,
             hasPowerUp: false,
@@ -43,13 +49,12 @@ export default{
             blockOnGoal: "/images/img4.png",
             blackBox: "images/blackBox.png",
             powerUp: "images/powerCoin.png",
-            trap: "images/speedCoin.jpg",
+            trap: "images/trap.png",
             goals: 0, /* Om ni skall ändra antalet goals/boxGoal så glöm inte ändra denna data i created */
             points: 0,
             actualTile: '',
             pastTile: '',
             moves: 0,
-            /* Tänker att vi gör map4(Extreme) tillsammans då den skall  vi maxa på, blir avslutnings område */
             playerPosition:{
                 x: '',
                 y: ''
@@ -97,10 +102,7 @@ export default{
                 moveLeft(x,y,this)
             }       
         },
-        OnmoveLeftByArrow(){
-        playerPosition=playerPosition + arrowcords;
-
-        },
+      
         checkKey(e){
             e = e || window.event
 
