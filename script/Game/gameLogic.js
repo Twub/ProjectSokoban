@@ -341,6 +341,18 @@ for(let i = 0; i < grid.tiles.length; i++){ /* grid loop checks and keeps the bo
 }
 }
 
+export function timerEnable(){
+    setInterval(setTime, 1000);
+
+    function setTime() {
+      grid.gameTime++;
+      console.log(grid.gameTime);
+      
+    }
+    
+}
+
+
 
 
 function trapped(){

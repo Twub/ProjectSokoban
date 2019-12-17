@@ -1,7 +1,7 @@
 import Tile from './Tile.js'
 import sound from '../utility/SoundUtility.js';
 import storage from '../utility/StorageUtility.js';
-import { moveLeft, moveRight, moveDown, moveUp } from './gameLogic.js'
+import { moveLeft, moveRight, moveDown, moveUp, timerEnable } from './gameLogic.js'
 import { maps } from './maps.js'
 
 export default{
@@ -47,6 +47,8 @@ export default{
             actualTile: '',
             pastTile: '',
             moves: 0,
+            gameTime: 0,
+            timerEnable: false,
             /* Tänker att vi gör map4(Extreme) tillsammans då den skall  vi maxa på, blir avslutnings område */
             playerPosition:{
                 x: '',
@@ -95,9 +97,8 @@ export default{
                 moveLeft(x,y,this)
             }       
         },
-      timerOn(){
-        let ableToMove = grid.getItem("isAbleToMove");
-        if (ableToMove == 'true'){}
+      timerOn: function(){
+        timerEnable();
       },
         checkKey(e){
             e = e || window.event
@@ -125,7 +126,8 @@ export default{
         },
         checkWinCondition(){
             if(this.points == this.goals){
-                let condition = confirm(`You have completed ${this.difficulty} in ${this.moves} moves `) /* Implementera timer räkning här */
+                this.gameTime=10;
+                let condition = confirm(`You have completed ${this.difficulty} in ${this.moves} moves ${this.GameTime}`) /* Implementera timer räkning här */
                 if(condition == true){
                     window.location.reload()
                 }
@@ -268,5 +270,7 @@ watch:{
         }
 
     },
+    
+
 }
 }
