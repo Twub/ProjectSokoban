@@ -1,9 +1,7 @@
 import Tile from './Tile.js'
-import Player from './player.js'
 import sound from '../utility/SoundUtility.js';
 import storage from '../utility/StorageUtility.js';
-
-import { moveLeft, moveRight, moveDown, moveUp } from './gameLogic.js'
+import { moveLeft, moveRight, moveDown, moveUp, timerEnable } from './gameLogic.js'
 import { maps } from './maps.js'
 
 
@@ -12,7 +10,6 @@ export default{
     props:['difficulty','displayGrid', 'arrowClickDir'],
     components:{
         Tile,
-        Player,
     },
     template: `
     <div id="grid">
@@ -21,13 +18,9 @@ export default{
         :position="tile"
         :key="'tile'+ id + tile.x + tile.y"
         class="grids"
-        @movePlayerOnClick="onMovePlayerOnClick"></Tile>
-       <!-- <Player class="Player"></Player> -->
-       
+        @movePlayerOnClick="onMovePlayerOnClick"></Tile>       
         <span class="powerUps">{{powerUps}}</span>
-        <span class="trapptText">{{trapptText}}</span>
-      
-        
+        <span class="trapptText">{{trapptText}}</span>  
     </div>
     `,
     data(){
@@ -55,6 +48,8 @@ export default{
             actualTile: '',
             pastTile: '',
             moves: 0,
+            gameTime: 0,
+            timerEnable: false,
             playerPosition:{
                 x: '',
                 y: ''
@@ -102,7 +97,9 @@ export default{
                 moveLeft(x,y,this)
             }       
         },
-      
+      timerOn: function(){
+        timerEnable();
+      },
         checkKey(e){
             e = e || window.event
 
@@ -129,7 +126,8 @@ export default{
         },
         checkWinCondition(){
             if(this.points == this.goals){
-                let condition = confirm(`You have completed ${this.difficulty} in ${this.moves} moves`)
+                this.gameTime=10;
+                let condition = confirm(`You have completed ${this.difficulty} in ${this.moves} moves ${this.GameTime}`) /* Implementera timer räkning här */
                 if(condition == true){
                     window.location.reload()
                 }
@@ -221,6 +219,10 @@ export default{
                 this.map = maps[2]
                 this.generateMap(13,this.map,"medium")
             }
+            else if(this.difficulty == "Extreme"){
+                this.map = maps[3]
+                this.generateMap(20,this.map,"large")
+            }
             if(this.difficulty == "Easy"){ /* This section makes checking for boxGoal easier and dynamic */
                 /* Ändra goals baserat på hur många 'F' det finns och grid:en skall vara samma för respektive map och svårighetsgrad */
                 this.goals = 2
@@ -239,6 +241,12 @@ export default{
                 this.playerPosition.x = 11
                 this.playerPosition.y = 6
                 this.grid = maps[2]
+            }
+            else if(this.difficulty == "Extreme"){
+                this.goals = 6
+                this.playerPosition.x = 11
+                this.playerPosition.y = 6
+                this.grid = maps[3]
             }
             }
             this.flatTiles = this.tiles.flat()
@@ -262,5 +270,7 @@ watch:{
         }
 
     },
+    
+
 }
 }
