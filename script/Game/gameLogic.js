@@ -4,8 +4,8 @@ let trapTime= 3000;
 export function moveDown(x,y,grid){
     let ableToMove = grid.getItem("isAbleToMove");
     if (ableToMove == 'true'){
-    if (isTrapped==false){   
-        grid.buttonClick();
+    if (isTrapped==false){  
+        grid.playSound('sound/moveSound.wav');
     grid.actualTile = grid.tiles[y][x].img
     if(grid.player == grid.tiles[y-1][x].img ||
         grid.player == grid.tiles[y+1][x].img ||
@@ -94,7 +94,7 @@ export function moveUp(x,y,grid){
     let ableToMove = grid.getItem("isAbleToMove");
     if (ableToMove == 'true'){
     if (isTrapped==false){
-        grid.buttonClick();
+        grid.playSound('sound/moveSound.wav');
     grid.actualTile = grid.tiles[y][x].img
     if(grid.player == grid.tiles[y-1][x].img ||
         grid.player == grid.tiles[y+1][x].img ||
@@ -178,7 +178,7 @@ export function moveRight(x,y,grid){
     let ableToMove = grid.getItem("isAbleToMove");
     if (ableToMove == 'true'){
     if (isTrapped==false){
-        grid.buttonClick();
+        grid.playSound('sound/moveSound.wav');
     grid.actualTile = grid.tiles[y][x].img
     if(grid.player == grid.tiles[y-1][x].img ||
         grid.player == grid.tiles[y+1][x].img ||
@@ -261,7 +261,7 @@ export function moveLeft(x,y,grid){
     let ableToMove = grid.getItem("isAbleToMove");
     if (ableToMove == 'true'){
     if (isTrapped==false){
-        grid.buttonClick();
+        grid.playSound('sound/moveSound.wav');
     grid.actualTile = grid.tiles[y][x].img
     if(grid.player == grid.tiles[y-1][x].img ||
         grid.player == grid.tiles[y+1][x].img ||
