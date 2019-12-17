@@ -1,8 +1,10 @@
 import Tile from './Tile.js'
 import sound from '../utility/SoundUtility.js';
 import storage from '../utility/StorageUtility.js';
+
 import { moveLeft, moveRight, moveDown, moveUp } from './gameLogic.js'
 import { maps } from './maps.js'
+
 
 export default{
     mixins: [sound, storage],
@@ -47,7 +49,6 @@ export default{
             actualTile: '',
             pastTile: '',
             moves: 0,
-            /* Tänker att vi gör map4(Extreme) tillsammans då den skall  vi maxa på, blir avslutnings område */
             playerPosition:{
                 x: '',
                 y: ''
