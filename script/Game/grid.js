@@ -2,7 +2,10 @@ import Tile from './Tile.js'
 import Player from './player.js'
 import sound from '../utility/SoundUtility.js';
 import storage from '../utility/StorageUtility.js';
-import { moveLeft, moveRight, moveDown, moveUp, } from './gameLogic.js'
+
+import { moveLeft, moveRight, moveDown, moveUp } from './gameLogic.js'
+import { maps } from './maps.js'
+
 
 export default{
     mixins: [sound, storage],
@@ -40,6 +43,7 @@ export default{
             breakableWall:  "/images/img25.png",
             player: "/images/playerDown.png",
             block: "/images/img2.png",
+            map : '',
             ground: "/images/img11.png",
             boxGoal: "/images/img20.png",
             blockOnGoal: "/images/img4.png",
@@ -51,45 +55,6 @@ export default{
             actualTile: '',
             pastTile: '',
             moves: 0,
-            map1: [ /* Skall ni ändra map layout så ändra också grid:en i created */
-                ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W'],
-                ['W',' ', ' ', ' ', 'B',' ', ' ', 'W', 'F','W'],
-                ['W','U', 'B', ' ', ' ',' ', ' ', ' ', ' ','W'],
-                ['W','W', 'W', 'W', 'B',' ', ' ', 'W', ' ','W'],
-                ['W',' ', ' ', ' ', ' ',' ', ' ', 'D', ' ','W'],
-                ['W','P', ' ', ' ', ' ','T', ' ', 'D', ' ','W'],
-                ['W','W', 'W', 'W', 'B',' ', ' ', 'W', ' ','W'],
-                ['W',' ', 'B', ' ', ' ',' ', ' ', ' ', ' ','W'],
-                ['W',' ', ' ', ' ', 'B',' ', ' ', 'W', 'F','W'],
-                ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W']
-            ],
-            map2: [
-                ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W'],
-                ['W','F', ' ', ' ', ' ',' ', ' ', ' ', 'F','W'],
-                ['W',' ', 'W', ' ', 'W','W', 'W', 'W', 'W','W'],
-                ['W',' ', 'W', 'B', ' ',' ', 'U', 'W', 'S','S'],
-                ['W',' ', 'W', ' ', ' ','W', 'W', 'W', 'W','S'],
-                ['W',' ', 'D', 'B', ' ','P', ' ', ' ', 'W','W'],
-                ['W',' ', 'W', ' ', ' ','B', ' ', 'B', 'T','W'],
-                ['W',' ', 'W', 'W', 'D','W', 'W', ' ', ' ','W'],
-                ['W','F', ' ', ' ', ' ',' ', ' ', 'F', ' ','W'],
-                ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W']
-            ],
-            map3: [
-                ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W','W','W','W'],
-                ['W',' ', ' ', 'W', ' ',' ', ' ', ' ', ' ',' ','D','F','W'],
-                ['W',' ', 'B', ' ', ' ','W', ' ', ' ', 'T',' ',' ','F','W'],
-                ['W',' ', ' ', ' ', 'W','W', 'W', ' ', 'W','W','W',' ','W'],
-                ['W','W', ' ', 'B', 'W','T', ' ', ' ', ' ',' ','W',' ','W'],
-                ['W',' ', ' ', 'W', 'W',' ', 'B', ' ', 'B',' ','W',' ','W'],
-                ['W',' ', 'U', ' ', ' ',' ', ' ', ' ', ' ',' ','D','P','W'],
-                ['W',' ', ' ', 'W', 'W',' ', 'W', ' ', 'W',' ','W',' ','W'],
-                ['W','W', ' ', 'B', 'W',' ', ' ', ' ', ' ',' ','W',' ','W'],
-                ['W',' ', ' ', ' ', 'W','W', 'W', ' ', 'W','W','W',' ','W'],
-                ['W',' ', 'B', ' ', ' ','W', 'T', ' ', ' ',' ',' ','F','W'],
-                ['W',' ', ' ', 'W', ' ',' ', ' ', ' ', ' ',' ','D','F','W'],
-                ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W','W','W','W'],
-            ], /* Tänker att vi gör map4(Extreme) tillsammans då den skall  vi maxa på, blir avslutnings område */
             playerPosition:{
                 x: '',
                 y: ''
@@ -135,8 +100,7 @@ export default{
             }
             else if(this.tiles[y][x+1].img == this.player){
                 moveLeft(x,y,this)
-            } 
-            this.checkGoalTile()       
+            }       
         },
       
         checkKey(e){
@@ -161,10 +125,9 @@ export default{
             else if(e.keyCode == '32'){
                 window.location.reload()
             }
+            
         },
         checkWinCondition(){
-            console.log(this.points)
-            console.log(`You have moved: ${this.moves} times`)
             if(this.points == this.goals){
                 let condition = confirm(`You have completed ${this.difficulty} in ${this.moves} moves`)
                 if(condition == true){
@@ -247,66 +210,35 @@ export default{
         let revealGrid = this.displayGrid
         if(revealGrid = true){
             if(this.difficulty == "Easy"){
-                this.generateMap(10,this.map1,"small")
+                this.map = maps[0]
+                this.generateMap(10,this.map,"small")
             }
             else if(this.difficulty == "Normal"){
-                this.generateMap(10,this.map2,"small")
+                this.map = maps[1]
+                this.generateMap(10,this.map,"small")
             }
             else if(this.difficulty == "Hard"){
-                this.generateMap(13,this.map3,"medium")
+                this.map = maps[2]
+                this.generateMap(13,this.map,"medium")
             }
             if(this.difficulty == "Easy"){ /* This section makes checking for boxGoal easier and dynamic */
                 /* Ändra goals baserat på hur många 'F' det finns och grid:en skall vara samma för respektive map och svårighetsgrad */
                 this.goals = 2
                 this.playerPosition.x = 1
                 this.playerPosition.y = 5
-                this.grid = [ /* Skall ni ändra map layout så ändra också grid:en i data */
-                    ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W'],
-                    ['W',' ', ' ', ' ', 'B',' ', ' ', 'W', 'F','W'],
-                    ['W','U', 'B', ' ', ' ',' ', ' ', ' ', ' ','W'],
-                    ['W','W', 'W', 'W', 'B',' ', ' ', 'W', ' ','W'],
-                    ['W',' ', ' ', ' ', ' ',' ', ' ', 'D', ' ','W'],
-                    ['W','P', ' ', ' ', ' ','T', ' ', 'D', ' ','W'],
-                    ['W','W', 'W', 'W', 'B',' ', ' ', 'W', ' ','W'],
-                    ['W',' ', 'B', ' ', ' ',' ', ' ', ' ', ' ','W'],
-                    ['W',' ', ' ', ' ', 'B',' ', ' ', 'W', 'F','W'],
-                    ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W']
-                ]
+                this.grid = maps[0]
             }
             else if(this.difficulty == "Normal"){
                 this.goals = 4
                 this.playerPosition.x = 5
                 this.playerPosition.y = 5
-                this.grid = [
-                    ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W'],
-                    ['W','F', ' ', ' ', ' ',' ', ' ', ' ', 'F','W'],
-                    ['W',' ', 'W', ' ', 'W','W', 'W', 'W', 'W','W'],
-                    ['W',' ', 'W', 'B', ' ',' ', 'U', 'W', 'S','S'],
-                    ['W',' ', 'W', ' ', ' ','W', 'W', 'W', 'W','S'],
-                    ['W',' ', 'D', 'B', ' ','P', ' ', ' ', 'W','W'],
-                    ['W',' ', 'W', ' ', ' ','B', ' ', 'B', 'T','W'],
-                    ['W',' ', 'W', 'W', 'D','W', 'W', ' ', ' ','W'],
-                    ['W','F', ' ', ' ', ' ',' ', ' ', 'F', ' ','W'],
-                    ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W']
-                ]
+                this.grid = maps[1]
             }
             else if(this.difficulty == "Hard"){
-                this.goals = 2
-                this.grid = [
-                    ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W','W','W','W'],
-                    ['W',' ', ' ', 'W', ' ',' ', ' ', ' ', ' ',' ','D','F','W'],
-                    ['W',' ', 'B', ' ', ' ','W', ' ', ' ', 'T',' ',' ','F','W'],
-                    ['W',' ', ' ', ' ', 'W','W', 'W', ' ', 'W','W','W',' ','W'],
-                    ['W','W', ' ', 'B', 'W','T', ' ', ' ', ' ',' ','W',' ','W'],
-                    ['W',' ', ' ', 'W', 'W',' ', 'B', ' ', 'B',' ','W',' ','W'],
-                    ['W',' ', 'U', ' ', ' ',' ', ' ', ' ', ' ',' ','D','P','W'],
-                    ['W',' ', ' ', 'W', 'W',' ', 'W', ' ', 'W',' ','W',' ','W'],
-                    ['W','W', ' ', 'B', 'W',' ', ' ', ' ', ' ',' ','W',' ','W'],
-                    ['W',' ', ' ', ' ', 'W','W', 'W', ' ', 'W','W','W',' ','W'],
-                    ['W',' ', 'B', ' ', ' ','W', 'T', ' ', ' ',' ',' ','F','W'],
-                    ['W',' ', ' ', 'W', ' ',' ', ' ', ' ', ' ',' ','D','F','W'],
-                    ['W','W', 'W', 'W', 'W','W', 'W', 'W', 'W','W','W','W','W'],
-                ]
+                this.goals = 4
+                this.playerPosition.x = 11
+                this.playerPosition.y = 6
+                this.grid = maps[2]
             }
             }
             this.flatTiles = this.tiles.flat()
