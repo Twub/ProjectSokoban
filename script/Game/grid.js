@@ -48,12 +48,7 @@ export default{
             actualTile: '',
             pastTile: '',
             moves: 0,
-<<<<<<< HEAD
             /* Tänker att vi gör map4(Extreme) tillsammans då den skall  vi maxa på, blir avslutnings område */
-=======
-            gameTime: 0,
-            timerEnable: false,
->>>>>>> devFredde
             playerPosition:{
                 x: '',
                 y: ''
@@ -87,6 +82,7 @@ export default{
             this.setPlayerPosition()
              moveRight(this.playerPosition.x+1,this.playerPosition.y,this) 
         },
+
         onMovePlayerOnClick(x,y){
             if(this.tiles[y-1][x].img == this.player){
                 moveDown(x,y,this)
@@ -101,14 +97,7 @@ export default{
                 moveLeft(x,y,this)
             }       
         },
-<<<<<<< HEAD
       
-=======
-      /*timerOn(){
-        let ableToMove = grid.getItem("isAbleToMove");
-        if (ableToMove == 'true'){}*/
-      },
->>>>>>> devFredde
         checkKey(e){
             e = e || window.event
 
@@ -203,6 +192,7 @@ export default{
             }
         }
     }
+}
 },
 
     created(){
@@ -258,6 +248,7 @@ export default{
             }
             }
             this.flatTiles = this.tiles.flat()
+
 },
 watch:{
     points(){
