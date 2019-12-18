@@ -4,6 +4,7 @@ import storage from '../utility/StorageUtility.js';
 import { moveLeft, moveRight, moveDown, moveUp, timerEnable } from './gameLogic.js'
 import { maps } from './maps.js'
 
+
 export default{
     mixins: [sound, storage],
     props:['difficulty','displayGrid', 'arrowClickDir'],
@@ -49,7 +50,6 @@ export default{
             moves: 0,
             gameTime: 0,
             timerEnable: false,
-            /* Tänker att vi gör map4(Extreme) tillsammans då den skall  vi maxa på, blir avslutnings område */
             playerPosition:{
                 x: '',
                 y: ''
