@@ -33,6 +33,7 @@ export default{
             this.addItem("isAbleToMove", true);
             this.run(60);
             this.buttonClick();
+            this.playSound('/sound/screm.mp3');
             this.timerOn();
         },
 
