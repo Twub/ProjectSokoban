@@ -2,10 +2,11 @@ import settingsTab from './tabs/settings.js';
 import timer from './Game/timer.js';
 import sound from './utility/SoundUtility.js';
 import storage from './utility/StorageUtility.js';
+import grid from "./Game/grid.js"
 
 
 export default{
-    mixins: [sound, timer, storage],
+    mixins: [sound, timer, storage,grid],
     components: {
         settingsTab,
         timer,
@@ -32,6 +33,7 @@ export default{
             this.addItem("isAbleToMove", true);
             this.run(60);
             this.buttonClick();
+            this.timerOn();
         },
 
         stopGame: function(){
