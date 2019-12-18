@@ -1,7 +1,7 @@
 import Tile from './Tile.js'
 import sound from '../utility/SoundUtility.js';
 import storage from '../utility/StorageUtility.js';
-import { moveLeft, moveRight, moveDown, moveUp, timerEnable } from './gameLogic.js'
+import { moveLeft, moveRight, moveDown, moveUp,} from './gameLogic.js'
 import { maps } from './maps.js'
 
 
@@ -48,8 +48,12 @@ export default{
             actualTile: '',
             pastTile: '',
             moves: 0,
+<<<<<<< HEAD
+            /* Tänker att vi gör map4(Extreme) tillsammans då den skall  vi maxa på, blir avslutnings område */
+=======
             gameTime: 0,
             timerEnable: false,
+>>>>>>> devFredde
             playerPosition:{
                 x: '',
                 y: ''
@@ -97,9 +101,14 @@ export default{
                 moveLeft(x,y,this)
             }       
         },
-      timerOn: function(){
-        timerEnable();
+<<<<<<< HEAD
+      
+=======
+      /*timerOn(){
+        let ableToMove = grid.getItem("isAbleToMove");
+        if (ableToMove == 'true'){}*/
       },
+>>>>>>> devFredde
         checkKey(e){
             e = e || window.event
 
@@ -126,8 +135,7 @@ export default{
         },
         checkWinCondition(){
             if(this.points == this.goals){
-                this.gameTime=10;
-                let condition = confirm(`You have completed ${this.difficulty} in ${this.moves} moves ${this.GameTime}`) /* Implementera timer räkning här */
+                let condition = confirm(`You have completed ${this.difficulty} in ${this.moves} moves `) /* Implementera timer räkning här */
                 if(condition == true){
                     window.location.reload()
                 }
@@ -195,8 +203,8 @@ export default{
             }
         }
     }
-}
 },
+
     created(){
         this.moveUp = moveUp;
         this.moveDown = moveDown;
