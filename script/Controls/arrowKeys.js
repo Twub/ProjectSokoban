@@ -18,22 +18,18 @@ created() {
 },
    methods:{
        goUp(){
-           this.playSound('/sound/moveSound.wav');
             this.$emit("arrowClick","up")
         
        },
        goDown(){
-            this.playSound('/sound/moveSound.wav');
             this.$emit("arrowClick","down")
            
        },
        goRight(){
-           this.playSound('/sound/moveSound.wav');
            this.$emit("arrowClick","right")
            
        },
        goLeft(){
-           this.playSound('/sound/moveSound.wav');
            this.$emit("arrowClick","left")
        }
    }
