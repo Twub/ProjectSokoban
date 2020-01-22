@@ -82,6 +82,7 @@ export default{
             this.setPlayerPosition()
              moveRight(this.playerPosition.x+1,this.playerPosition.y,this) 
         },
+
         onMovePlayerOnClick(x,y){
             if(this.tiles[y-1][x].img == this.player){
                 moveDown(x,y,this)
@@ -96,9 +97,7 @@ export default{
                 moveLeft(x,y,this)
             }       
         },
-     // timerOn: function(){
-       // timerEnable();
-    
+      
         checkKey(e){
             e = e || window.event
 
@@ -193,6 +192,7 @@ export default{
             }
         }
     }
+}
 },
 
     created(){
@@ -248,6 +248,7 @@ export default{
             }
             }
             this.flatTiles = this.tiles.flat()
+
 },
 watch:{
     points(){
@@ -270,6 +271,5 @@ watch:{
     },
     
 
-}
 }
 }
