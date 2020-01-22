@@ -97,7 +97,13 @@ export default{
                 moveLeft(x,y,this)
             }       
         },
+<<<<<<< HEAD
       
+=======
+     // timerOn: function(){
+       // timerEnable();
+    
+>>>>>>> master
         checkKey(e){
             e = e || window.event
 
@@ -273,3 +279,7 @@ watch:{
 
 }
 }
+<<<<<<< HEAD
+=======
+}
+>>>>>>> master
