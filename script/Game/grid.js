@@ -48,12 +48,7 @@ export default{
             actualTile: '',
             pastTile: '',
             moves: 0,
-<<<<<<< HEAD
             /* Tänker att vi gör map4(Extreme) tillsammans då den skall  vi maxa på, blir avslutnings område */
-=======
-            gameTime: 0,
-            timerEnable: false,
->>>>>>> devFredde
             playerPosition:{
                 x: '',
                 y: ''
@@ -101,14 +96,9 @@ export default{
                 moveLeft(x,y,this)
             }       
         },
-<<<<<<< HEAD
-      
-=======
-      /*timerOn(){
-        let ableToMove = grid.getItem("isAbleToMove");
-        if (ableToMove == 'true'){}*/
-      },
->>>>>>> devFredde
+     // timerOn: function(){
+       // timerEnable();
+    
         checkKey(e){
             e = e || window.event
 
@@ -280,5 +270,6 @@ watch:{
     },
     
 
+}
 }
 }
